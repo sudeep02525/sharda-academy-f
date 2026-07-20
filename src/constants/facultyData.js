@@ -1,0 +1,101 @@
+export const FACULTY_HERO_DATA = {
+  badge: "Our Mentors",
+  title: "Meet Our Faculty",
+  description: "Our highly experienced educators are dedicated to unlocking your highest potential through personalized attention and proven teaching methodologies.",
+};
+
+export const FACULTY_DEPARTMENTS = [
+  "All",
+  "Physics",
+  "Chemistry",
+  "Mathematics",
+  "Biology",
+  "Foundation"
+];
+
+export const FACULTY_MEMBERS = [
+  {
+    id: 1,
+    name: "Dr. Arvind Sharda",
+    department: "Physics",
+    role: "HOD Physics & Founder",
+    qualifications: ["Ph.D. in Quantum Mechanics", "B.Tech IIT Delhi"],
+    experience: "15+ Years",
+    specializations: ["Mechanics", "Electromagnetism"],
+    achievements: ["Mentored 50+ Top State Board Rankers", "Author of 'Physics for Board Exams'"],
+    teachingMethod: "Conceptual visualization with real-world examples",
+    languages: ["English", "Hindi"],
+    availability: "Mon, Wed, Fri",
+    imageUrl: "" // Use placeholder in component
+  },
+  {
+    id: 2,
+    name: "Dr. Neha Verma",
+    department: "Biology",
+    role: "Senior Botany Faculty",
+    qualifications: ["M.B.B.S. AIIMS Delhi", "Gold Medalist"],
+    experience: "10+ Years",
+    specializations: ["Plant Physiology", "Genetics"],
+    achievements: ["Consistent 100% Biology Board Results", "Pioneered the 'Memory-Map' technique for Botany"],
+    teachingMethod: "Memory maps and diagram-based learning",
+    languages: ["English", "Hindi"],
+    availability: "Tue, Thu, Sat",
+    imageUrl: "" 
+  },
+  {
+    id: 3,
+    name: "Rahul Deshmukh",
+    department: "Mathematics",
+    role: "Senior Faculty",
+    qualifications: ["M.Sc. Mathematics", "B.Tech IIT Bombay"],
+    experience: "8+ Years",
+    specializations: ["Calculus", "Coordinate Geometry"],
+    achievements: ["Consistent 100% board result track record", "Developed 500+ shortcut tricks for Mathematics"],
+    teachingMethod: "Shortcut tricks and pattern recognition",
+    languages: ["English", "Hindi", "Marathi"],
+    availability: "Mon to Sat",
+    imageUrl: "" 
+  },
+  {
+    id: 4,
+    name: "Priya Sharma",
+    department: "Chemistry",
+    role: "HOD Chemistry",
+    qualifications: ["Ph.D. Organic Chemistry", "M.Sc. Delhi University"],
+    experience: "12+ Years",
+    specializations: ["Organic Reactions", "Stereochemistry"],
+    achievements: ["Best Teacher Award 2023", "Published 10+ research papers"],
+    teachingMethod: "Reaction mechanisms and step-by-step logical deduction",
+    languages: ["English", "Hindi"],
+    availability: "Mon, Tue, Wed",
+    imageUrl: "" 
+  },
+  {
+    id: 5,
+    name: "Vikram Singh",
+    department: "Foundation",
+    role: "NTSE Expert",
+    qualifications: ["B.Ed", "B.Sc. Physics Honors"],
+    experience: "6+ Years",
+    specializations: ["Mental Ability", "Foundational Science"],
+    achievements: ["Mentored 20+ NTSE Scholars"],
+    teachingMethod: "Interactive learning with puzzle-solving approach",
+    languages: ["English", "Hindi"],
+    availability: "Weekends Only",
+    imageUrl: "" 
+  },
+  {
+    id: 6,
+    name: "Anjali Gupta",
+    department: "Biology",
+    role: "Zoology Expert",
+    qualifications: ["M.Sc. Zoology", "CSIR-NET Cleared"],
+    experience: "7+ Years",
+    specializations: ["Human Physiology", "Evolution"],
+    achievements: ["100% success rate in Biology for HSC"],
+    teachingMethod: "3D models and clinical examples",
+    languages: ["English", "Hindi"],
+    availability: "Thu, Fri, Sat",
+    imageUrl: "" 
+  }
+];

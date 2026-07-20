@@ -1,0 +1,163 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:where(.dark, .dark *));
+@theme {
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-deep: var(--primary-deep);
+  --color-primary-light: var(--primary-light);
+  
+  --color-accent: var(--accent);
+  --color-accent-dark: var(--accent-dark);
+  --color-accent-light: var(--accent-light);
+  --color-accent-red: var(--accent-red);
+  
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-card: var(--surface);
+  
+  --color-heading: var(--heading);
+  --color-paragraph: var(--paragraph);
+  
+  --color-border: var(--border-color);
+  --color-border-color: var(--border-color);
+  
+  /* Ultra Premium Dispersed Shadow System */
+  --shadow-sm: 0 2px 8px -2px rgba(10, 22, 40, 0.04), 0 1px 3px -1px rgba(10, 22, 40, 0.02);
+  --shadow-md: 0 8px 24px -4px rgba(10, 22, 40, 0.06), 0 4px 10px -2px rgba(10, 22, 40, 0.03);
+  --shadow-lg: 0 16px 40px -6px rgba(10, 22, 40, 0.08), 0 8px 16px -4px rgba(10, 22, 40, 0.04);
+  --shadow-xl: 0 24px 60px -8px rgba(10, 22, 40, 0.1), 0 12px 24px -6px rgba(10, 22, 40, 0.05);
+  --shadow-2xl: 0 32px 80px -12px rgba(10, 22, 40, 0.12);
+  --shadow-glow: 0 0 30px 0 rgba(242, 201, 76, 0.3);
+  --shadow-glow-blue: 0 0 40px 0 rgba(13, 91, 215, 0.25);
+
+  /* Consistent Border Radius Scale - Extra Soft, Premium */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  --radius-3xl: 2.5rem;
+
+  --animate-shimmer: shimmer 2s infinite;
+  --animate-aurora: aurora 15s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-150%) skewX(20deg); }
+  100% { transform: translateX(150%) skewX(20deg); }
+}
+
+@keyframes aurora {
+  0%, 100% { opacity: 0.4; transform: translate(0, 0) scale(1); }
+  33% { opacity: 0.7; transform: translate(3%, -4%) scale(1.05); }
+  66% { opacity: 0.5; transform: translate(-2%, 3%) scale(0.95); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@layer base {
+  a, button {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+  
+  :root {
+    /* Refined Official Sharda Academy Colors */
+    --primary: #0D5BD7;
+    --primary-deep: #0A3FA8;
+    --primary-hover: #0846BC;
+    --primary-light: #EAF3FF;
+    
+    --accent: #F2C94C;
+    --accent-dark: #D9A404;
+    --accent-light: #FFF7D6;
+    --accent-red: #E3261C;
+    
+    --background: #FFFFFF;
+    --surface: #F8FAFC; /* A slightly more neutral, premium surface than F7F9FC */
+    
+    --border-color: #E2E8F0;
+    
+    --heading: #0F172A; /* Deeper slate for ultimate contrast */
+    --paragraph: #475569;
+  }
+
+  .dark {
+    /* Refined Dark Mode Colors for Sharda Academy */
+    --primary: #3B82F6;       /* Bright blue */
+    --primary-deep: #93C5FD;  /* Light/Ice blue to contrast against dark backgrounds */
+    --primary-hover: #60A5FA;
+    --primary-light: #172554; /* Very dark blue for subtle badge backgrounds */
+    
+    --accent: #FBBF24;        /* Bright yellow/amber */
+    --accent-dark: #D97706;
+    --accent-light: #451A03;  /* Very dark amber for subtle backgrounds */
+    --accent-red: #F87171;
+    
+    --background: #0B0F19; /* Deep, rich tech dark background */
+    --surface: #131B2C;
+    
+    --border-color: #1E293B;
+    
+    --heading: #F8FAFC;
+    --paragraph: #94A3B8;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--paragraph);
+    font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Added slight base tracking for extreme legibility */
+    letter-spacing: -0.01em; 
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--heading);
+    /* Much tighter tracking for premium, monumental feel */
+    letter-spacing: -0.04em;
+    font-weight: 800;
+  }
+
+  h1 { letter-spacing: -0.05em; line-height: 1.05; }
+  h2 { letter-spacing: -0.04em; line-height: 1.1; }
+  h3 { letter-spacing: -0.03em; line-height: 1.2; }
+
+  ::selection {
+    background-color: var(--primary);
+    color: white;
+  }
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+@layer components {
+  .container {
+    max-width: 1400px !important; /* Widened slightly for a broader, more luxurious grid */
+    margin-inline: auto !important;
+  }
+}
