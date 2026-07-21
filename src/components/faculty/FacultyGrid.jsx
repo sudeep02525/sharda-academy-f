@@ -27,7 +27,7 @@ export function FacultyGrid() {
                   onClick={() => setActiveDept(dept)}
                   className={`whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
                     activeDept === dept 
-                      ? "bg-primary text-white shadow-md shadow-primary/20" 
+                      ? "bg-primary text-[#0F2E4E] font-bold shadow-md shadow-primary/20" 
                       : "bg-background border border-border text-paragraph hover:border-primary hover:text-primary"
                   }`}
                 >

@@ -23,10 +23,10 @@ export function CourseCard({
   mode
 }) {
   const CardBody = (
-    <Card variant="elevated" isHoverable={false} className="h-full flex flex-col group rounded-xl cursor-pointer overflow-hidden border border-border-color/50 dark:border-white/10 bg-white dark:bg-white/[0.04] shadow-sm hover:shadow-xl hover:border-primary/40 dark:hover:border-primary/40 transition-all duration-300">
+    <Card variant="elevated" isHoverable={false} className="h-full flex flex-col group rounded-xl cursor-pointer overflow-hidden border border-border-color/50 dark:border-white/10 bg-white dark:bg-white/[0.04] shadow-sm hover:shadow-[0_20px_40px_-15px_rgba(212,175,55,0.2)] hover:border-primary/50 dark:hover:border-primary/40 transition-all duration-300">
       
       {/* Header Section without Image */}
-      <div className="bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-6 border-b border-border-color/40 flex flex-col items-start gap-3 relative">
+      <div className="bg-gradient-to-br from-primary/10 via-primary/5 to-primary-light/30 p-6 border-b border-border-color/40 flex flex-col items-start gap-3 relative">
         <div className="flex justify-between items-start w-full">
           {category && <span className="text-xs font-bold text-primary uppercase tracking-widest">{category}</span>}
           {badge && (
@@ -114,7 +114,7 @@ export function CourseCard({
             </div>
           )}
           
-          <div className="w-full flex items-center justify-center bg-primary text-white py-3 rounded-md text-sm font-bold group-hover:bg-primary-deep transition-colors shadow-md">
+          <div className="w-full flex items-center justify-center bg-primary text-[#0F2E4E] py-3 rounded-md text-sm font-bold group-hover:bg-primary-hover transition-colors shadow-md">
             View Details 
             <ArrowRight className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-1" />
           </div>

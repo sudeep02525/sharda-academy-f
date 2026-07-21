@@ -5,9 +5,10 @@ import { Fade } from "@/components/animations/Fade";
 
 export function AdmissionHero() {
   return (
-    <section className="relative pt-32 pb-24 overflow-hidden bg-primary text-white">
-      <div className="absolute inset-0 bg-[url('/mesh-grid.svg')] opacity-20" />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/10 dark:bg-surface/10 rounded-full blur-[120px] pointer-events-none" />
+    <section className="relative pt-32 pb-24 overflow-hidden bg-[#0F2E4E] text-white">
+      <div className="absolute inset-0 bg-[url('/mesh-grid.svg')] opacity-10" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/15 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto">

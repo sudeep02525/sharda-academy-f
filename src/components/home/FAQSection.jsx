@@ -41,7 +41,7 @@ export function FAQSection({ className }) {
                     <span className="font-semibold text-heading pr-8">{faq.question}</span>
                     <div className={cn(
                       "shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-transform duration-300",
-                      isOpen ? "bg-primary text-white rotate-180" : "bg-muted text-muted-foreground"
+                      isOpen ? "bg-primary text-[#0F2E4E] rotate-180" : "bg-surface border border-border-color text-paragraph"
                     )}>
                       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/></svg>
                     </div>

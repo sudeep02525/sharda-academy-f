@@ -42,7 +42,7 @@ export function ScrollToTop({ className }) {
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
       onClick={scrollToTop}
       className={cn(
-        "fixed bottom-6 right-6 z-40 p-3 rounded-full bg-primary text-white shadow-lg hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+        "fixed bottom-6 right-6 z-40 p-3 rounded-full bg-primary text-[#0F2E4E] shadow-[0_4px_14px_rgba(212,175,55,0.4)] hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
         !isVisible && "pointer-events-none",
         className
       )}

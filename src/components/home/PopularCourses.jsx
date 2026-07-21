@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export function PopularCourses() {
   return (
-    <section className="py-20 md:py-28 bg-[#FAFAFA] dark:bg-surface border-b border-border/50">
+    <section className="py-20 md:py-28 bg-[#FFFDF6] dark:bg-surface border-b border-border/50">
       <div className="container mx-auto px-4 max-w-7xl">
         
         {/* Header Section */}
@@ -49,14 +49,16 @@ export function PopularCourses() {
 
         {/* Footer CTA */}
         <Fade direction="up" delay={0.6} className="mt-16 flex justify-center">
-          <Button variant="outline" size="lg" className="group rounded-md border-border-color/60 bg-white dark:bg-surface hover:bg-surface text-heading shadow-sm px-8">
-            <Link href="/courses" className="flex items-center gap-2 font-bold text-base">
-              View All Courses
-              <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </Link>
-          </Button>
+          <Link href="/courses">
+            <Button variant="outline" className="group">
+              <span className="flex items-center gap-2">
+                View All Courses
+                <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </span>
+            </Button>
+          </Link>
         </Fade>
 
       </div>

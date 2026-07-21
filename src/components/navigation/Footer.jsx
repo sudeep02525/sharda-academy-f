@@ -8,10 +8,10 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#0B0F19] dark:bg-surface text-white/70 pt-24 pb-12 border-t border-primary-deep/30 relative overflow-hidden">
+    <footer className="bg-[#0F2E4E] dark:bg-surface text-white/70 pt-24 pb-12 border-t border-primary/20 relative overflow-hidden">
       {/* Subtle Background Glows */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-primary/10 blur-[100px] opacity-40 pointer-events-none translate-x-1/3 -translate-y-1/2" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-primary-deep/20 blur-[100px] opacity-40 pointer-events-none -translate-x-1/3 translate-y-1/2" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-primary/10 blur-[100px] opacity-30 pointer-events-none translate-x-1/3 -translate-y-1/2" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-primary/8 blur-[100px] opacity-30 pointer-events-none -translate-x-1/3 translate-y-1/2" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-20">
@@ -36,7 +36,7 @@ export function Footer() {
               Empowering students to achieve excellence through comprehensive coaching, expert faculty, and a proven methodology. Building the leaders of tomorrow.
             </p>
             <div className="flex gap-4">
-              <a aria-label="Facebook" href={ACADEMY_DETAILS.socialLinks?.facebook || "#"} className="w-10 h-10 rounded-full bg-white/5 dark:bg-white/10 border border-white/5 dark:border-white/20 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300 text-white hover:scale-110 shadow-sm">
+              <a aria-label="Facebook" href={ACADEMY_DETAILS.socialLinks?.facebook || "#"} className="w-10 h-10 rounded-full bg-white/5 dark:bg-white/10 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300 text-white hover:text-[#0F2E4E] hover:scale-110 shadow-sm">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
               </a>
               <a aria-label="Instagram" href="#" className="w-10 h-10 rounded-full bg-white/5 dark:bg-white/10 border border-white/5 dark:border-white/20 flex items-center justify-center hover:bg-pink-600 hover:border-pink-600 transition-all duration-300 text-white hover:scale-110 shadow-sm">
@@ -50,6 +50,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div className="lg:col-span-2 lg:col-start-6">
+            {/* Platform Heading */}
             <h4 className="text-white font-bold text-lg mb-6 tracking-tight relative inline-block">Platform<span className="absolute -bottom-2 left-0 w-1/2 h-0.5 bg-primary rounded-full"></span></h4>
             <ul className="space-y-4">
               <li><Link href="/about" className="hover:text-white hover:translate-x-1 inline-block transition-all duration-300">About Us</Link></li>
@@ -91,14 +92,14 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/10 dark:border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-[#64748B]">
-          <p>© {currentYear} {ACADEMY_DETAILS.name}. All rights reserved.</p>
-          <div className="flex items-center gap-8">
+        <div className="pt-8 pb-12 md:pb-0 border-t border-white/10 dark:border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-[#64748B]">
+          <p className="text-center md:text-left">© {currentYear} {ACADEMY_DETAILS.name}. All rights reserved.</p>
+          <div className="flex items-center gap-6 md:gap-8 md:pr-20">
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
             <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
             <button 
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="text-primary hover:text-primary-light transition-colors flex items-center gap-2 font-medium ml-4"
+              className="text-primary hover:text-primary-hover transition-colors flex items-center gap-2 font-medium ml-2 md:ml-4"
               aria-label="Scroll back to top"
             >
               Top

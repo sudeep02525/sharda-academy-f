@@ -24,13 +24,13 @@
   --color-border-color: var(--border-color);
   
   /* Ultra Premium Dispersed Shadow System */
-  --shadow-sm: 0 2px 8px -2px rgba(10, 22, 40, 0.04), 0 1px 3px -1px rgba(10, 22, 40, 0.02);
-  --shadow-md: 0 8px 24px -4px rgba(10, 22, 40, 0.06), 0 4px 10px -2px rgba(10, 22, 40, 0.03);
-  --shadow-lg: 0 16px 40px -6px rgba(10, 22, 40, 0.08), 0 8px 16px -4px rgba(10, 22, 40, 0.04);
-  --shadow-xl: 0 24px 60px -8px rgba(10, 22, 40, 0.1), 0 12px 24px -6px rgba(10, 22, 40, 0.05);
-  --shadow-2xl: 0 32px 80px -12px rgba(10, 22, 40, 0.12);
-  --shadow-glow: 0 0 30px 0 rgba(242, 201, 76, 0.3);
-  --shadow-glow-blue: 0 0 40px 0 rgba(13, 91, 215, 0.25);
+  --shadow-sm: 0 2px 8px -2px rgba(15, 46, 78, 0.04), 0 1px 3px -1px rgba(15, 46, 78, 0.02);
+  --shadow-md: 0 8px 24px -4px rgba(15, 46, 78, 0.06), 0 4px 10px -2px rgba(15, 46, 78, 0.03);
+  --shadow-lg: 0 16px 40px -6px rgba(15, 46, 78, 0.08), 0 8px 16px -4px rgba(15, 46, 78, 0.04);
+  --shadow-xl: 0 24px 60px -8px rgba(15, 46, 78, 0.1), 0 12px 24px -6px rgba(15, 46, 78, 0.05);
+  --shadow-2xl: 0 32px 80px -12px rgba(15, 46, 78, 0.12);
+  --shadow-glow: 0 0 30px 0 rgba(212, 175, 55, 0.4);
+  --shadow-glow-gold: 0 0 40px 0 rgba(212, 175, 55, 0.3);
 
   /* Consistent Border Radius Scale - Extra Soft, Premium */
   --radius-sm: 0.5rem;
@@ -67,42 +67,42 @@
   }
   
   :root {
-    /* Refined Official Sharda Academy Colors */
-    --primary: #0D5BD7;
-    --primary-deep: #0A3FA8;
-    --primary-hover: #0846BC;
-    --primary-light: #EAF3FF;
+    /* Premium Sharda Academy — Gold & Navy Identity */
+    --primary: #D4AF37;           /* Logo Gold — main brand color */
+    --primary-deep: #0F2E4E;      /* Dark Navy — deep tone, headings & overlays */
+    --primary-hover: #B88A1B;     /* Darker Gold on hover */
+    --primary-light: #F6E8B1;     /* Light Gold — badge / chip backgrounds */
     
-    --accent: #F2C94C;
-    --accent-dark: #D9A404;
-    --accent-light: #FFF7D6;
-    --accent-red: #E3261C;
+    --accent: #D4AF37;            /* Gold accent (same as primary for cohesion) */
+    --accent-dark: #B88A1B;       /* Darker gold for accent hover */
+    --accent-light: #FFF9E6;      /* Very light gold wash */
+    --accent-red: #EF4444;        /* Error / urgency red */
     
-    --background: #FFFFFF;
-    --surface: #F8FAFC; /* A slightly more neutral, premium surface than F7F9FC */
+    --background: #FFFDF6;        /* Warm White — luxurious base */
+    --surface: #FFFFFF;           /* Pure White — cards & elevated surfaces */
     
-    --border-color: #E2E8F0;
+    --border-color: #E8D9A8;      /* Warm Gold Border */
     
-    --heading: #0F172A; /* Deeper slate for ultimate contrast */
-    --paragraph: #475569;
+    --heading: #0F2E4E;           /* Dark Navy — premium headings */
+    --paragraph: #64748B;         /* Muted slate — body text */
   }
 
   .dark {
-    /* Refined Dark Mode Colors for Sharda Academy */
-    --primary: #3B82F6;       /* Bright blue */
-    --primary-deep: #93C5FD;  /* Light/Ice blue to contrast against dark backgrounds */
-    --primary-hover: #60A5FA;
-    --primary-light: #172554; /* Very dark blue for subtle badge backgrounds */
+    /* Premium Dark Mode — Gold on Deep Navy */
+    --primary: #D4AF37;           /* Gold stays gold in dark mode */
+    --primary-deep: #F6E8B1;      /* Light gold for contrast on dark */
+    --primary-hover: #B88A1B;
+    --primary-light: #2A2005;     /* Very dark gold for badge backgrounds */
     
-    --accent: #FBBF24;        /* Bright yellow/amber */
-    --accent-dark: #D97706;
-    --accent-light: #451A03;  /* Very dark amber for subtle backgrounds */
+    --accent: #D4AF37;
+    --accent-dark: #B88A1B;
+    --accent-light: #1A1500;
     --accent-red: #F87171;
     
-    --background: #0B0F19; /* Deep, rich tech dark background */
-    --surface: #131B2C;
+    --background: #0A0D14;        /* Very deep navy-black */
+    --surface: #111827;           /* Dark card surface */
     
-    --border-color: #1E293B;
+    --border-color: #2A2005;      /* Dark gold-tinted border */
     
     --heading: #F8FAFC;
     --paragraph: #94A3B8;
@@ -130,8 +130,8 @@
   h3 { letter-spacing: -0.03em; line-height: 1.2; }
 
   ::selection {
-    background-color: var(--primary);
-    color: white;
+    background-color: var(--primary-deep);
+    color: #F6E8B1;
   }
 }
 

@@ -20,37 +20,37 @@ const staggerContainer = {
 
 function HeroBackground() {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10 bg-gradient-to-b from-white to-[#FAFAFA] dark:from-background dark:to-surface">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10 bg-gradient-to-b from-[#FFFDF6] to-[#FFF9E6] dark:from-background dark:to-surface">
       {/* Noise Texture */}
       <div 
-        className="absolute inset-0 opacity-[0.3] mix-blend-overlay dark:opacity-[0.1]"
+        className="absolute inset-0 opacity-[0.2] mix-blend-overlay dark:opacity-[0.1]"
         style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}
       />
       {/* Almost invisible pattern */}
       <div 
-        className="absolute inset-0 opacity-[0.2] dark:opacity-[0.05]"
+        className="absolute inset-0 opacity-[0.15] dark:opacity-[0.04]"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
         }}
       />
-      {/* Subtle radial gradient / blue glow behind hero */}
-      <div className="absolute top-[10%] left-[5%] w-[800px] h-[800px] bg-primary/20 blur-[150px] rounded-full pointer-events-none" />
-      {/* Gold Glow */}
-      <div className="absolute top-[5%] right-[5%] w-[600px] h-[600px] bg-amber-400/5 blur-[120px] rounded-full pointer-events-none" />
+      {/* Soft golden glow — warm atmosphere */}
+      <div className="absolute top-[10%] left-[5%] w-[800px] h-[800px] bg-primary/15 dark:bg-primary/5 blur-[180px] rounded-full pointer-events-none" />
+      {/* Secondary warm glow */}
+      <div className="absolute top-[5%] right-[5%] w-[600px] h-[600px] bg-primary/10 dark:bg-primary/5 blur-[140px] rounded-full pointer-events-none" />
     </div>
   );
 }
 
-// Modern Educational Dashboard Composition
-function DashboardComposition() {
+// Desktop Version — Full Animations & Floating Elements
+function DashboardCompositionDesktop() {
   return (
-    <div className="w-full relative z-20 mx-auto lg:ml-auto h-[450px] sm:h-[500px]">
+    <div className="w-full relative z-20 mx-auto lg:ml-auto h-[450px] sm:h-[500px] hidden sm:block">
       {/* Decorative Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-gradient-to-tr from-primary/20 to-accent/20 blur-3xl rounded-full -z-10" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-gradient-to-tr from-primary/20 to-accent/20 dark:from-primary/5 dark:to-accent/5 blur-[100px] rounded-full -z-10" />
 
       {/* Central Admissions Card */}
       <motion.div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[380px] bg-gradient-to-b from-white/95 to-white/75 dark:from-surface/95 dark:to-surface/75 backdrop-blur-xl border border-white/80 dark:border-border shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1),0_0_40px_-10px_rgba(0,118,255,0.15)] ring-1 ring-white dark:ring-border rounded-2xl p-6 sm:p-8 z-20 cursor-default"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] bg-gradient-to-b from-white/95 to-white/75 dark:from-surface/95 dark:to-surface/75 backdrop-blur-xl border border-white/80 dark:border-border shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1),0_0_40px_-10px_rgba(0,118,255,0.15)] ring-1 ring-white dark:ring-border rounded-2xl p-8 z-20 cursor-default"
         initial={{ opacity: 0, scale: 0.9, y: "-50%", x: "-50%" }}
         animate={{ opacity: 1, scale: 1, y: "-51.5%", x: "-50%" }}
         transition={{ 
@@ -97,28 +97,28 @@ function DashboardComposition() {
         </div>
         
         <Link href="/admission">
-          <Button size="lg" className="w-full rounded-md bg-primary-deep hover:bg-primary text-white font-semibold shadow-lg hover:shadow-primary/25 transition-all">
+          <Button size="lg" className="w-full rounded-md bg-primary hover:bg-primary-hover text-[#0F2E4E] font-semibold shadow-lg hover:shadow-[0_6px_20px_rgba(212,175,55,0.4)] transition-all">
             Enroll Now <ChevronRight className="w-4 h-4 ml-1" />
           </Button>
         </Link>
 
-        {/* Attached AC Classrooms Pill - Option 1: Top-left corner of the card */}
+        {/* Attached AC Classrooms Pill */}
         <motion.div 
-          className="absolute -top-6 -left-8 sm:-top-8 sm:-left-12 bg-white/95 dark:bg-surface/95 backdrop-blur-md border border-border/80 shadow-xl rounded-full p-2 pr-4 flex items-center gap-3 z-30"
+          className="absolute -top-8 -left-12 bg-white/95 dark:bg-surface/95 backdrop-blur-md border border-border/80 shadow-xl rounded-full p-2 pr-4 flex items-center gap-3 z-30"
           animate={{ y: -5 }}
           transition={{ duration: 2.5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
         >
-          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-blue-50 dark:bg-blue-500/20 flex items-center justify-center text-blue-600 dark:text-blue-400">
-            <ThermometerSnowflake className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+          <div className="w-8 h-8 rounded-full bg-amber-50 dark:bg-amber-500/20 flex items-center justify-center text-amber-600 dark:text-amber-400">
+            <ThermometerSnowflake className="w-4 h-4" />
           </div>
-          <span className="text-[10px] sm:text-xs font-bold text-heading whitespace-nowrap">AC Classrooms</span>
+          <span className="text-xs font-bold text-heading whitespace-nowrap">AC Classrooms</span>
         </motion.div>
       </motion.div>
 
       {/* Floating Micro-Elements */}
-      {/* 2. Smart Panel Pill - Slow Orbit Effect */}
+      {/* 2. Smart Panel Pill */}
       <motion.div 
-        className="absolute bottom-[25%] -left-4 sm:-left-10 bg-white/95 dark:bg-surface/95 backdrop-blur-sm border border-border shadow-lg rounded-full p-2 pr-4 flex items-center gap-3 z-30"
+        className="absolute bottom-[25%] -left-10 bg-white/95 dark:bg-surface/95 backdrop-blur-sm border border-border shadow-lg rounded-full p-2 pr-4 flex items-center gap-3 z-30"
         animate={{ x: 8, y: -8 }}
         transition={{ duration: 4, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
       >
@@ -128,9 +128,9 @@ function DashboardComposition() {
         <span className="text-xs font-bold text-heading whitespace-nowrap">Smart Panels</span>
       </motion.div>
 
-      {/* 3. Results Metric - Floats Up */}
+      {/* 3. Results Metric */}
       <motion.div 
-        className="absolute top-[5%] right-2 sm:-right-2 bg-white/95 dark:bg-surface/95 backdrop-blur-sm border border-border shadow-lg rounded-xl p-4 flex items-center gap-4 z-10"
+        className="absolute top-[5%] -right-2 bg-white/95 dark:bg-surface/95 backdrop-blur-sm border border-border shadow-lg rounded-xl p-4 flex items-center gap-4 z-10"
         animate={{ y: -15 }}
         transition={{ duration: 3.25, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", delay: 1 }}
       >
@@ -143,9 +143,9 @@ function DashboardComposition() {
         </div>
       </motion.div>
 
-      {/* 4. Student Count Metric - Floats Down (Opposite) */}
+      {/* 4. Student Count Metric */}
       <motion.div 
-        className="absolute bottom-[15%] right-0 sm:-right-6 bg-white/95 dark:bg-surface/95 backdrop-blur-sm border border-border shadow-lg rounded-xl p-4 flex items-center gap-4 z-30"
+        className="absolute bottom-[15%] -right-6 bg-white/95 dark:bg-surface/95 backdrop-blur-sm border border-border shadow-lg rounded-xl p-4 flex items-center gap-4 z-30"
         animate={{ y: 15 }}
         transition={{ duration: 3.5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", delay: 0.5 }}
       >
@@ -173,6 +173,64 @@ function DashboardComposition() {
   );
 }
 
+// Mobile Version — Simplified, static, perfectly centered
+function DashboardCompositionMobile() {
+  return (
+    <div className="w-full relative z-20 flex items-center justify-center sm:hidden mt-8">
+      {/* Decorative Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] h-[250px] bg-gradient-to-tr from-primary/20 to-accent/20 dark:from-primary/10 dark:to-accent/10 blur-[60px] rounded-full -z-10" />
+
+      {/* Central Admissions Card - Standard flow layout, NO absolute positioning */}
+      <div className="w-full max-w-[340px] bg-gradient-to-b from-white/95 to-white/75 dark:from-surface/95 dark:to-surface/75 backdrop-blur-xl border border-white/80 dark:border-border shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1),0_0_40px_-10px_rgba(0,118,255,0.15)] ring-1 ring-white dark:ring-border rounded-2xl p-6 z-20 mx-auto">
+        
+        <div className="flex items-center justify-between mb-5 border-b border-border-color pb-4">
+          <div>
+            <h3 className="text-xl font-bold text-heading">Admissions Open</h3>
+            <p className="text-xs text-paragraph font-medium mt-1">Academic Session 2026-2027</p>
+          </div>
+          <span className="bg-accent-red/10 text-accent-red px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">
+            Filling Fast
+          </span>
+        </div>
+        
+        <div className="space-y-3 mb-6">
+           <div className="flex items-center gap-3">
+             <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+               <CheckCircle2 className="w-3.5 h-3.5 text-primary" />
+             </div>
+             <span className="text-sm font-semibold text-heading">Classes 1st to 12th</span>
+           </div>
+           <div className="flex items-center gap-3">
+             <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+               <CheckCircle2 className="w-3.5 h-3.5 text-primary" />
+             </div>
+             <span className="text-sm font-semibold text-heading">Science & Commerce</span>
+           </div>
+           <div className="flex items-center gap-3">
+             <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+               <CheckCircle2 className="w-3.5 h-3.5 text-primary" />
+             </div>
+             <span className="text-sm font-semibold text-heading">Board Excellence</span>
+           </div>
+           <div className="flex items-center gap-3">
+             <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+               <CheckCircle2 className="w-3.5 h-3.5 text-primary" />
+             </div>
+             <span className="text-sm font-semibold text-heading">PCMB Batches</span>
+           </div>
+        </div>
+        
+        <Link href="/admission" className="block w-full">
+          <Button size="lg" className="w-full rounded-md bg-primary text-[#0F2E4E] font-semibold shadow-lg">
+            Enroll Now <ChevronRight className="w-4 h-4 ml-1" />
+          </Button>
+        </Link>
+
+      </div>
+    </div>
+  );
+}
+
 export function HeroSection() {
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center pt-40 pb-20 overflow-hidden bg-white dark:bg-surface selection:bg-primary-deep selection:text-white">
@@ -190,9 +248,9 @@ export function HeroSection() {
           >
             {/* Institute Tagline */}
             <motion.div variants={fadeUpVariant} className="mb-6">
-              <div className="inline-flex items-center gap-2 py-2 px-5 rounded-full bg-gradient-to-r from-white to-primary/5 dark:from-surface dark:to-primary/10 border border-primary/20 shadow-[0_4px_14px_0_rgba(0,118,255,0.1)] text-primary-deep">
-                <Sparkles className="w-4 h-4 text-accent" />
-                <span className="font-semibold text-sm tracking-wide">Building Academic Excellence Since 2021</span>
+              <div className="inline-flex items-start sm:items-center gap-2 py-2 px-4 sm:px-5 rounded-xl sm:rounded-full bg-gradient-to-r from-primary-light to-primary/10 dark:from-surface dark:to-primary/10 border border-primary/30 shadow-[0_4px_14px_0_rgba(212,175,55,0.2)] text-primary-deep">
+                <Sparkles className="w-4 h-4 text-primary shrink-0 mt-0.5 sm:mt-0" />
+                <span className="font-semibold text-xs sm:text-sm tracking-wide">Building Academic Excellence Since 2021</span>
               </div>
             </motion.div>
 
@@ -202,7 +260,7 @@ export function HeroSection() {
               className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-heading leading-[1.15] tracking-tight mb-6"
             >
               Build a Strong <br/>
-              Foundation for <span className="text-primary-deep">Success.</span>
+              Foundation for <span className="text-primary">Success.</span>
             </motion.h1>
 
             <motion.p 
@@ -223,7 +281,7 @@ export function HeroSection() {
                 </Button>
               </Link>
               <Link href="/courses" className="w-full sm:w-auto">
-                <Button variant="outline" size="lg" className="w-full sm:w-auto min-w-[180px] rounded-md text-base border-border-color text-heading hover:bg-surface">
+                <Button variant="outline" size="lg" className="w-full sm:w-auto min-w-[180px] rounded-md text-base">
                   Explore Courses
                 </Button>
               </Link>
@@ -266,13 +324,8 @@ export function HeroSection() {
           </motion.div>
 
           {/* Right: Dashboard Composition */}
-          <div className="w-full relative hidden sm:block">
-             <DashboardComposition />
-          </div>
-          <div className="w-full relative sm:hidden">
-             {/* Simplified version for mobile to avoid layout breaking */}
-             <DashboardComposition />
-          </div>
+          <DashboardCompositionDesktop />
+          <DashboardCompositionMobile />
 
         </div>
       </div>

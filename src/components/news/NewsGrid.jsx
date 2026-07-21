@@ -37,7 +37,7 @@ export function NewsGrid() {
                     onClick={() => setActiveCategory(category)}
                     className={`whitespace-nowrap px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
                       activeCategory === category 
-                        ? "bg-primary text-white shadow-md" 
+                        ? "bg-primary text-[#0F2E4E] font-bold shadow-sm" 
                         : "bg-background border border-border text-paragraph hover:border-primary hover:text-primary"
                     }`}
                   >

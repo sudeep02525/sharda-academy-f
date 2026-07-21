@@ -6,11 +6,11 @@ import { motion } from "framer-motion";
 
 const Button = forwardRef(({ className, variant = "default", size = "default", showArrow = false, children, ...props }, ref) => {
   const variants = {
-    default: "bg-primary text-white hover:bg-primary-hover shadow-[0_4px_14px_0_rgba(13,91,215,0.39)] hover:shadow-[0_6px_20px_rgba(13,91,215,0.23)] border border-transparent",
-    accent: "bg-accent text-heading hover:bg-accent-dark shadow-[0_4px_14px_0_rgba(242,201,76,0.39)] hover:shadow-[0_6px_20px_rgba(242,201,76,0.23)] border border-transparent",
-    outline: "border-2 border-border-color text-paragraph hover:border-primary/30 hover:text-heading bg-white dark:bg-surface shadow-sm hover:shadow-md",
-    ghost: "text-paragraph hover:bg-primary/5 hover:text-primary",
-    secondary: "bg-surface text-heading border border-border-color hover:border-primary/20 hover:shadow-md",
+    default: "bg-primary text-[#0F2E4E] hover:bg-primary-hover shadow-[0_4px_14px_0_rgba(212,175,55,0.4)] hover:shadow-[0_6px_20px_rgba(212,175,55,0.3)] border border-transparent",
+    accent: "bg-accent text-[#0F2E4E] hover:bg-accent-dark shadow-[0_4px_14px_0_rgba(212,175,55,0.4)] hover:shadow-[0_6px_20px_rgba(212,175,55,0.3)] border border-transparent",
+    outline: "border-2 border-primary text-primary dark:border-primary dark:text-primary hover:bg-primary hover:text-[#0F2E4E] dark:hover:bg-primary dark:hover:text-[#0F2E4E] bg-transparent dark:bg-transparent shadow-sm hover:shadow-md",
+    ghost: "text-paragraph hover:bg-primary/10 hover:text-primary-deep",
+    secondary: "bg-surface text-heading border border-border-color hover:border-primary/40 hover:shadow-md",
   };
 
   const sizes = {

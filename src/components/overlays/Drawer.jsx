@@ -34,8 +34,8 @@ export function Drawer({
   };
 
   const sideStyles = {
-    right: "inset-y-0 right-0 w-full max-w-sm border-l",
-    left:  "inset-y-0 left-0 w-full max-w-sm border-r",
+    right: "inset-y-0 right-0 w-[80vw] max-w-sm border-l",
+    left:  "inset-y-0 left-0 w-[80vw] max-w-sm border-r",
     top:   "inset-x-0 top-0 h-auto max-h-[80vh] border-b",
     bottom:"inset-x-0 bottom-0 h-auto max-h-[80vh] border-t rounded-t-2xl",
   };
@@ -48,6 +48,7 @@ export function Drawer({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
             onClick={onClose}
             className="absolute inset-0 bg-background/80 backdrop-blur-sm"
           />
@@ -57,7 +58,7 @@ export function Drawer({
             initial={sideVariants[side].initial}
             animate={sideVariants[side].animate}
             exit={sideVariants[side].exit}
-            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            transition={{ type: "tween", ease: "easeInOut", duration: 0.3 }}
             className={cn(
               "absolute bg-card border-border shadow-2xl flex flex-col overflow-y-auto",
               sideStyles[side],

@@ -9,7 +9,7 @@ export function WhyChooseUs() {
   return (
     <section className="py-24 md:py-32 bg-surface dark:bg-background relative overflow-hidden">
       {/* Background Decor */}
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-primary/5 to-transparent pointer-events-none" />
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-primary/8 to-transparent pointer-events-none" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col items-center text-center mb-12 md:mb-16 max-w-3xl mx-auto">

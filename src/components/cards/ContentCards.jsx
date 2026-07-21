@@ -7,7 +7,7 @@ import { Star, MapPin } from "lucide-react";
 
 export function FacultyCard({ name, qualification, experience, subjects = [], imageUrl }) {
   return (
-    <div className="group bg-white dark:bg-surface rounded-[1.5rem] border border-border-color/60 shadow-sm hover:shadow-[0_15px_40px_-15px_rgba(13,91,215,0.15)] hover:border-primary/30 hover:-translate-y-1 transition-all duration-300 p-3 md:p-4 flex flex-col h-full cursor-default">
+    <div className="group bg-white dark:bg-surface rounded-[1.5rem] border border-border-color/60 shadow-sm hover:shadow-[0_15px_40px_-15px_rgba(212,175,55,0.2)] hover:border-primary/50 hover:-translate-y-1 transition-all duration-300 p-3 md:p-4 flex flex-col h-full cursor-default">
       
       {/* Framed Image Block */}
       <div className="relative w-full h-56 md:h-64 rounded-[1.25rem] overflow-hidden bg-surface mb-5 md:mb-6">

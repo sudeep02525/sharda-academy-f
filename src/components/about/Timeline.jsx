@@ -6,7 +6,7 @@ import { Fade } from "@/components/animations/Fade";
 
 export function Timeline() {
   return (
-    <section className="py-24 bg-[#FAFAFA] dark:bg-background relative overflow-hidden">
+    <section className="py-24 bg-[#FFFDF6] dark:bg-background relative overflow-hidden">
       <div className="container mx-auto px-4 max-w-6xl relative z-10">
         
         <div className="text-center mb-24 max-w-2xl mx-auto">
@@ -32,7 +32,7 @@ export function Timeline() {
               <div key={idx} className="mb-12 md:mb-24 relative flex items-center w-full">
                 
                 {/* Glowing Timeline Node */}
-                <div className="absolute left-[15px] md:left-1/2 md:-translate-x-1/2 w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-border shadow-[0_0_15px_rgba(13,91,215,0.4)] z-10" />
+                <div className="absolute left-[15px] md:left-1/2 md:-translate-x-1/2 w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-border shadow-[0_0_15px_rgba(212,175,55,0.5)] z-10" />
 
                 {/* Content Box */}
                 <Fade 

@@ -46,7 +46,7 @@ export function TopRankers() {
                     onClick={() => setActiveYear(year)}
                     className={`px-8 py-2.5 rounded-full text-sm font-bold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
                       activeYear === year 
-                        ? "bg-primary text-white shadow-md shadow-primary/20" 
+                        ? "bg-primary text-[#0F2E4E] font-bold shadow-md shadow-primary/20" 
                         : "text-muted-foreground hover:text-primary hover:bg-primary/5"
                     }`}
                   >

@@ -10,10 +10,10 @@ function FacilitiesVisual() {
     <div className="relative w-full h-[350px] md:h-[400px] rounded-[2rem] flex items-center justify-center p-6 bg-gradient-to-br from-primary/[0.02] to-accent/[0.02] border border-border-color/40 overflow-hidden">
       
       {/* Decorative Dots Pattern */}
-      <div className="absolute inset-0 opacity-[0.15] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #0D5BD7 1px, transparent 0)', backgroundSize: '24px 24px' }} />
+      <div className="absolute inset-0 opacity-[0.12] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #D4AF37 1px, transparent 0)', backgroundSize: '24px 24px' }} />
 
       {/* Main Center Panel */}
-      <div className="relative w-40 h-40 md:w-48 md:h-48 bg-white dark:bg-surface rounded-3xl border border-border-color/60 shadow-[0_15px_40px_-15px_rgba(13,91,215,0.15)] flex flex-col items-center justify-center gap-3 z-20 hover:-translate-y-2 transition-transform duration-500">
+      <div className="relative w-40 h-40 md:w-48 md:h-48 bg-white dark:bg-surface rounded-3xl border border-border-color/60 shadow-[0_15px_40px_-15px_rgba(212,175,55,0.2)] flex flex-col items-center justify-center gap-3 z-20 hover:-translate-y-2 transition-transform duration-500">
         <div className="w-16 h-16 bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl flex items-center justify-center text-primary border border-primary/20">
           <BookOpen className="w-8 h-8" strokeWidth={1.5} />
         </div>
@@ -27,7 +27,7 @@ function FacilitiesVisual() {
 
       {/* Bottom Right Floating Panel */}
       <div className="absolute bottom-[15%] right-[5%] md:right-[10%] w-24 h-24 md:w-28 md:h-28 bg-white/90 dark:bg-surface/90 backdrop-blur-md rounded-2xl border border-white dark:border-border shadow-xl flex items-center justify-center z-30 hover:-translate-y-1 transition-transform duration-500">
-         <GraduationCap className="w-10 h-10 md:w-12 md:h-12 text-primary-deep" strokeWidth={1.5} />
+         <GraduationCap className="w-10 h-10 md:w-12 md:h-12 text-primary" strokeWidth={1.5} />
       </div>
       
     </div>
@@ -43,7 +43,7 @@ export function Facilities() {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-[#FAFAFA] dark:bg-background relative overflow-hidden border-y border-border-color/40">
+    <section className="py-16 md:py-24 bg-[#FFFDF6] dark:bg-background relative overflow-hidden border-y border-border-color/40">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
@@ -67,7 +67,7 @@ export function Facilities() {
 
                 return (
                   <Fade key={idx} direction="up" delay={0.3 + (idx * 0.1)}>
-                    <div className="bg-white dark:bg-surface border border-border-color/60 rounded-xl p-3 md:p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:-translate-y-1 hover:border-primary/30 transition-all duration-300 cursor-default">
+                    <div className="bg-white dark:bg-surface border border-border-color/60 rounded-xl p-3 md:p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_8px_25px_-5px_rgba(212,175,55,0.2)] transition-all duration-300 cursor-default">
                       <div className="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center text-primary shrink-0 border border-primary/10">
                         <IconComp className="w-5 h-5 md:w-6 md:h-6" strokeWidth={1.5} />
                       </div>

@@ -26,7 +26,7 @@ export function AdmissionProcess() {
             <Fade key={step.id} direction="up" delay={0.2 + (idx * 0.1)} className="relative">
               <div className="bg-background border border-border shadow-sm rounded-3xl p-8 text-center h-full flex flex-col items-center hover:border-primary hover:shadow-lg transition-all group">
                 
-                <div className="w-16 h-16 rounded-full bg-primary text-white text-2xl font-bold flex items-center justify-center mb-6 shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
+                <div className="w-16 h-16 rounded-full bg-primary text-[#0F2E4E] text-2xl font-bold flex items-center justify-center mb-6 shadow-[0_4px_14px_rgba(212,175,55,0.4)] group-hover:scale-110 transition-transform">
                   {step.id}
                 </div>
                 

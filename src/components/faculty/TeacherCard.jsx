@@ -45,7 +45,7 @@ export function TeacherCard({
           </div>
           
           <div className="absolute top-4 right-4">
-             <div className="bg-primary/90 backdrop-blur-sm text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+             <div className="bg-[#0F2E4E]/90 backdrop-blur-sm text-primary text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
                 {experience} Exp
              </div>
           </div>

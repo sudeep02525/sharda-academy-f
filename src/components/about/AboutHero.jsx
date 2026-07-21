@@ -13,9 +13,9 @@ export function AboutHero() {
       
       {/* Decorative dot matrix background */}
       <div 
-        className="absolute inset-0 opacity-[0.2] pointer-events-none z-0"
+        className="absolute inset-0 opacity-[0.15] pointer-events-none z-0"
         style={{
-          backgroundImage: `radial-gradient(#0D5BD7 1px, transparent 1px)`,
+          backgroundImage: `radial-gradient(#D4AF37 1px, transparent 1px)`,
           backgroundSize: '24px 24px',
           maskImage: 'linear-gradient(to bottom, white, transparent)'
         }}
@@ -46,20 +46,20 @@ export function AboutHero() {
         <Fade direction="up" delay={0.6}>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 max-w-4xl mx-auto">
             
-            <div className="bg-white dark:bg-surface border border-border-color rounded-2xl p-8 shadow-sm flex flex-col items-center justify-center hover:shadow-md transition-shadow">
-               <div className="text-5xl font-black text-primary-deep mb-2">{new Date().getFullYear() - 2021}+</div>
+            <div className="bg-white dark:bg-surface border border-border-color rounded-2xl p-8 shadow-sm flex flex-col items-center justify-center hover:shadow-[0_8px_25px_-5px_rgba(212,175,55,0.2)] hover:border-primary/40 transition-all">
+               <div className="text-5xl font-black text-primary mb-2">{new Date().getFullYear() - 2021}+</div>
                <div className="text-sm font-bold text-paragraph uppercase tracking-widest">Years of Trust</div>
             </div>
             
-            <div className="bg-white dark:bg-surface border border-border-color rounded-2xl p-8 shadow-sm flex flex-col items-center justify-center hover:shadow-md transition-shadow relative overflow-hidden">
+            <div className="bg-white dark:bg-surface border border-border-color rounded-2xl p-8 shadow-sm flex flex-col items-center justify-center hover:shadow-[0_8px_25px_-5px_rgba(212,175,55,0.2)] hover:border-primary/40 transition-all relative overflow-hidden">
                {/* Subtle accent glow */}
-               <div className="absolute -top-4 -right-4 w-20 h-20 bg-accent/10 rounded-full blur-2xl" />
-               <div className="text-5xl font-black text-primary-deep mb-2">10k+</div>
+               <div className="absolute -top-4 -right-4 w-20 h-20 bg-primary/10 rounded-full blur-2xl" />
+               <div className="text-5xl font-black text-primary mb-2">10k+</div>
                <div className="text-sm font-bold text-paragraph uppercase tracking-widest">Students Mentored</div>
             </div>
             
-            <div className="bg-white dark:bg-surface border border-border-color rounded-2xl p-8 shadow-sm flex flex-col items-center justify-center hover:shadow-md transition-shadow">
-               <div className="text-5xl font-black text-primary-deep mb-2">98%</div>
+            <div className="bg-white dark:bg-surface border border-border-color rounded-2xl p-8 shadow-sm flex flex-col items-center justify-center hover:shadow-[0_8px_25px_-5px_rgba(212,175,55,0.2)] hover:border-primary/40 transition-all">
+               <div className="text-5xl font-black text-primary mb-2">98%</div>
                <div className="text-sm font-bold text-paragraph uppercase tracking-widest">Success Rate</div>
             </div>
             
