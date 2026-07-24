@@ -25,9 +25,9 @@ export const DIRECTOR_MESSAGE_DATA = {
   message: [
     "Welcome to Sharda Academy. When we started this journey, our goal was simple: to create a coaching environment where students aren't just taught, but personally mentored.",
     "Every student possesses immense potential. Our role is to unlock that potential by providing the right resources, a scientifically designed curriculum, and the unwavering support of expert faculty.",
-    "I personally invite you to become part of our legacy of excellence. Let us work together to turn your academic dreams into reality."
+    "I personally invite you to become part of our legacy of success. Let us work together to turn your academic dreams into reality."
   ],
-  imageUrl: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+  imageUrl: "https://res.cloudinary.com/ybzctfb3/image/upload/v1784795274/sharda_academy_official/q4dtrxb6ebwrxexlm1r3.jpg",
   signature: "Dr. Arvind Sharda"
 };
 
@@ -35,7 +35,7 @@ export const CORE_VALUES_DATA = {
   title: "Our Core Values",
   description: "The principles that guide our everyday interactions and long-term strategies.",
   values: [
-    { title: "Excellence", description: "We strive for the highest standards in everything we do.", icon: "Star" },
+    { title: "Quality", description: "We strive for the highest standards in everything we do.", icon: "Star" },
     { title: "Integrity", description: "We operate with absolute honesty and transparency.", icon: "Shield" },
     { title: "Student-First", description: "Every decision is made keeping the student's best interest in mind.", icon: "User" },
     { title: "Innovation", description: "We constantly evolve our teaching methodologies using technology.", icon: "Lightbulb" }

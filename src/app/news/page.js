@@ -6,7 +6,12 @@ import { NewsletterCTA } from "@/components/news/NewsletterCTA";
 
 export const metadata = {
   title: "News & Events | Sharda Academy",
-  description: "Stay updated with the latest news, announcements, and upcoming events at Sharda Academy.",
+  description: "Stay updated with the latest news, announcements, and upcoming events for students of Class 1st-10th and 11th-12th Science & Commerce at Sharda Academy.",
+  keywords: ["sharda academy news","coaching announcements","student events","academy updates"],
+  openGraph: {
+    title: "News & Events | Sharda Academy",
+    description: "Stay updated with the latest news, announcements, and upcoming events for students of Class 1st-10th and 11th-12th Science & Commerce at Sharda Academy.",
+  }
 };
 
 export default function NewsHubPage() {

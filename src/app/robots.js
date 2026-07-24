@@ -5,6 +5,6 @@ export default function robots() {
       allow: "/",
       disallow: ["/api/", "/private/"],
     },
-    sitemap: "https://shardaacademy.edu/sitemap.xml",
+    sitemap: "https://shardaacademyofficial.in/sitemap.xml",
   };
 }

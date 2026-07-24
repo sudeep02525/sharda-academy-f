@@ -1,5 +1,5 @@
 export const RESULTS_HERO = {
-  badge: "Proven Excellence",
+  badge: "Proven Results",
   title: "A Legacy of Outstanding Results",
   description: "Consistency is our hallmark. Year after year, Sharda Academy students shatter records and secure top ranks in Board examinations across the state."
 };
@@ -23,7 +23,7 @@ export const TOP_RANKERS = [
     category: "HSC Science",
     score: "98.2%",
     year: "2026",
-    imageUrl: ""
+    imageUrl: "https://res.cloudinary.com/ybzctfb3/image/upload/v1784789716/sharda_academy/t3pyqdbqfq35moatzrzw.jpg"
   },
   {
     id: 3,
@@ -87,11 +87,11 @@ export const AWARDS_RECOGNITION = [
   {
     year: "2025",
     title: "Best Educational Institute of the Year",
-    body: "Awarded by the National Education Excellence Council for maintaining consistent top ranks in board exams."
+    body: "Awarded by the National Education Council for maintaining consistent top ranks in board exams."
   },
   {
     year: "2024",
-    title: "Excellence in E-Learning Adaptation",
+    title: "Pioneers in E-Learning Adaptation",
     body: "Recognized for flawlessly integrating digital smartboards and online test series into traditional classroom teaching."
   },
   {

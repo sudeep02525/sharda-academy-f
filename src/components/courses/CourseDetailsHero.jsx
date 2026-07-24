@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/Button";
 
 export function CourseDetailsHero({ course }) {
   return (
-    <section className="relative pt-32 pb-24 overflow-hidden bg-background">
+    <section className="relative pt-32 pb-24 overflow-hidden bg-white dark:bg-surface">
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5 -z-10" />
       
       <div className="container mx-auto px-4 relative z-10">

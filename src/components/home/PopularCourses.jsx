@@ -1,5 +1,6 @@
 "use client";
 
+import React, { useState, useEffect } from "react";
 import { COURSES_LIST } from "@/constants/coursesData";
 import { CourseCard } from "@/components/cards/CourseCard";
 import { Reveal } from "@/components/animations/Reveal";
@@ -8,6 +9,31 @@ import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 
 export function PopularCourses() {
+  const [featuredCourses, setFeaturedCourses] = useState(COURSES_LIST.slice(0, 3)); // Fallback to first 3
+
+  useEffect(() => {
+    const fetchCoursesData = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/cms/home/courses");
+        if (res.ok) {
+          const content = await res.json();
+          if (content && content.data && content.data.courses && content.data.courses.length > 0) {
+            // Merge with static data to ensure no fields (like subjects, highlights) are missing if CMS data is incomplete
+            const mergedCourses = COURSES_LIST.slice(0, 3).map((defaultCourse, idx) => {
+              const fetchedCourse = content.data.courses[idx];
+              return fetchedCourse ? { ...defaultCourse, ...fetchedCourse } : defaultCourse;
+            });
+            setFeaturedCourses(mergedCourses);
+            return;
+          }
+        }
+      } catch (error) {
+        console.error("Failed to fetch live popular courses data, falling back to static", error);
+      }
+    };
+    fetchCoursesData();
+  }, []);
+
   return (
     <section className="py-20 md:py-28 bg-[#FFFDF6] dark:bg-surface border-b border-border/50">
       <div className="container mx-auto px-4 max-w-7xl">
@@ -26,8 +52,8 @@ export function PopularCourses() {
 
         {/* Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-10">
-          {COURSES_LIST.slice(0, 3).map((course, idx) => (
-            <Fade key={idx} direction="up" delay={0.2 + (idx * 0.1)} className="h-full">
+          {featuredCourses.map((course, idx) => (
+            <Fade key={course.id} direction="up" delay={0.2 + (idx * 0.1)} className="h-full">
               <CourseCard 
                 title={course.title}
                 category={course.category}

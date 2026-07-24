@@ -8,8 +8,13 @@ import { Timeline } from "@/components/about/Timeline";
 import { WhyParentsChooseUs } from "@/components/about/WhyParentsChooseUs";
 
 export const metadata = {
-  title: "About Us | Sharda Academy",
-  description: "Learn about Sharda Academy's mission, vision, core values, and our decade-long journey of shaping top rankers.",
+  title: "About Us | Sharda Academy - Best Coaching Institute",
+  description: "Discover the mission, vision, and core values of Sharda Academy. We are committed to providing top-quality education for Class 1st to 10th and 11th-12th Science & Commerce.",
+  keywords: ["about sharda academy","best coaching institute history","top coaching classes","education academy"],
+  openGraph: {
+    title: "About Us | Sharda Academy - Best Coaching Institute",
+    description: "Discover the mission, vision, and core values of Sharda Academy. We are committed to providing top-quality education for Class 1st to 10th and 11th-12th Science & Commerce.",
+  }
 };
 
 export default function AboutPage() {

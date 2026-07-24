@@ -6,10 +6,13 @@ import { TeacherCard } from "@/components/faculty/TeacherCard";
 import { Fade } from "@/components/animations/Fade";
 import { AnimatePresence, motion } from "framer-motion";
 
-export function FacultyGrid() {
+export function FacultyGrid({ departments, faculty }) {
   const [activeDept, setActiveDept] = useState("All");
 
-  const filteredFaculty = FACULTY_MEMBERS.filter(member => 
+  const depts = departments || FACULTY_DEPARTMENTS;
+  const facultyMembers = faculty || FACULTY_MEMBERS;
+
+  const filteredFaculty = facultyMembers.filter(member => 
     activeDept === "All" || member.department === activeDept
   );
 
@@ -21,7 +24,7 @@ export function FacultyGrid() {
         <div className="flex flex-col lg:flex-row items-center justify-center gap-6 mb-16">
           <Fade direction="up" delay={0.1} className="w-full lg:w-auto overflow-x-auto pb-2 lg:pb-0 scrollbar-hide">
             <div className="flex items-center justify-start lg:justify-center gap-2">
-              {FACULTY_DEPARTMENTS.map((dept) => (
+              {depts.map((dept) => (
                 <button
                   key={dept}
                   onClick={() => setActiveDept(dept)}

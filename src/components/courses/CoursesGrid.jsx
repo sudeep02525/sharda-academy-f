@@ -1,17 +1,43 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { COURSE_CATEGORIES, COURSES_LIST } from "@/constants/coursesData";
 import { CourseCard } from "@/components/cards/CourseCard";
 import { Input } from "@/components/forms/Input";
 import { Fade } from "@/components/animations/Fade";
 import { AnimatePresence, motion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-export function CoursesGrid() {
+export function CoursesGrid({ categories, courses }) {
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const scrollContainerRef = useRef(null);
+  const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(true);
 
-  const filteredCourses = COURSES_LIST.filter(course => {
+  const handleScroll = () => {
+    if (!scrollContainerRef.current) return;
+    const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+    setShowLeftArrow(scrollLeft > 0);
+    setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 1);
+  };
+
+  useEffect(() => {
+    handleScroll();
+    window.addEventListener("resize", handleScroll);
+    return () => window.removeEventListener("resize", handleScroll);
+  }, [categories, courses]);
+
+  const scrollBy = (offset) => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: offset, behavior: "smooth" });
+    }
+  };
+
+  const catList = categories || COURSE_CATEGORIES;
+  const courseList = courses || COURSES_LIST;
+
+  const filteredCourses = courseList.filter(course => {
     const matchesCategory = activeCategory === "All" || course.category === activeCategory;
     const matchesSearch = course.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
                           course.description.toLowerCase().includes(searchQuery.toLowerCase());
@@ -25,22 +51,49 @@ export function CoursesGrid() {
         {/* Filters and Search */}
         <div className="flex flex-col lg:flex-row items-center justify-between gap-6 mb-12">
           
-          <Fade direction="right" delay={0.1} className="w-full lg:w-auto overflow-x-auto pb-2 lg:pb-0 scrollbar-hide">
-            <div className="flex items-center gap-2">
-              {COURSE_CATEGORIES.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setActiveCategory(category)}
-                  className={`whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
-                    activeCategory === category 
-                      ? "bg-primary text-[#0F2E4E] font-bold shadow-md shadow-primary/20" 
-                      : "bg-background border border-border text-paragraph hover:border-primary hover:text-primary"
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
+          <Fade direction="right" delay={0.1} className="relative w-full lg:flex-1 min-w-0 group">
+            
+            {showLeftArrow && (
+              <button 
+                onClick={() => scrollBy(-250)}
+                className="absolute left-0 top-1/2 -translate-y-1/2 -mt-2 z-10 p-1.5 bg-background shadow-lg rounded-full text-primary hover:bg-primary hover:text-white transition-all border border-border/50 hidden md:flex items-center justify-center"
+                aria-label="Scroll left"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+            )}
+
+            <div 
+              ref={scrollContainerRef}
+              onScroll={handleScroll}
+              className="w-full overflow-x-auto custom-scrollbar pb-2 scroll-smooth"
+            >
+              <div className="flex gap-3 w-max px-1 py-1">
+                {catList.map((category, idx) => (
+                  <button
+                    key={`${category}-${idx}`}
+                    onClick={() => setActiveCategory(category)}
+                    className={`whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                      activeCategory === category 
+                        ? "bg-primary text-[#0F2E4E] font-bold shadow-md shadow-primary/20" 
+                        : "bg-background border border-border text-paragraph hover:border-primary hover:text-primary"
+                    }`}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
             </div>
+            
+            {showRightArrow && (
+              <button 
+                onClick={() => scrollBy(250)}
+                className="absolute right-0 top-1/2 -translate-y-1/2 -mt-2 z-10 p-1.5 bg-background shadow-lg rounded-full text-primary hover:bg-primary hover:text-white transition-all border border-border/50 hidden md:flex items-center justify-center"
+                aria-label="Scroll right"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            )}
           </Fade>
 
           <Fade direction="left" delay={0.2} className="w-full lg:w-96 shrink-0">

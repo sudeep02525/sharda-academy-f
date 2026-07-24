@@ -45,18 +45,16 @@ function HeroBackground() {
 function DashboardCompositionDesktop() {
   return (
     <div className="w-full relative z-20 mx-auto lg:ml-auto h-[450px] sm:h-[500px] hidden sm:block">
-      {/* Decorative Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-gradient-to-tr from-primary/20 to-accent/20 dark:from-primary/5 dark:to-accent/5 blur-[100px] rounded-full -z-10" />
+      {/* Decorative Glow Removed */}
 
       {/* Central Admissions Card */}
       <motion.div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] bg-gradient-to-b from-white/95 to-white/75 dark:from-surface/95 dark:to-surface/75 backdrop-blur-xl border border-white/80 dark:border-border shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1),0_0_40px_-10px_rgba(0,118,255,0.15)] ring-1 ring-white dark:ring-border rounded-2xl p-8 z-20 cursor-default"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] bg-gradient-to-b from-white/95 to-white/75 dark:from-surface/95 dark:to-surface/75 backdrop-blur-xl border border-white/80 dark:border-border shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1),0_0_40px_-10px_rgba(0,118,255,0.15)] dark:shadow-none ring-1 ring-white dark:ring-border rounded-2xl p-8 z-20 cursor-default"
         initial={{ opacity: 0, scale: 0.9, y: "-50%", x: "-50%" }}
-        animate={{ opacity: 1, scale: 1, y: "-51.5%", x: "-50%" }}
+        animate={{ opacity: 1, scale: 1, y: "-50%", x: "-50%" }}
         transition={{ 
           opacity: { duration: 0.8 },
-          scale: { duration: 0.8 },
-          y: { duration: 3, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }
+          scale: { duration: 0.8 }
         }}
       >
         <div className="flex items-center justify-between mb-6 border-b border-border-color pb-4">
@@ -86,7 +84,7 @@ function DashboardCompositionDesktop() {
              <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                <CheckCircle2 className="w-3.5 h-3.5 text-primary" />
              </div>
-             <span className="text-sm font-semibold text-heading">Board Excellence</span>
+             <span className="text-sm font-semibold text-heading">Board Mastery</span>
            </div>
            <div className="flex items-center gap-3">
              <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
@@ -97,14 +95,14 @@ function DashboardCompositionDesktop() {
         </div>
         
         <Link href="/admission">
-          <Button size="lg" className="w-full rounded-md bg-primary hover:bg-primary-hover text-[#0F2E4E] font-semibold shadow-lg hover:shadow-[0_6px_20px_rgba(212,175,55,0.4)] transition-all">
+          <Button size="lg" className="w-full rounded-md bg-primary hover:bg-primary-hover text-[#0F2E4E] font-semibold shadow-lg dark:shadow-none hover:shadow-[0_6px_20px_rgba(212,175,55,0.4)] dark:hover:shadow-none transition-all">
             Enroll Now <ChevronRight className="w-4 h-4 ml-1" />
           </Button>
         </Link>
 
         {/* Attached AC Classrooms Pill */}
         <motion.div 
-          className="absolute -top-8 -left-12 bg-white/95 dark:bg-surface/95 backdrop-blur-md border border-border/80 shadow-xl rounded-full p-2 pr-4 flex items-center gap-3 z-30"
+          className="absolute -top-8 -left-12 bg-white/95 dark:bg-surface/95 backdrop-blur-md border border-border/80 shadow-xl dark:shadow-none rounded-full p-2 pr-4 flex items-center gap-3 z-30"
           animate={{ y: -5 }}
           transition={{ duration: 2.5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
         >
@@ -118,8 +116,8 @@ function DashboardCompositionDesktop() {
       {/* Floating Micro-Elements */}
       {/* 2. Smart Panel Pill */}
       <motion.div 
-        className="absolute bottom-[25%] -left-10 bg-white/95 dark:bg-surface/95 backdrop-blur-sm border border-border shadow-lg rounded-full p-2 pr-4 flex items-center gap-3 z-30"
-        animate={{ x: 8, y: -8 }}
+        className="absolute bottom-[25%] -left-10 bg-white/95 dark:bg-surface/95 backdrop-blur-sm border border-border shadow-lg dark:shadow-none rounded-full p-2 pr-4 flex items-center gap-3 z-30"
+        animate={{ y: -8 }}
         transition={{ duration: 4, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
       >
         <div className="w-8 h-8 rounded-full bg-purple-50 dark:bg-purple-500/20 flex items-center justify-center text-purple-600 dark:text-purple-400">
@@ -130,7 +128,7 @@ function DashboardCompositionDesktop() {
 
       {/* 3. Results Metric */}
       <motion.div 
-        className="absolute top-[5%] -right-2 bg-white/95 dark:bg-surface/95 backdrop-blur-sm border border-border shadow-lg rounded-xl p-4 flex items-center gap-4 z-10"
+        className="absolute top-[5%] -right-2 bg-white/95 dark:bg-surface/95 backdrop-blur-sm border border-border shadow-lg dark:shadow-none rounded-xl p-4 flex items-center gap-4 z-10"
         animate={{ y: -15 }}
         transition={{ duration: 3.25, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", delay: 1 }}
       >
@@ -145,7 +143,7 @@ function DashboardCompositionDesktop() {
 
       {/* 4. Student Count Metric */}
       <motion.div 
-        className="absolute bottom-[15%] -right-6 bg-white/95 dark:bg-surface/95 backdrop-blur-sm border border-border shadow-lg rounded-xl p-4 flex items-center gap-4 z-30"
+        className="absolute bottom-[15%] -right-6 bg-white/95 dark:bg-surface/95 backdrop-blur-sm border border-border shadow-lg dark:shadow-none rounded-xl p-4 flex items-center gap-4 z-30"
         animate={{ y: 15 }}
         transition={{ duration: 3.5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", delay: 0.5 }}
       >
@@ -160,7 +158,7 @@ function DashboardCompositionDesktop() {
       
       {/* 5. Biometric Attendance Pill */}
       <motion.div 
-        className="absolute -bottom-2 left-[25%] bg-white/95 dark:bg-surface/95 backdrop-blur-sm border border-border shadow-lg rounded-full p-2 pr-4 flex items-center gap-3 z-10"
+        className="absolute -bottom-2 left-[25%] bg-white/95 dark:bg-surface/95 backdrop-blur-sm border border-border shadow-lg dark:shadow-none rounded-full p-2 pr-4 flex items-center gap-3 z-10"
         animate={{ y: -5 }}
         transition={{ duration: 2.25, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", delay: 1.5 }}
       >
@@ -177,11 +175,10 @@ function DashboardCompositionDesktop() {
 function DashboardCompositionMobile() {
   return (
     <div className="w-full relative z-20 flex items-center justify-center sm:hidden mt-8">
-      {/* Decorative Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] h-[250px] bg-gradient-to-tr from-primary/20 to-accent/20 dark:from-primary/10 dark:to-accent/10 blur-[60px] rounded-full -z-10" />
+      {/* Decorative Glow Removed */}
 
       {/* Central Admissions Card - Standard flow layout, NO absolute positioning */}
-      <div className="w-full max-w-[340px] bg-gradient-to-b from-white/95 to-white/75 dark:from-surface/95 dark:to-surface/75 backdrop-blur-xl border border-white/80 dark:border-border shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1),0_0_40px_-10px_rgba(0,118,255,0.15)] ring-1 ring-white dark:ring-border rounded-2xl p-6 z-20 mx-auto">
+      <div className="w-full max-w-[340px] bg-gradient-to-b from-white/95 to-white/75 dark:from-surface/95 dark:to-surface/75 backdrop-blur-xl border border-white/80 dark:border-border shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1),0_0_40px_-10px_rgba(0,118,255,0.15)] dark:shadow-none ring-1 ring-white dark:ring-border rounded-2xl p-6 z-20 mx-auto">
         
         <div className="flex items-center justify-between mb-5 border-b border-border-color pb-4">
           <div>
@@ -210,7 +207,7 @@ function DashboardCompositionMobile() {
              <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                <CheckCircle2 className="w-3.5 h-3.5 text-primary" />
              </div>
-             <span className="text-sm font-semibold text-heading">Board Excellence</span>
+             <span className="text-sm font-semibold text-heading">Board Mastery</span>
            </div>
            <div className="flex items-center gap-3">
              <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
@@ -221,7 +218,7 @@ function DashboardCompositionMobile() {
         </div>
         
         <Link href="/admission" className="block w-full">
-          <Button size="lg" className="w-full rounded-md bg-primary text-[#0F2E4E] font-semibold shadow-lg">
+          <Button size="lg" className="w-full rounded-md bg-primary text-[#0F2E4E] font-semibold shadow-lg dark:shadow-none">
             Enroll Now <ChevronRight className="w-4 h-4 ml-1" />
           </Button>
         </Link>
@@ -232,6 +229,25 @@ function DashboardCompositionMobile() {
 }
 
 export function HeroSection() {
+  const [heroContent, setHeroContent] = useState(HERO_DATA);
+
+  useEffect(() => {
+    const fetchHeroData = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/cms/home/hero");
+        if (res.ok) {
+          const content = await res.json();
+          if (content && content.data) {
+            setHeroContent(content.data);
+          }
+        }
+      } catch (error) {
+        console.error("Failed to fetch live hero data, falling back to static", error);
+      }
+    };
+    fetchHeroData();
+  }, []);
+
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center pt-40 pb-20 overflow-hidden bg-white dark:bg-surface selection:bg-primary-deep selection:text-white">
       <HeroBackground />
@@ -248,9 +264,9 @@ export function HeroSection() {
           >
             {/* Institute Tagline */}
             <motion.div variants={fadeUpVariant} className="mb-6">
-              <div className="inline-flex items-start sm:items-center gap-2 py-2 px-4 sm:px-5 rounded-xl sm:rounded-full bg-gradient-to-r from-primary-light to-primary/10 dark:from-surface dark:to-primary/10 border border-primary/30 shadow-[0_4px_14px_0_rgba(212,175,55,0.2)] text-primary-deep">
+              <div className="inline-flex items-start sm:items-center gap-2 py-2 px-4 sm:px-5 rounded-xl sm:rounded-full bg-[#FFF8E7] dark:bg-surface border border-primary/30 shadow-[0_4px_14px_0_rgba(212,175,55,0.2)] dark:shadow-none text-[#0F2E4E] dark:text-[#F6E8B1]">
                 <Sparkles className="w-4 h-4 text-primary shrink-0 mt-0.5 sm:mt-0" />
-                <span className="font-semibold text-xs sm:text-sm tracking-wide">Building Academic Excellence Since 2021</span>
+                <span className="font-semibold text-xs sm:text-sm tracking-wide">{heroContent.badge}</span>
               </div>
             </motion.div>
 
@@ -259,15 +275,23 @@ export function HeroSection() {
               variants={fadeUpVariant}
               className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-heading leading-[1.15] tracking-tight mb-6"
             >
-              Build a Strong <br/>
-              Foundation for <span className="text-primary">Success.</span>
+              {(() => {
+                const words = (heroContent.title || "").split(" ");
+                if (words.length <= 1) return heroContent.title;
+                const lastWord = words.pop();
+                return (
+                  <>
+                    {words.join(" ")} <span className="text-primary">{lastWord}</span>
+                  </>
+                );
+              })()}
             </motion.h1>
 
             <motion.p 
               variants={fadeUpVariant}
               className="text-base sm:text-lg text-paragraph mb-8 leading-relaxed font-medium"
             >
-              Expert coaching for Classes 1–12, Science & Commerce with experienced faculty, smart classrooms and result-oriented learning.
+              {heroContent.description}
             </motion.p>
 
             {/* Structured CTAs */}

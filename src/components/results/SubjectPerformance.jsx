@@ -6,7 +6,7 @@ import { Fade } from "@/components/animations/Fade";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
-export function SubjectPerformance() {
+export function SubjectPerformance({ data = SUBJECT_PERFORMANCE }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-10%" });
 
@@ -30,7 +30,7 @@ export function SubjectPerformance() {
           </div>
 
           <div className="w-full lg:w-1/2 space-y-8">
-            {SUBJECT_PERFORMANCE.map((subject, idx) => (
+            {data.map((subject, idx) => (
               <div key={idx}>
                 <div className="flex justify-between items-end mb-2">
                   <span className="text-lg font-bold text-heading">{subject.subject}</span>

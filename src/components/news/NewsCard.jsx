@@ -35,8 +35,6 @@ export function NewsCard({
       <div className={`p-6 md:p-8 flex flex-col flex-grow ${featured ? 'w-full md:w-1/2 justify-center' : ''}`}>
         <div className="flex items-center gap-3 mb-4">
           <span className="text-xs font-bold uppercase tracking-wider text-primary-deep">{category}</span>
-          <span className="w-1 h-1 rounded-full bg-paragraph/50" />
-          <span className="text-xs text-paragraph">{readingTime}</span>
         </div>
         
         <h3 className={`font-bold text-heading mb-3 group-hover:text-primary transition-colors line-clamp-3 ${featured ? 'text-2xl md:text-3xl' : 'text-xl'}`}>
@@ -47,12 +45,8 @@ export function NewsCard({
           {shortDescription}
         </p>
 
-        <div className="mt-auto pt-4 border-t border-border-color flex items-center justify-between">
+        <div className="mt-auto pt-4 border-t border-border-color flex items-center">
           <span className="text-sm font-medium text-paragraph">{publishDate}</span>
-          <span className="text-primary font-bold group-hover:translate-x-1 transition-transform inline-flex items-center">
-            Read More
-            <svg className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-          </span>
         </div>
       </div>
       

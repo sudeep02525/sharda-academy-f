@@ -17,7 +17,7 @@ export function FacultyCard({ name, qualification, experience, subjects = [], im
             alt={name} 
             
             
-            className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" 
+            className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700" 
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-primary/30">
@@ -32,7 +32,7 @@ export function FacultyCard({ name, qualification, experience, subjects = [], im
         <p className="text-xs md:text-sm font-extrabold text-accent-dark tracking-wider uppercase mb-3">{qualification}</p>
         
         <p className="text-sm md:text-base text-paragraph mb-6 font-medium">
-          {experience} Years of Excellence
+          {experience} Years of Teaching
         </p>
         
         <div className="flex flex-wrap gap-2 mt-auto pt-5 border-t border-border-color/40">
@@ -56,17 +56,25 @@ export function TestimonialCard({ name, role, review, imageUrl, rating = 5 }) {
         &quot;
       </div>
       <CardContent className="p-10 relative z-10 flex-grow flex flex-col">
-        <div className="flex gap-1 text-accent mb-8">
-          {[...Array(rating)].map((_, i) => (
-            <Star key={i} className="w-5 h-5 fill-current" strokeWidth={0} />
+        <div className="flex gap-1 mb-8">
+          {[...Array(5)].map((_, i) => (
+            <Star 
+              key={i} 
+              className={`w-5 h-5 ${i < rating ? "fill-accent text-accent" : "fill-transparent text-border-color"}`} 
+              strokeWidth={i < rating ? 0 : 2} 
+            />
           ))}
         </div>
         <p className="text-heading text-lg md:text-xl font-medium leading-[1.7] mb-10 flex-grow">
           &quot;{review}&quot;
         </p>
-        <div className="flex items-center gap-5 mt-auto pt-6 border-t border-border-color/30">
-          <div className="w-16 h-16 rounded-full overflow-hidden bg-surface relative shadow-sm border border-border-color/50">
-            {imageUrl && <img src={imageUrl} alt={name} className="w-full h-full object-cover" />}
+        <div className="flex items-center gap-4 mt-auto pt-6 border-t border-border-color/30">
+          <div className="w-14 h-14 shrink-0 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xl font-black border border-primary/20 shadow-sm overflow-hidden">
+            {imageUrl ? (
+              <img src={imageUrl} alt={name} className="w-full h-full object-cover" />
+            ) : (
+              name ? name.charAt(0).toUpperCase() : ""
+            )}
           </div>
           <div>
             <h4 className="font-bold text-heading text-lg">{name}</h4>

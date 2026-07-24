@@ -15,7 +15,7 @@ export default function Hero3DVisual() {
         }`}
       >
          <img 
-           src="/images/premium-hero.png" 
+           src="https://res.cloudinary.com/ybzctfb3/image/upload/v1784795282/sharda_academy_official/pxsdcgzn0c8kcmwtj8ir.jpg" 
            alt="Loading 3D Visual" 
            
           

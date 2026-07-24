@@ -1,20 +1,40 @@
 "use client";
 
+import React, { useState, useEffect } from "react";
 import { METHODOLOGY_DATA } from "@/constants/homeData";
 import { Reveal } from "@/components/animations/Reveal";
 import { Fade } from "@/components/animations/Fade";
 
 export function LearningMethodology() {
+  const [content, setContent] = useState(METHODOLOGY_DATA);
+
+  useEffect(() => {
+    const fetchMethodologyData = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/cms/home/learning-process");
+        if (res.ok) {
+          const fetchedContent = await res.json();
+          if (fetchedContent && fetchedContent.data) {
+            setContent(fetchedContent.data);
+          }
+        }
+      } catch (error) {
+        console.error("Failed to fetch live learning process data, falling back to static", error);
+      }
+    };
+    fetchMethodologyData();
+  }, []);
+
   return (
     <section className="py-16 md:py-24 bg-surface border-y border-border/50 relative z-10">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="flex flex-col items-center text-center mb-12 md:mb-16 max-w-3xl mx-auto">
           <Reveal>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-heading mb-4 md:mb-6">{METHODOLOGY_DATA.title}</h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-heading mb-4 md:mb-6">{content.title}</h2>
           </Reveal>
           <Fade direction="up" delay={0.1}>
-            <p className="text-base md:text-lg text-paragraph leading-relaxed">{METHODOLOGY_DATA.description}</p>
+            <p className="text-base md:text-lg text-paragraph leading-relaxed">{content.description}</p>
           </Fade>
         </div>
 
@@ -23,7 +43,7 @@ export function LearningMethodology() {
           <div className="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-primary/10 via-accent/30 to-primary/10 -translate-y-1/2" />
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            {METHODOLOGY_DATA.steps.map((step, idx) => (
+            {(content.steps || []).map((step, idx) => (
               <Fade key={idx} direction="up" delay={0.2 + (idx * 0.1)} className="relative z-10">
                 <div className="bg-white dark:bg-[#1E293B] border border-border-color/60 dark:border-white/10 rounded-[1.5rem] p-8 lg:p-10 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500 h-full flex flex-col items-start text-left group relative overflow-hidden">
                   

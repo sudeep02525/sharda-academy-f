@@ -4,7 +4,16 @@ import { Reveal } from "@/components/animations/Reveal";
 import { Fade } from "@/components/animations/Fade";
 import { Button } from "@/components/ui/Button";
 
-export function JoinFacultyCTA() {
+import Link from "next/link";
+
+export function JoinFacultyCTA({ data }) {
+  const ctaData = data || {
+    title: "Passionate About Teaching?",
+    description: "Join Sharda Academy's esteemed faculty and shape the future. If you have the drive to mentor the next generation of top rankers, let's talk.",
+    buttonText: "Apply as Faculty",
+    buttonLink: "/contact"
+  };
+
   return (
     <section className="py-20 md:py-28 bg-background relative overflow-hidden">
       <div className="container mx-auto px-4">
@@ -16,21 +25,23 @@ export function JoinFacultyCTA() {
           <div className="w-full md:w-2/3 relative z-10">
             <Reveal>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-heading tracking-tight mb-6 leading-tight">
-                Passionate About Teaching?
+                {ctaData.title}
               </h2>
             </Reveal>
             <Fade direction="up" delay={0.2}>
               <p className="text-lg md:text-xl text-paragraph max-w-2xl leading-relaxed">
-                Join Sharda Academy&apos;s esteemed faculty and shape the future. If you have the drive to mentor the next generation of top rankers, let&apos;s talk.
+                {ctaData.description}
               </p>
             </Fade>
           </div>
 
           <div className="w-full md:w-1/3 flex md:justify-end relative z-10">
             <Fade direction="left" delay={0.3}>
-              <Button size="lg" className="w-full sm:w-auto shadow-md hover:shadow-lg">
-                Apply as Faculty
-              </Button>
+              <Link href={ctaData.buttonLink}>
+                <Button size="lg" className="w-full sm:w-auto shadow-md hover:shadow-lg">
+                  {ctaData.buttonText}
+                </Button>
+              </Link>
             </Fade>
           </div>
 

@@ -1,18 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ACADEMIC_YEARS, EXAM_CATEGORIES, TOP_RANKERS } from "@/constants/resultsData";
 import { RankerCard } from "@/components/results/RankerCard";
 import { Reveal } from "@/components/animations/Reveal";
 import { Fade } from "@/components/animations/Fade";
 import { AnimatePresence, motion } from "framer-motion";
 
-export function TopRankers() {
-  const [activeYear, setActiveYear] = useState(ACADEMIC_YEARS[0]); 
+export function TopRankers({ rankers = TOP_RANKERS, years = ACADEMIC_YEARS, categories = EXAM_CATEGORIES }) {
+  const [activeYear, setActiveYear] = useState(years[0] || "2026"); 
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const filteredRankers = TOP_RANKERS.filter(ranker => {
-    const matchesYear = ranker.year === activeYear;
+  useEffect(() => {
+    if (years.length > 0 && !years.includes(activeYear)) {
+      setActiveYear(years[0]);
+    }
+  }, [years, activeYear]);
+
+  const filteredRankers = rankers.filter(ranker => {
+    const matchesYear = String(ranker.year) === String(activeYear);
     const matchesCategory = activeCategory === "All" || ranker.category === activeCategory;
     return matchesYear && matchesCategory;
   });

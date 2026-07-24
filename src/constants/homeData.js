@@ -1,7 +1,7 @@
 export const HERO_DATA = {
-  badge: "Building Academic Excellence Since 2021",
-  title: "Empowering Students to Achieve Excellence",
-  description: "Join Sharda Academy to unlock your potential. We provide top-quality coaching for board exams and holistic student development.",
+  badge: "Building Academic Success Since 2021",
+  title: "Build a Strong Foundation for Success.",
+  description: "Expert coaching for Classes 1–12, Science & Commerce with experienced faculty, smart classrooms and result-oriented learning.",
   primaryCta: { label: "Admission Open 2026", href: "/admission" },
   secondaryCta: { label: "Explore Courses", href: "/courses" },
   floatingCards: [
@@ -12,7 +12,7 @@ export const HERO_DATA = {
 };
 
 export const REAL_ACHIEVEMENTS = [
-  { label: `${new Date().getFullYear() - 2021}+ Years of Excellence`, icon: "Trophy" },
+  { label: `${new Date().getFullYear() - 2021}+ Years of Trust`, icon: "Trophy" },
   { label: "AC Classrooms", icon: "ThermometerSnowflake" },
   { label: "Smart Panels", icon: "MonitorPlay" },
   { label: "Biometric Attendance", icon: "Fingerprint" },
@@ -72,21 +72,21 @@ export const TESTIMONIALS_DATA = [
     name: "Ravi Verma",
     role: "Parent",
     review: "Sharda Academy completely transformed my son's approach to studying. The faculty is incredibly supportive and the doubt-clearing sessions are a game changer.",
-    imageUrl: "/images/faculty-visual.png",
+    imageUrl: "",
     rating: 5
   },
   {
     name: "Priya Singh",
     role: "Top Ranker (2025)",
     review: "The rigorous testing environment and the personalized mentorship at Sharda Academy were instrumental in my success. Highly recommended!",
-    imageUrl: "/images/faculty-visual.png",
+    imageUrl: "",
     rating: 5
   },
   {
     name: "Amit Desai",
     role: "Student",
     review: "The crash course was intense but exactly what I needed. The mock tests perfectly simulated the real exam difficulty.",
-    imageUrl: "/images/faculty-visual.png",
+    imageUrl: "",
     rating: 4
   }
 ];
@@ -96,19 +96,19 @@ export const EVENTS_DATA = [
     title: "Career Counseling Seminar 2026",
     date: "August 15, 2026",
     location: "Main Auditorium",
-    imageUrl: "/images/course-visual.png"
+    imageUrl: "https://res.cloudinary.com/ybzctfb3/image/upload/v1784795276/sharda_academy_official/dq4zszixrhhhx4k4qhyk.jpg"
   },
   {
     title: "HSC Board Strategy Workshop by Toppers",
     date: "September 02, 2026",
     location: "Virtual (Zoom)",
-    imageUrl: "/images/course-visual.png"
+    imageUrl: "https://res.cloudinary.com/ybzctfb3/image/upload/v1784795280/sharda_academy_official/mwulfx7cqpamrujgbnsf.jpg"
   },
   {
     title: "HSC Mock Test Series Launch",
     date: "September 20, 2026",
     location: "Campus Block A",
-    imageUrl: "/images/course-visual.png"
+    imageUrl: "https://res.cloudinary.com/ybzctfb3/image/upload/v1784795278/sharda_academy_official/uiipvz0kzakd1ckq4dpm.jpg"
   }
 ];
 
@@ -139,21 +139,21 @@ export const RESULTS_DATA = {
       category: "SSC Board",
       score: "95.5%",
       year: "2025",
-      imageUrl: "" 
+      imageUrl: "https://res.cloudinary.com/ybzctfb3/image/upload/v1784733860/sharda_academy/iguy3yefkdix8x8kzn74.jpg" 
     },
     { 
       name: "Sneha Patil", 
       category: "HSC Commerce",
       score: "96%",
       year: "2025",
-      imageUrl: "" 
+      imageUrl: "https://res.cloudinary.com/ybzctfb3/image/upload/v1784789716/sharda_academy/t3pyqdbqfq35moatzrzw.jpg" 
     },
     { 
       name: "Vikram Singh", 
       category: "Class 8th Foundation",
       score: "98%",
       year: "2025",
-      imageUrl: "" 
+      imageUrl: "https://res.cloudinary.com/ybzctfb3/image/upload/v1784789717/sharda_academy/osyblbch6lcjfrrepk35.jpg" 
     }
   ]
 };
@@ -165,7 +165,7 @@ export const ANNOUNCEMENTS_DATA = [
     category: "Admissions",
     shortDescription: "Secure your seat early. Admissions are now open across all classes from 1st to 12th.",
     readingTime: "2 min read",
-    imageUrl: "/images/course-visual.png"
+    imageUrl: "https://res.cloudinary.com/ybzctfb3/image/upload/v1784738968/sharda_academy_announcements/njrmsubtjd532ye6lobn.jpg"
   },
   { 
     title: "Outstanding 100% Board Results", 
@@ -173,7 +173,7 @@ export const ANNOUNCEMENTS_DATA = [
     category: "Results",
     shortDescription: "We are proud to announce that our students have achieved a 100% pass rate with top grades in the recent board examinations.",
     readingTime: "4 min read",
-    imageUrl: "/images/course-visual.png"
+    imageUrl: "https://res.cloudinary.com/ybzctfb3/image/upload/v1784738969/sharda_academy_announcements/llo6xgxtumvbqqyk7wws.jpg"
   },
   { 
     title: "New Smart Panels Installed", 
@@ -181,7 +181,7 @@ export const ANNOUNCEMENTS_DATA = [
     category: "Infrastructure",
     shortDescription: "We are upgrading our classrooms with interactive smart panels to provide a highly interactive learning experience.",
     readingTime: "3 min read",
-    imageUrl: "/images/course-visual.png"
+    imageUrl: "https://res.cloudinary.com/ybzctfb3/image/upload/v1784738970/sharda_academy_announcements/zpbwvdedjepo0sbrml3v.jpg"
   }
 ];
 

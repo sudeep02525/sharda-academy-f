@@ -17,7 +17,7 @@ export function Timeline() {
           </Reveal>
           <Fade direction="up" delay={0.2}>
             <p className="text-lg md:text-xl text-paragraph font-medium">
-              A journey of consistent growth, unshakeable trust, and a relentless commitment to academic excellence.
+              A journey of consistent growth, unshakeable trust, and a relentless commitment to academic success.
             </p>
           </Fade>
         </div>

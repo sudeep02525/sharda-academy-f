@@ -8,11 +8,34 @@ import { FAQSection } from "@/components/home/FAQSection";
 import { CONTACT_INFO, OFFICE_HOURS } from "@/constants/contactData";
 
 export const metadata = {
-  title: "Contact Us | Sharda Academy",
-  description: "Get in touch with Sharda Academy. Find our campus address, contact numbers, email, and department directories.",
+  title: "Contact Us | Sharda Academy Support",
+  description: "Get in touch with Sharda Academy. Find our campus address, contact numbers, and email for inquiries regarding 1st-10th and 11th-12th Science/Commerce batches.",
+  keywords: ["contact sharda academy","sharda academy address","coaching helpline","academy support"],
+  openGraph: {
+    title: "Contact Us | Sharda Academy Support",
+    description: "Get in touch with Sharda Academy. Find our campus address, contact numbers, and email for inquiries regarding 1st-10th and 11th-12th Science/Commerce batches.",
+  }
 };
 
-export default function ContactPage() {
+async function getContactData() {
+  try {
+    const res = await fetch("http://localhost:5000/api/cms/website/contact", { cache: 'no-store' });
+    if (!res.ok) return null;
+    const json = await res.json();
+    return json.data;
+  } catch (error) {
+    console.error("Error fetching contact data:", error);
+    return null;
+  }
+}
+
+export default async function ContactPage() {
+  const cmsData = await getContactData();
+
+  const heroData = cmsData?.hero || { badge: "Contact", title: "We'd Love to Hear From You", description: "We're here to help you take the next step in your educational journey." };
+  const infoData = cmsData?.contactInfo || CONTACT_INFO;
+  const hoursData = cmsData?.officeHours || OFFICE_HOURS;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
@@ -22,25 +45,25 @@ export default function ContactPage() {
     "contactPoint": [
       {
         "@type": "ContactPoint",
-        "telephone": CONTACT_INFO.phone,
+        "telephone": infoData.phone,
         "contactType": "customer service",
-        "email": CONTACT_INFO.email,
+        "email": infoData.email,
         "availableLanguage": ["English", "Hindi"]
       },
       {
         "@type": "ContactPoint",
-        "telephone": CONTACT_INFO.emergency,
+        "telephone": infoData.emergency,
         "contactType": "emergency"
       }
     ],
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "123 Education Boulevard, Knowledge Park",
+      "streetAddress": infoData.address,
       "addressLocality": "City",
       "postalCode": "400001",
       "addressCountry": "IN"
     },
-    "openingHoursSpecification": OFFICE_HOURS.map(oh => ({
+    "openingHoursSpecification": hoursData.map(oh => ({
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": oh.day.includes("Monday - Friday") ? [
         "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"
@@ -55,23 +78,25 @@ export default function ContactPage() {
       <Navbar transparent={false} />
       
       {/* 1. Hero */}
-      <ContactHero />
-      
-      {/* 2. Main Contact Grid (Info + Form) */}
-      <section className="py-12 pb-24 bg-background relative z-10 -mt-16">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-            <ContactInfo />
-            <ContactForm />
+      <ContactHero data={heroData} />
+
+      <div className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <div className="lg:col-span-5">
+              <ContactInfo info={infoData} hours={hoursData} />
+            </div>
+            <div className="lg:col-span-7">
+              <ContactForm />
+            </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* 4. Google Maps */}
-      <MapSection />
-
-      {/* 5. FAQs */}
-      <FAQSection className="bg-background dark:bg-background border-t-0" />
+      <MapSection address={infoData.address} mapQuery={infoData.mapQuery} mapEmbedUrl={infoData.mapEmbedUrl} />
+      
+      {/* 5. FAQs - Overridden to bg-background to alternate with Footer (bg-surface) */}
+      <FAQSection className="bg-background" />
       
       <Footer />
 

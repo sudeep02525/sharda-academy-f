@@ -3,14 +3,13 @@
 import { CONTACT_INFO, OFFICE_HOURS, SOCIAL_LINKS } from "@/constants/contactData";
 import { Fade } from "@/components/animations/Fade";
 
-export function ContactInfo() {
+export function ContactInfo({ info = CONTACT_INFO, hours = OFFICE_HOURS }) {
   return (
     <div className="space-y-8 h-full flex flex-col justify-between">
       
       {/* Direct Contact Info */}
       <Fade direction="right" delay={0.1}>
         <div className="bg-primary/5 text-heading rounded-3xl p-8 md:p-10 shadow-sm relative overflow-hidden border border-primary/10">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px] pointer-events-none" />
           
           <h3 className="text-2xl font-bold mb-8 text-heading">Contact Information</h3>
           
@@ -18,28 +17,28 @@ export function ContactInfo() {
             <li className="flex flex-col items-start gap-3">
               <div className="flex items-start">
                 <svg className="w-6 h-6 mr-4 mt-1 shrink-0 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                <span className="text-paragraph leading-relaxed font-medium">{CONTACT_INFO.address}</span>
+                <span className="text-paragraph leading-relaxed font-medium">{info.address}</span>
               </div>
-              {CONTACT_INFO.landmark && (
+              {info.landmark && (
                 <div className="flex items-start text-sm ml-10 mt-1">
                   <span className="text-muted-foreground font-medium mr-2">Landmark:</span>
-                  <span className="text-paragraph">{CONTACT_INFO.landmark}</span>
+                  <span className="text-paragraph">{info.landmark}</span>
                 </div>
               )}
-              {CONTACT_INFO.nearestStation && (
+              {info.nearestStation && (
                 <div className="flex items-start text-sm ml-10">
                   <span className="text-muted-foreground font-medium mr-2">Nearest Station:</span>
-                  <span className="text-paragraph">{CONTACT_INFO.nearestStation}</span>
+                  <span className="text-paragraph">{info.nearestStation}</span>
                 </div>
               )}
             </li>
             <li className="flex items-center">
               <svg className="w-6 h-6 mr-4 shrink-0 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-              <span className="text-heading font-semibold text-lg">{CONTACT_INFO.phone}</span>
+              <span className="text-heading font-semibold text-lg">{info.phone}</span>
             </li>
             <li className="flex items-center">
               <svg className="w-6 h-6 mr-4 shrink-0 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-              <span className="text-heading font-semibold">{CONTACT_INFO.email}</span>
+              <span className="text-heading font-semibold">{info.email}</span>
             </li>
           </ul>
 
@@ -72,9 +71,9 @@ export function ContactInfo() {
             <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
             Office Hours
           </h3>
-          <ul className="space-y-4">
-            {OFFICE_HOURS.map((oh, idx) => (
-              <li key={idx} className="flex justify-between items-center text-sm">
+          <ul className="space-y-6 relative z-10">
+            {hours.map((oh, idx) => (
+              <li key={idx} className="flex justify-between items-center border-b border-border/50 pb-4 last:border-0 last:pb-0">
                 <span className="font-semibold text-heading">{oh.day}</span>
                 <span className="text-muted-foreground">{oh.hours}</span>
               </li>

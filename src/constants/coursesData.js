@@ -76,7 +76,7 @@ export const COURSES_LIST = [
 
 export const CAREER_OPPORTUNITIES = [
   { icon: "Building", title: "Top Universities & Institutes", description: "Secure admissions into premier national and state colleges through excellent board exam scores." },
-  { icon: "Heart", title: "Healthcare & Medical", description: "Strong foundational sciences prepare you for a prestigious career in medicine, pharmacy, or research." },
-  { icon: "Globe", title: "Global Corporate Careers", description: "Our commerce and science programs lay the groundwork for leadership roles in top multinational companies." }
+  { icon: "Award", title: "Excellent Board Results", description: "Our expert faculty and rigorous testing ensure you achieve your maximum potential in 10th and 12th boards." },
+  { icon: "TrendingUp", title: "Strong Conceptual Foundation", description: "Build a rock-solid understanding that gives you an edge in higher education and future academic pursuits." }
 ];
 

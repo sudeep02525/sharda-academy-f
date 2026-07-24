@@ -27,8 +27,11 @@ const formSchema = z.object({
   terms: z.boolean().refine(val => val === true, "You must accept the terms and conditions")
 });
 
-export function AdmissionForm() {
+export function AdmissionForm({ data }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  
+  const courses = data?.courses || AVAILABLE_COURSES;
+  const batches = data?.batches || BATCH_OPTIONS;
   
   const {
     register,
@@ -44,16 +47,25 @@ export function AdmissionForm() {
     }
   });
 
-  const onSubmit = async (data) => {
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    console.log("Form Data submitted:", data);
-    setIsSubmitted(true);
-    reset();
+  const onSubmit = async (formData) => {
+    try {
+      const res = await fetch("http://localhost:5000/api/admissions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.message || "Submission failed");
+      setIsSubmitted(true);
+      reset();
+    } catch (error) {
+      console.error("Form submission error:", error);
+      alert("Something went wrong. Please try again.");
+    }
   };
 
-  const courseOptions = AVAILABLE_COURSES.map(c => ({ value: c, label: c }));
-  const batchOptions = BATCH_OPTIONS.map(b => ({ value: b, label: b }));
+  const courseOptions = courses.map(c => ({ value: c, label: c }));
+  const batchOptions = batches.map(b => ({ value: b, label: b }));
   const qualificationOptions = [
     { value: "Class 8", label: "Currently in Class 8" },
     { value: "Class 9", label: "Currently in Class 9" },

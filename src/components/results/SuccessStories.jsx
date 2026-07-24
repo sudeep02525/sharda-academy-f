@@ -4,7 +4,7 @@ import { SUCCESS_STORIES } from "@/constants/resultsData";
 import { Reveal } from "@/components/animations/Reveal";
 import { Fade } from "@/components/animations/Fade";
 
-export function SuccessStories() {
+export function SuccessStories({ data = SUCCESS_STORIES }) {
   return (
     <section className="py-24 bg-card border-t border-border relative overflow-hidden">
       <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px] pointer-events-none -translate-y-1/2" />
@@ -20,7 +20,7 @@ export function SuccessStories() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {SUCCESS_STORIES.map((story, idx) => (
+          {data.map((story, idx) => (
             <Fade key={story.id} direction="up" delay={0.2 + (idx * 0.2)} className="h-full">
               <div className="bg-background border border-border shadow-lg shadow-primary/5 rounded-3xl p-8 md:p-10 flex flex-col h-full group hover:border-primary transition-colors">
                 

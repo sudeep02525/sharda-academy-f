@@ -4,7 +4,7 @@ import { AWARDS_RECOGNITION } from "@/constants/resultsData";
 import { Reveal } from "@/components/animations/Reveal";
 import { Fade } from "@/components/animations/Fade";
 
-export function AwardsRecognition() {
+export function AwardsRecognition({ data = AWARDS_RECOGNITION }) {
   return (
     <section className="py-24 bg-surface border-t border-border relative overflow-hidden">
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/2" />
@@ -19,7 +19,7 @@ export function AwardsRecognition() {
           </Reveal>
           <Fade direction="up" delay={0.2}>
             <p className="text-lg text-paragraph max-w-2xl mx-auto text-center">
-              Our commitment to excellence has been acknowledged by prestigious educational boards nationwide.
+              Our commitment to quality education has been acknowledged by prestigious educational boards nationwide.
             </p>
           </Fade>
         </div>
@@ -30,7 +30,7 @@ export function AwardsRecognition() {
           <div className="absolute left-[27px] md:left-1/2 top-0 bottom-0 w-1 bg-border/60 md:-translate-x-1/2 rounded-full hidden sm:block" />
 
           <div className="space-y-12">
-            {AWARDS_RECOGNITION.map((award, idx) => {
+            {data.map((award, idx) => {
               const isEven = idx % 2 === 0;
               return (
                 <div key={idx} className={`relative flex flex-col sm:flex-row items-center ${isEven ? 'sm:flex-row-reverse' : ''}`}>

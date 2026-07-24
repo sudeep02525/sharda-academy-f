@@ -3,25 +3,24 @@
 import { Reveal } from "@/components/animations/Reveal";
 import { Fade } from "@/components/animations/Fade";
 
-export function AdmissionHero() {
+export function AdmissionHero({ data }) {
   return (
-    <section className="relative pt-32 pb-24 overflow-hidden bg-[#0F2E4E] text-white">
-      <div className="absolute inset-0 bg-[url('/mesh-grid.svg')] opacity-10" />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/15 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
+    <section className="relative pt-32 pb-20 overflow-hidden bg-white dark:bg-surface border-b border-border">
+      <div className="absolute inset-0 bg-[url('/mesh-grid.svg')] opacity-[0.03] dark:opacity-10" />
+
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
           
           <Reveal>
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight tracking-tight mb-6 drop-shadow-lg">
-              Take the First Step Towards Success
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight tracking-tight mb-6 text-heading">
+              {data?.title || "Take the First Step Towards Success"}
             </h1>
           </Reveal>
           
           <Fade direction="up" delay={0.2}>
-            <p className="text-lg md:text-xl text-white/90 leading-relaxed mb-8 max-w-2xl mx-auto font-medium">
-              Join Sharda Academy and experience a transformative educational journey. Our admission process is streamlined, transparent, and completely online.
+            <p className="text-lg md:text-xl text-paragraph leading-relaxed mb-8 max-w-2xl mx-auto font-medium">
+              {data?.description || "Join Sharda Academy and experience a transformative educational journey. Our admission process is streamlined, transparent, and completely online."}
             </p>
           </Fade>
           

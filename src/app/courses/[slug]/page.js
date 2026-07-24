@@ -10,14 +10,41 @@ import { FAQSection } from "@/components/home/FAQSection"; // Reused
 import { Breadcrumb } from "@/components/navigation/Breadcrumb";
 
 export async function generateStaticParams() {
+  try {
+    const res = await fetch("http://localhost:5000/api/cms/academics/courses");
+    if (res.ok) {
+      const json = await res.json();
+      const courses = json.data?.courses || [];
+      return courses.map((course) => ({
+        slug: course.slug,
+      }));
+    }
+  } catch (error) {
+    console.error(error);
+  }
   return COURSES_LIST.map((course) => ({
     slug: course.slug,
   }));
 }
 
+async function getCourseBySlug(slug) {
+  try {
+    const res = await fetch("http://localhost:5000/api/cms/academics/courses", { cache: "no-store" });
+    if (res.ok) {
+      const json = await res.json();
+      const courses = json.data?.courses || [];
+      return courses.find((c) => c.slug === slug);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+  // Fallback to local if API fails
+  return COURSES_LIST.find((c) => c.slug === slug);
+}
+
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const course = COURSES_LIST.find((c) => c.slug === slug);
+  const course = await getCourseBySlug(slug);
 
   if (!course) {
     return { title: "Course Not Found | Sharda Academy" };
@@ -25,13 +52,13 @@ export async function generateMetadata({ params }) {
 
   return {
     title: `${course.title} | Sharda Academy`,
-    description: course.description,
+    description: course.description || "Course details",
   };
 }
 
 export default async function CourseDetailsPage({ params }) {
   const { slug } = await params;
-  const course = COURSES_LIST.find((c) => c.slug === slug);
+  const course = await getCourseBySlug(slug);
 
   if (!course) {
     notFound();

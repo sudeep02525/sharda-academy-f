@@ -3,27 +3,46 @@ import { Footer } from "@/components/navigation/Footer";
 import { CoursesHero } from "@/components/courses/CoursesHero";
 import { CoursesGrid } from "@/components/courses/CoursesGrid";
 import { CareerOpportunities } from "@/components/courses/CareerOpportunities";
-import { FAQSection } from "@/components/home/FAQSection"; // Reusing Home Section
-import { ContactPreview } from "@/components/home/ContactPreview"; // Fixing background layout pattern
+import { FAQSection } from "@/components/home/FAQSection";
+import { ContactPreview } from "@/components/home/ContactPreview";
 
 export const metadata = {
-  title: "Academic Programs & Courses | Sharda Academy",
-  description: "Explore our scientifically designed classroom programs for JEE, NEET, and Foundation batches.",
+  title: "Courses | Classes 1st to 10th & 11th-12th (Science & Commerce)",
+  description: "Explore our scientifically designed classroom programs for Classes 1st to 10th, and 11th & 12th Science and Commerce. Build a strong foundation with expert faculty.",
+  keywords: ["sharda academy courses","1st to 10th classes","11th 12th science classes","11th 12th commerce coaching","board exam preparation"],
+  openGraph: {
+    title: "Courses | Classes 1st to 10th & 11th-12th (Science & Commerce)",
+    description: "Explore our scientifically designed classroom programs for Classes 1st to 10th, and 11th & 12th Science and Commerce. Build a strong foundation with expert faculty.",
+  }
 };
 
-export default function CoursesPage() {
+export default async function CoursesPage() {
+  let pageData = null;
+  try {
+    // using cache: no-store or revalidate so we can see updates quickly
+    const res = await fetch("http://localhost:5000/api/cms/academics/courses", { cache: "no-store" });
+    if (res.ok) {
+       const json = await res.json();
+       if (json && json.data) {
+          pageData = json.data;
+       }
+    }
+  } catch (error) {
+    console.error("Failed to fetch courses data", error);
+  }
+
   return (
     <main className="min-h-screen flex flex-col bg-background">
       <Navbar transparent={false} />
       
       {/* 1. Hero */}
-      <CoursesHero />
+      <CoursesHero data={pageData?.hero} />
       
       {/* 2. Interactive Courses Grid (Search & Filter) */}
-      <CoursesGrid />
+      <CoursesGrid categories={pageData?.categories} courses={pageData?.courses} />
       
       {/* 3. Career Outcomes */}
-      <CareerOpportunities />
+      <CareerOpportunities data={pageData?.opportunities} />
       
       {/* 5. FAQs (Reused from Home) */}
       <FAQSection />

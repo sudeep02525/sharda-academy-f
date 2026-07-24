@@ -1,15 +1,14 @@
+import { COURSES_LIST } from "@/constants/coursesData";
+import { NEWS_ARTICLES } from "@/constants/newsData";
+
 export default function sitemap() {
-  const baseUrl = "https://shardaacademy.edu";
+  const baseUrl = "https://shardaacademyofficial.in";
 
   // Static routes
-  const routes = [
+  const staticRoutes = [
     "",
     "/about",
     "/courses",
-    "/courses/jee",
-    "/courses/neet",
-    "/courses/foundation",
-    "/courses/mht-cet",
     "/faculty",
     "/gallery",
     "/results",
@@ -24,5 +23,21 @@ export default function sitemap() {
     priority: route === "" ? 1 : 0.8,
   }));
 
-  return [...routes];
+  // Dynamic Courses Routes
+  const coursesRoutes = COURSES_LIST.map((course) => ({
+    url: `${baseUrl}/courses/${course.slug}`,
+    lastModified: new Date().toISOString(),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  // Dynamic News Routes
+  const newsRoutes = NEWS_ARTICLES.map((article) => ({
+    url: `${baseUrl}/news/${article.slug}`,
+    lastModified: new Date().toISOString(),
+    changeFrequency: "weekly",
+    priority: 0.7,
+  }));
+
+  return [...staticRoutes, ...coursesRoutes, ...newsRoutes];
 }

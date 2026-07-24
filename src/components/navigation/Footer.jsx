@@ -33,7 +33,7 @@ export function Footer() {
               </div>
             </Link>
             <p className="text-[15px] leading-relaxed max-w-sm text-white/70">
-              Empowering students to achieve excellence through comprehensive coaching, expert faculty, and a proven methodology. Building the leaders of tomorrow.
+              Empowering students to achieve their best through comprehensive coaching, expert faculty, and a proven methodology. Building the leaders of tomorrow.
             </p>
             <div className="flex gap-4">
               <a aria-label="Facebook" href={ACADEMY_DETAILS.socialLinks?.facebook || "#"} className="w-10 h-10 rounded-full bg-white/5 dark:bg-white/10 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300 text-white hover:text-[#0F2E4E] hover:scale-110 shadow-sm">

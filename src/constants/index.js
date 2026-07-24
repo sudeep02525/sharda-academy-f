@@ -31,21 +31,18 @@ export const COURSES_DATA = [
     title: "Classes 1st to 12th",
     duration: "Full Year",
     fees: "View Details",
-    imageUrl: "/images/course-visual.png",
     features: ["Foundation Building", "Regular Tests", "Doubt Solving", "Parent Progress Updates"]
   },
   {
     title: "11th & 12th Science",
     duration: "2 Years",
     fees: "View Details",
-    imageUrl: "/images/course-visual.png",
     features: ["PCMB Available", "Board Focused", "Experienced Faculty", "Small Batch Size"]
   },
   {
     title: "11th & 12th Commerce",
     duration: "2 Years",
     fees: "View Details",
-    imageUrl: "/images/course-visual.png",
     features: ["Expert Accountancy Guidance", "Smart Panel Available", "Regular Assessments", "Board Exam Prep"]
   }
 ];
@@ -56,20 +53,20 @@ export const FACULTY_DATA = [
     qualification: "Ph.D. in Physics",
     experience: "12",
     subjects: ["Physics", "Mechanics"],
-    imageUrl: "/images/faculty-visual.png"
+    imageUrl: "https://res.cloudinary.com/ybzctfb3/image/upload/v1784795271/sharda_academy_official/dln9bysotzefaqkw7kns.jpg"
   },
   {
     name: "Prof. Rajesh Kumar",
     qualification: "M.Sc. Mathematics",
     experience: "15",
     subjects: ["Mathematics", "Calculus"],
-    imageUrl: "/images/faculty-visual.png"
+    imageUrl: "https://res.cloudinary.com/ybzctfb3/image/upload/v1784795272/sharda_academy_official/w5rf8up3ihhs2q68ciaw.jpg"
   },
   {
     name: "Dr. Sneha Patel",
     qualification: "MBBS, M.D.",
     experience: "10",
     subjects: ["Biology", "Botany"],
-    imageUrl: "/images/faculty-visual.png"
+    imageUrl: "https://res.cloudinary.com/ybzctfb3/image/upload/v1784795273/sharda_academy_official/ojesiahpgjrdguz3zvnk.jpg"
   }
 ];

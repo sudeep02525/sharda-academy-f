@@ -4,7 +4,8 @@ import { ADMISSION_PROCESS_STEPS } from "@/constants/admissionData";
 import { Reveal } from "@/components/animations/Reveal";
 import { Fade } from "@/components/animations/Fade";
 
-export function AdmissionProcess() {
+export function AdmissionProcess({ data }) {
+  const steps = data || ADMISSION_PROCESS_STEPS;
   return (
     <section className="py-24 bg-card border-b border-border">
       <div className="container mx-auto px-4">
@@ -22,7 +23,7 @@ export function AdmissionProcess() {
           {/* Connector Line for Desktop */}
           <div className="hidden lg:block absolute top-12 left-16 right-16 h-1 bg-border -z-10" />
 
-          {ADMISSION_PROCESS_STEPS.map((step, idx) => (
+          {steps.map((step, idx) => (
             <Fade key={step.id} direction="up" delay={0.2 + (idx * 0.1)} className="relative">
               <div className="bg-background border border-border shadow-sm rounded-3xl p-8 text-center h-full flex flex-col items-center hover:border-primary hover:shadow-lg transition-all group">
                 

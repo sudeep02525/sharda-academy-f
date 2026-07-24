@@ -7,7 +7,7 @@ import { Lightbox } from "@/components/gallery/Lightbox";
 import { Fade } from "@/components/animations/Fade";
 import { AnimatePresence, motion } from "framer-motion";
 
-export function GalleryGrid() {
+export function GalleryGrid({ images = GALLERY_ITEMS, categories = GALLERY_CATEGORIES }) {
   const [activeCategory, setActiveCategory] = useState("All");
   
   // Lightbox State
@@ -15,7 +15,7 @@ export function GalleryGrid() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Filter items
-  const filteredItems = GALLERY_ITEMS.filter(item => 
+  const filteredItems = images.filter(item => 
     activeCategory === "All" || item.category === activeCategory
   );
 
@@ -39,7 +39,7 @@ export function GalleryGrid() {
         <div className="flex flex-col items-center justify-center mb-16">
           <Fade direction="up" delay={0.1} className="w-full">
             <div className="flex flex-wrap items-center justify-center gap-3">
-              {GALLERY_CATEGORIES.map((category) => (
+              {categories.map((category) => (
                 <button
                   key={category}
                   onClick={() => setActiveCategory(category)}

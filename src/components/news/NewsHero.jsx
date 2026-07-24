@@ -5,7 +5,7 @@ import { Fade } from "@/components/animations/Fade";
 
 export function NewsHero() {
   return (
-    <section className="relative pt-32 pb-24 overflow-hidden bg-background border-b border-border">
+    <section className="relative pt-32 pb-24 overflow-hidden bg-white dark:bg-surface">
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5 -z-10" />
       
       <div className="container mx-auto px-4 relative z-10">

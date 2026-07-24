@@ -58,7 +58,7 @@ export function GalleryCard({
             </span>
             {date && <span className="text-xs text-white/70">{date}</span>}
           </div>
-          <h3 className="text-xl font-bold leading-tight line-clamp-2 drop-shadow-md">{title}</h3>
+          <h3 className="text-xl font-bold leading-tight line-clamp-2 drop-shadow-md text-white">{title}</h3>
         </div>
       </div>
     </HoverLift>

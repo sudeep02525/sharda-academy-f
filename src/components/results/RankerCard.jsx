@@ -23,7 +23,7 @@ export function RankerCard({
             alt={name} 
             
             
-            className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" 
+            className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700" 
           />
         ) : (
           <div className="w-full h-full flex flex-col items-center justify-center text-slate-300 dark:text-slate-600 bg-slate-100/50 dark:bg-white/[0.02]">

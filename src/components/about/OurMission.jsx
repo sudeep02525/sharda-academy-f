@@ -1,11 +1,34 @@
 "use client";
 
-import { MISSION_VISION_DATA } from "@/constants/aboutData";
+import React, { useState, useEffect } from "react";
+import { MISSION_VISION_DATA as FALLBACK_DATA } from "@/constants/aboutData";
 import { Reveal } from "@/components/animations/Reveal";
 import { Fade } from "@/components/animations/Fade";
 import { Target, Eye } from "lucide-react";
 
 export function OurMission() {
+  const [data, setData] = useState({
+    mission: FALLBACK_DATA.mission.description,
+    vision: FALLBACK_DATA.vision.description
+  });
+
+  useEffect(() => {
+    const fetchMissionVision = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/cms/about/mission-vision");
+        if (res.ok) {
+          const content = await res.json();
+          if (content && content.data) {
+            setData(prev => ({ ...prev, ...content.data }));
+          }
+        }
+      } catch (error) {
+        console.error("Failed to fetch mission and vision data", error);
+      }
+    };
+    fetchMissionVision();
+  }, []);
+
   return (
     <section className="py-24 bg-[#FFFDF6] dark:bg-background relative overflow-hidden">
       
@@ -29,12 +52,12 @@ export function OurMission() {
               </div>
               <Reveal delay={0.3}>
                 <h2 className="text-3xl md:text-5xl font-extrabold text-heading tracking-tight mb-6">
-                  {MISSION_VISION_DATA.mission.title}
+                  {FALLBACK_DATA.mission.title}
                 </h2>
               </Reveal>
               <div className="w-12 h-1.5 bg-primary rounded-full mb-6" />
               <p className="text-lg md:text-xl text-paragraph leading-relaxed font-medium">
-                {MISSION_VISION_DATA.mission.description}
+                {data.mission}
               </p>
             </div>
           </Fade>
@@ -56,12 +79,12 @@ export function OurMission() {
               </div>
               <Reveal delay={0.5}>
                 <h2 className="text-3xl md:text-5xl font-extrabold text-heading tracking-tight mb-6">
-                  {MISSION_VISION_DATA.vision.title}
+                  {FALLBACK_DATA.vision.title}
                 </h2>
               </Reveal>
               <div className="w-12 h-1.5 bg-accent rounded-full mb-6" />
               <p className="text-lg md:text-xl text-paragraph leading-relaxed font-medium">
-                {MISSION_VISION_DATA.vision.description}
+                {data.vision}
               </p>
             </div>
           </Fade>

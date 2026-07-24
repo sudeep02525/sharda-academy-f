@@ -7,13 +7,41 @@ import { SuccessStories } from "@/components/results/SuccessStories";
 import { AwardsRecognition } from "@/components/results/AwardsRecognition";
 import { FAQSection } from "@/components/home/FAQSection"; // Reused
 import { ContactPreview } from "@/components/home/ContactPreview"; // Reused
+import { RESULTS_HERO, ACADEMIC_YEARS, EXAM_CATEGORIES, TOP_RANKERS, SUBJECT_PERFORMANCE, SUCCESS_STORIES, AWARDS_RECOGNITION } from "@/constants/resultsData";
 
 export const metadata = {
   title: "Results & Achievements | Sharda Academy",
-  description: "View the outstanding academic results, top rankers, and success stories of Sharda Academy students in JEE, NEET, and Boards.",
+  description: "View the outstanding academic results, top rankers, and success stories of Sharda Academy students in 10th and 12th Board Exams (Science & Commerce).",
+  keywords: ["sharda academy results","10th board toppers","12th science results","12th commerce toppers","board exam success"],
+  openGraph: {
+    title: "Results & Achievements | Sharda Academy",
+    description: "View the outstanding academic results, top rankers, and success stories of Sharda Academy students in 10th and 12th Board Exams (Science & Commerce).",
+  }
 };
 
-export default function ResultsPage() {
+async function getResultsData() {
+  try {
+    const res = await fetch("http://localhost:5000/api/cms/website/results", { cache: 'no-store' });
+    if (!res.ok) return null;
+    const json = await res.json();
+    return json.data;
+  } catch (error) {
+    console.error("Error fetching results data:", error);
+    return null;
+  }
+}
+
+export default async function ResultsPage() {
+  const cmsData = await getResultsData();
+
+  const heroData = cmsData?.hero || RESULTS_HERO;
+  const yearsData = cmsData?.years || ACADEMIC_YEARS;
+  const categoriesData = cmsData?.categories || EXAM_CATEGORIES;
+  const rankersData = cmsData?.topRankers || TOP_RANKERS;
+  const performanceData = cmsData?.subjectPerformance || SUBJECT_PERFORMANCE;
+  const storiesData = cmsData?.successStories || SUCCESS_STORIES;
+  const awardsData = cmsData?.awards || AWARDS_RECOGNITION;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
@@ -32,19 +60,19 @@ export default function ResultsPage() {
       <Navbar transparent={false} />
       
       {/* 1. Hero */}
-      <ResultsHero />
+      <ResultsHero data={heroData} />
       
       {/* 3. Top Rankers (with Year Filter) */}
-      <TopRankers />
+      <TopRankers rankers={rankersData} years={yearsData} categories={categoriesData} />
 
       {/* 4. Subject Performance Bars */}
-      <SubjectPerformance />
+      <SubjectPerformance data={performanceData} />
 
       {/* 5. Success Stories */}
-      <SuccessStories />
+      <SuccessStories data={storiesData} />
 
       {/* 6. Awards Timeline */}
-      <AwardsRecognition />
+      <AwardsRecognition data={awardsData} />
       
       {/* 7. FAQs */}
       <FAQSection />

@@ -12,7 +12,7 @@ import { useTheme } from "@/components/providers/ThemeProvider";
 
 export function Navbar({ 
   className,
-  transparent = false 
+  transparent = true 
 }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -33,10 +33,10 @@ export function Navbar({
   const navClasses = cn(
     "fixed top-0 inset-x-0 z-50 w-full transition-all duration-500 ease-in-out",
     isScrolled 
-      ? "bg-white/90 dark:bg-background/90 backdrop-blur-xl shadow-[0_4px_20px_-10px_rgba(0,0,0,0.1)] border-b border-border/50 py-3" 
+      ? "bg-white/75 dark:bg-surface/75 backdrop-blur-xl shadow-sm border-b border-border/50 dark:border-primary/20 py-3" 
       : transparent 
         ? "bg-transparent py-5 border-b border-transparent" 
-        : "bg-white/95 dark:bg-background/95 backdrop-blur-md py-5 border-b border-transparent"
+        : "bg-white/80 dark:bg-surface/80 backdrop-blur-lg py-5 border-b border-transparent"
   );
 
   return (
@@ -99,9 +99,11 @@ export function Navbar({
               )}
             </button>
 
-            <Button variant="default" className="shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5 rounded-full px-6">
-              Enroll Now
-            </Button>
+            <Link href="/admission">
+              <Button variant="default" className="shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5 rounded-full px-6">
+                Enroll Now
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -141,7 +143,9 @@ export function Navbar({
             ))}
           </div>
           <div className="pt-6 border-t border-border mt-auto flex flex-col gap-4">
-            <Button className="w-full">Enroll Now</Button>
+            <Link href="/admission" onClick={() => setMobileMenuOpen(false)}>
+              <Button className="w-full">Enroll Now</Button>
+            </Link>
           </div>
         </div>
       </Drawer>
