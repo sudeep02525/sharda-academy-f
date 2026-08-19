@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 import { ACADEMY_DETAILS } from "@/constants/index";
 
+import { API_BASE_URL } from "@/utils/config";
+
 export function ContactPreview() {
   const [data, setData] = useState({
     heading: "Start Your Journey With Us",
@@ -18,7 +20,7 @@ export function ContactPreview() {
   useEffect(() => {
     const fetchContactData = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/cms/home/contact-cta");
+        const res = await fetch(`${API_BASE_URL}/api/cms/home/contact-cta`);
         if (res.ok) {
           const content = await res.json();
           if (content && content.data) {

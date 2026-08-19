@@ -8,6 +8,8 @@ import { BookOpen, Trophy, Clock, ChevronRight, CheckCircle2, ArrowRight, Sparkl
 import { HERO_DATA } from "@/constants/homeData";
 import { cn } from "@/lib/utils";
 
+import { API_BASE_URL } from "@/utils/config";
+
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
@@ -51,7 +53,8 @@ function DashboardCompositionDesktop() {
       <motion.div 
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] bg-gradient-to-b from-white/95 to-white/75 dark:from-surface/95 dark:to-surface/75 backdrop-blur-xl border border-white/80 dark:border-border shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1),0_0_40px_-10px_rgba(0,118,255,0.15)] dark:shadow-none ring-1 ring-white dark:ring-border rounded-2xl p-8 z-20 cursor-default"
         initial={{ opacity: 0, scale: 0.9, y: "-50%", x: "-50%" }}
-        animate={{ opacity: 1, scale: 1, y: "-50%", x: "-50%" }}
+        whileInView={{ opacity: 1, scale: 1, y: "-50%", x: "-50%" }}
+        viewport={{ once: true }}
         transition={{ 
           opacity: { duration: 0.8 },
           scale: { duration: 0.8 }
@@ -234,7 +237,7 @@ export function HeroSection() {
   useEffect(() => {
     const fetchHeroData = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/cms/home/hero");
+        const res = await fetch(`${API_BASE_URL}/api/cms/home/hero`);
         if (res.ok) {
           const content = await res.json();
           if (content && content.data) {
@@ -260,7 +263,8 @@ export function HeroSection() {
             className="flex flex-col items-start text-left max-w-[600px] w-full pt-10 lg:pt-0"
             variants={staggerContainer}
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={{ once: true }}
           >
             {/* Institute Tagline */}
             <motion.div variants={fadeUpVariant} className="mb-6">

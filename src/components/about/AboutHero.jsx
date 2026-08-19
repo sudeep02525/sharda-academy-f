@@ -6,6 +6,8 @@ import { Reveal } from "@/components/animations/Reveal";
 import { Fade } from "@/components/animations/Fade";
 import { Badge } from "@/components/ui/Badge";
 
+import { API_BASE_URL } from "@/utils/config";
+
 export function AboutHero() {
   const [data, setData] = useState({
     badge: FALLBACK_DATA.badge,
@@ -22,7 +24,7 @@ export function AboutHero() {
   useEffect(() => {
     const fetchHeroData = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/cms/about/hero");
+        const res = await fetch(`${API_BASE_URL}/api/cms/about/hero`);
         if (res.ok) {
           const content = await res.json();
           if (content && content.data) {

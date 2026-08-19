@@ -6,6 +6,8 @@ import { TestimonialCard } from "@/components/cards/ContentCards";
 import { Reveal } from "@/components/animations/Reveal";
 import { Fade } from "@/components/animations/Fade";
 
+import { API_BASE_URL } from "@/utils/config";
+
 export function TestimonialsSection() {
   const [sectionData, setSectionData] = useState({
     sectionTitle: "What Parents & Students Say",
@@ -16,7 +18,7 @@ export function TestimonialsSection() {
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/cms/home/testimonials");
+        const res = await fetch(`${API_BASE_URL}/api/cms/home/testimonials`);
         if (res.ok) {
           const content = await res.json();
           if (content && content.data) {

@@ -6,6 +6,8 @@ import { Reveal } from "@/components/animations/Reveal";
 import { Fade } from "@/components/animations/Fade";
 import { Target, Eye } from "lucide-react";
 
+import { API_BASE_URL } from "@/utils/config";
+
 export function OurMission() {
   const [data, setData] = useState({
     mission: FALLBACK_DATA.mission.description,
@@ -15,7 +17,7 @@ export function OurMission() {
   useEffect(() => {
     const fetchMissionVision = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/cms/about/mission-vision");
+        const res = await fetch(`${API_BASE_URL}/api/cms/about/mission-vision`);
         if (res.ok) {
           const content = await res.json();
           if (content && content.data) {

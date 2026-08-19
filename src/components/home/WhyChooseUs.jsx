@@ -6,13 +6,15 @@ import { FeatureCard } from "@/components/cards/FeatureCard";
 import { Fade } from "@/components/animations/Fade";
 import * as LucideIcons from "lucide-react";
 
+import { API_BASE_URL } from "@/utils/config";
+
 export function WhyChooseUs() {
   const [content, setContent] = useState(WHY_CHOOSE_US_DATA);
 
   useEffect(() => {
     const fetchWhyShardaData = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/cms/home/why-sharda");
+        const res = await fetch(`${API_BASE_URL}/api/cms/home/why-sharda`);
         if (res.ok) {
           const fetchedContent = await res.json();
           if (fetchedContent && fetchedContent.data) {

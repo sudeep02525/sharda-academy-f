@@ -5,6 +5,8 @@ import { DIRECTOR_MESSAGE_DATA as FALLBACK_DATA } from "@/constants/aboutData";
 import { Reveal } from "@/components/animations/Reveal";
 import { Fade } from "@/components/animations/Fade";
 
+import { API_BASE_URL } from "@/utils/config";
+
 export function DirectorMessage() {
   const [data, setData] = useState({
     principalMessage: FALLBACK_DATA.message.join("\n\n")
@@ -13,7 +15,7 @@ export function DirectorMessage() {
   useEffect(() => {
     const fetchDirectorMessage = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/cms/about/director-message");
+        const res = await fetch(`${API_BASE_URL}/api/cms/about/director-message`);
         if (res.ok) {
           const content = await res.json();
           if (content && content.data) {

@@ -8,13 +8,15 @@ import { Fade } from "@/components/animations/Fade";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 
+import { API_BASE_URL } from "@/utils/config";
+
 export function PopularCourses() {
   const [featuredCourses, setFeaturedCourses] = useState(COURSES_LIST.slice(0, 3)); // Fallback to first 3
 
   useEffect(() => {
     const fetchCoursesData = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/cms/home/courses");
+        const res = await fetch(`${API_BASE_URL}/api/cms/home/courses`);
         if (res.ok) {
           const content = await res.json();
           if (content && content.data && content.data.courses && content.data.courses.length > 0) {

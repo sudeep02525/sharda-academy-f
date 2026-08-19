@@ -6,6 +6,8 @@ import { FacultyCard } from "@/components/cards/ContentCards";
 import { Reveal } from "@/components/animations/Reveal";
 import { Fade } from "@/components/animations/Fade";
 
+import { API_BASE_URL } from "@/utils/config";
+
 export function ExpertFaculty() {
   const [facultyData, setFacultyData] = useState(FACULTY_DATA.slice(0, 3));
   const [title, setTitle] = useState("Learn from the Experts");
@@ -14,7 +16,7 @@ export function ExpertFaculty() {
   useEffect(() => {
     const fetchFacultyData = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/cms/home/faculty");
+        const res = await fetch(`${API_BASE_URL}/api/cms/home/faculty`);
         if (res.ok) {
           const content = await res.json();
           if (content && content.data) {

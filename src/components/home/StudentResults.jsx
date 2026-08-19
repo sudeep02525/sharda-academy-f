@@ -8,13 +8,15 @@ import { Fade } from "@/components/animations/Fade";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 
+import { API_BASE_URL } from "@/utils/config";
+
 export function StudentResults() {
   const [content, setContent] = useState(RESULTS_DATA);
 
   useEffect(() => {
     const fetchAchieversData = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/cms/home/achievers");
+        const res = await fetch(`${API_BASE_URL}/api/cms/home/achievers`);
         if (res.ok) {
           const fetchedContent = await res.json();
           if (fetchedContent && fetchedContent.data) {

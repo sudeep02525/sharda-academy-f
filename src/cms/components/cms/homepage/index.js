@@ -1,0 +1,13 @@
+export { default as HeroEditor } from "./HeroEditor";
+export { default as TrustLogosEditor } from "./TrustLogosEditor";
+export { default as WhyShardaEditor } from "./WhyShardaEditor";
+export { default as PopularCoursesEditor } from "./PopularCoursesEditor";
+export { default as LearningProcessEditor } from "./LearningProcessEditor";
+export { default as FacilitiesEditor } from "./FacilitiesEditor";
+export { default as FacultyEditor } from "./FacultyEditor";
+export { default as AchieversEditor } from "./AchieversEditor";
+export { default as TestimonialsEditor } from "./TestimonialsEditor";
+export { default as AdmissionProcessEditor } from "./AdmissionProcessEditor";
+export { default as AnnouncementsEditor } from "./AnnouncementsEditor";
+export { default as FAQEditor } from "./FAQEditor";
+export { default as ContactCTAEditor } from "./ContactCTAEditor";

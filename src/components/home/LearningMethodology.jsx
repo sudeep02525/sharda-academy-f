@@ -5,13 +5,15 @@ import { METHODOLOGY_DATA } from "@/constants/homeData";
 import { Reveal } from "@/components/animations/Reveal";
 import { Fade } from "@/components/animations/Fade";
 
+import { API_BASE_URL } from "@/utils/config";
+
 export function LearningMethodology() {
   const [content, setContent] = useState(METHODOLOGY_DATA);
 
   useEffect(() => {
     const fetchMethodologyData = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/cms/home/learning-process");
+        const res = await fetch(`${API_BASE_URL}/api/cms/home/learning-process`);
         if (res.ok) {
           const fetchedContent = await res.json();
           if (fetchedContent && fetchedContent.data) {

@@ -13,6 +13,8 @@ import { AVAILABLE_COURSES, BATCH_OPTIONS } from "@/constants/admissionData";
 import { Fade } from "@/components/animations/Fade";
 import { motion, AnimatePresence } from "framer-motion";
 
+import { API_BASE_URL } from "@/utils/config";
+
 const formSchema = z.object({
   studentName: z.string().min(2, "Student name is required"),
   parentName: z.string().min(2, "Parent/Guardian name is required"),
@@ -49,7 +51,7 @@ export function AdmissionForm({ data }) {
 
   const onSubmit = async (formData) => {
     try {
-      const res = await fetch("http://localhost:5000/api/admissions", {
+      const res = await fetch(`${API_BASE_URL}/api/admissions`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
