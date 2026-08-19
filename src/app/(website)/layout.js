@@ -27,7 +27,7 @@ export const metadata = {
     description: "Expert coaching for Classes 1st-10th and 11th-12th (Science & Commerce) with excellent board results.",
     url: "https://shardaacademyofficial.in",
     siteName: "Sharda Academy",
-    images: [{ url: "https://res.cloudinary.com/ybzctfb3/image/upload/v1784795282/sharda_academy_official/pxsdcgzn0c8kcmwtj8ir.jpg", width: 1200, height: 630, alt: "Sharda Academy Campus" }],
+    images: [{ url: "https://res.cloudinary.com/ybzctfb3/image/upload/v1784214512/sharda-academy/uploads/chl3yks6plrwp1ufvdkc.png", width: 1200, height: 630, alt: "Sharda Academy Logo" }],
     locale: "en_US",
     type: "website",
   },
@@ -35,7 +35,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Sharda Academy | Top Coaching for 1st to 12th (Science & Commerce)",
     description: "Expert coaching for Classes 1st-10th and 11th-12th (Science & Commerce).",
-    images: ["https://res.cloudinary.com/ybzctfb3/image/upload/v1784795282/sharda_academy_official/pxsdcgzn0c8kcmwtj8ir.jpg"],
+    images: ["https://res.cloudinary.com/ybzctfb3/image/upload/v1784214512/sharda-academy/uploads/chl3yks6plrwp1ufvdkc.png"],
   },
   icons: {
     icon: [
