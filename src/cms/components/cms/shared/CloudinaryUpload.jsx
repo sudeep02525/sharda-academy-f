@@ -21,17 +21,6 @@ export default function CloudinaryUpload({ imageUrl, publicId, onChange, label =
     formData.append('image', file);
 
     try {
-      // If there's an existing image with a publicId, we might want to delete it first,
-      // but to be safe and simple we just upload the new one. The user can manually delete if they want.
-      // Wait, let's delete the old one if replacing!
-      if (publicId) {
-        await fetch(`${API_BASE_URL}/api/upload/delete`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ publicId })
-        }).catch(err => console.error("Failed to delete old image", err));
-      }
-
       const res = await fetch(`${API_BASE_URL}/api/upload`, {
         method: 'POST',
         body: formData
@@ -39,6 +28,15 @@ export default function CloudinaryUpload({ imageUrl, publicId, onChange, label =
       
       const data = await res.json();
       if (data.success) {
+        // Safely delete the old image only after the new one is successfully uploaded
+        if (publicId) {
+          await fetch(`${API_BASE_URL}/api/upload/delete`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ publicId })
+          }).catch(err => console.error("Failed to delete old image", err));
+        }
+
         onChange(data.data.imageUrl, data.data.publicId);
         setSuccess('Image uploaded successfully!');
         setTimeout(() => setSuccess(null), 3000);

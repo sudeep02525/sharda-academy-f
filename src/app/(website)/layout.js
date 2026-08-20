@@ -3,10 +3,11 @@ import Script from "next/script";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+import { WebsitePopup } from "@/components/ui/WebsitePopup";
 
 const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-inter",
 });
 
 export const dynamic = 'force-dynamic';
@@ -142,6 +143,7 @@ export default async function RootLayout({ children }) {
             <>
               <main className="flex-1 w-full">{children}</main>
               <WhatsAppButton />
+              <WebsitePopup />
             </>
           )}
         </ThemeProvider>

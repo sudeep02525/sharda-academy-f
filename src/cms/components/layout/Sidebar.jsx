@@ -26,6 +26,7 @@ const MENU_ITEMS = [
       { id: "gallery", label: "Gallery", href: "/s-cms/website/gallery", icon: Camera },
       { id: "contact", label: "Contact", href: "/s-cms/website/contact", icon: Phone },
       { id: "admission", label: "Admission", href: "/s-cms/website/admission", icon: GraduationCap },
+      { id: "popup", label: "Popup / Announce", href: "/s-cms/website/popup", icon: ImageIcon },
     ]
   },
   { id: "admissions", label: "Admission Inquiries", href: "/s-cms/admissions", icon: ClipboardList },

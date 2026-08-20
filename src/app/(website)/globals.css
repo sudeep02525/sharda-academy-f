@@ -3,6 +3,7 @@
 @custom-variant dark (&:is(.dark *));
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
   --color-primary-deep: var(--primary-deep);
@@ -175,4 +176,13 @@ html.lenis, html.lenis body {
 }
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background-color: rgba(15, 46, 78, 0.4);
+}
+
+/* Hide main browser scrollbar for a premium seamless look */
+::-webkit-scrollbar {
+  display: none;
+}
+html, body {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
