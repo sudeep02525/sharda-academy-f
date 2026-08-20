@@ -41,12 +41,12 @@ export const metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: '32x32' },
-      { url: '/favicon-16x16.png', type: 'image/png', sizes: '16x16' },
-      { url: '/favicon-32x32.png', type: 'image/png', sizes: '32x32' }
+      { url: 'https://res.cloudinary.com/ybzctfb3/image/upload/v1784214512/sharda-academy/uploads/chl3yks6plrwp1ufvdkc.png', sizes: '32x32' },
+      { url: 'https://res.cloudinary.com/ybzctfb3/image/upload/v1784214512/sharda-academy/uploads/chl3yks6plrwp1ufvdkc.png', type: 'image/png', sizes: '16x16' },
+      { url: 'https://res.cloudinary.com/ybzctfb3/image/upload/v1784214512/sharda-academy/uploads/chl3yks6plrwp1ufvdkc.png', type: 'image/png', sizes: '32x32' }
     ],
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
+    shortcut: "https://res.cloudinary.com/ybzctfb3/image/upload/v1784214512/sharda-academy/uploads/chl3yks6plrwp1ufvdkc.png",
+    apple: "https://res.cloudinary.com/ybzctfb3/image/upload/v1784214512/sharda-academy/uploads/chl3yks6plrwp1ufvdkc.png",
   },
   manifest: "/site.webmanifest",
   alternates: { canonical: "https://shardaacademyofficial.in" },
@@ -77,7 +77,8 @@ const jsonLd = {
 export default async function RootLayout({ children }) {
   let isMaintenance = false;
   try {
-    const res = await fetch("http://localhost:5000/api/cms/system/settings", { 
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+    const res = await fetch(`${apiUrl}/api/cms/system/settings`, { 
       cache: "no-store" 
     });
     if (res.ok) {

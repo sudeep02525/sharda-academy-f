@@ -35,7 +35,7 @@ export default function SettingsPage() {
   }, []);
 
   const fetchSettings = () => {
-    fetch("http://localhost:5000/api/cms/system/settings")
+    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/cms/system/settings`)
       .then(res => res.json())
       .then(data => {
         if (data && data.data) setSettings(data.data);
@@ -44,7 +44,7 @@ export default function SettingsPage() {
   };
 
   const fetchAdmins = () => {
-    fetch("http://localhost:5000/auth/admins")
+    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/auth/admins`)
       .then(res => res.json())
       .then(data => {
         if (data.success && data.data) {
@@ -68,7 +68,7 @@ export default function SettingsPage() {
     setIsSaving(true);
     try {
       await new Promise(resolve => setTimeout(resolve, 800));
-      const response = await fetch("http://localhost:5000/api/cms/system/settings", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/cms/system/settings`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data: settings })
@@ -90,7 +90,7 @@ export default function SettingsPage() {
     e.preventDefault();
     setIsSubmittingAdmin(true);
     try {
-      const response = await fetch("http://localhost:5000/auth/admins", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/auth/admins`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newAdmin)
@@ -129,7 +129,7 @@ export default function SettingsPage() {
     setDeleteConfirm({ isOpen: false, id: null, email: null });
 
     try {
-      const response = await fetch(`http://localhost:5000/auth/admins/${id}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/auth/admins/${id}`, {
         method: "DELETE"
       });
       if (response.ok) {

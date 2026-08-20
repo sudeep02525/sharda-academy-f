@@ -36,7 +36,7 @@ export default function ProfilePage() {
 
     setIsSubmitting(true);
     try {
-      const res = await fetch("http://localhost:5000/api/auth/request-password-change", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/auth/request-password-change`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: user.email, currentPassword })
@@ -61,7 +61,7 @@ export default function ProfilePage() {
     setIsSubmitting(true);
     
     try {
-      const res = await fetch("http://localhost:5000/api/auth/verify-password-change", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/auth/verify-password-change`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: user.email, otp, newPassword })
