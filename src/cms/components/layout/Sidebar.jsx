@@ -139,6 +139,9 @@ export default function Sidebar() {
                 ) : (
                   <Link
                     href={item.href}
+                    onClick={() => {
+                      if (window.innerWidth < 768) setSidebarOpen(false);
+                    }}
                     className={`w-full py-2.5 rounded-xl text-xs font-bold transition-all duration-300 flex items-center cursor-pointer group ${
                       sidebarOpen ? "px-3.5 gap-3" : "justify-center px-1"
                     } ${isActive ? "bg-[#f1af3c] text-[#0a1835] shadow-lg shadow-[#f1af3c]/25 border-l-4 border-[#0a1835]" : "text-slate-100 hover:text-[#f1af3c] hover:bg-white/10 border-l-2 border-transparent hover:border-[#f1af3c]"}`}
@@ -158,6 +161,9 @@ export default function Sidebar() {
                         <Link
                           key={subItem.id}
                           href={subItem.href}
+                          onClick={() => {
+                            if (window.innerWidth < 768) setSidebarOpen(false);
+                          }}
                           className={`flex items-center gap-2.5 py-2 px-3 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-colors ${
                             subActive ? "text-[#f1af3c] bg-white/5" : "text-slate-400 hover:text-[#f1af3c] hover:bg-white/5"
                           }`}

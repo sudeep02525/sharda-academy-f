@@ -89,7 +89,7 @@ export default function DashboardPage() {
         setRecentInquiries(recent);
       } catch (err) {
         console.error("Dashboard fetch error:", err);
-        setError("Kuch data load nahi ho saka. Backend se connect karein.");
+        setError("Failed to load dashboard data. Please verify backend connection.");
       } finally {
         setLoading(false);
       }
@@ -114,12 +114,12 @@ export default function DashboardPage() {
     if (isNaN(d)) return "—";
     const diff = Date.now() - d.getTime();
     const mins = Math.floor(diff / 60000);
-    if (mins < 1) return "abhi abhi";
-    if (mins < 60) return `${mins} min pehle`;
+    if (mins < 1) return "Just now";
+    if (mins < 60) return `${mins} mins ago`;
     const hrs = Math.floor(mins / 60);
-    if (hrs < 24) return `${hrs} ghante pehle`;
+    if (hrs < 24) return `${hrs} hours ago`;
     const days = Math.floor(hrs / 24);
-    if (days < 7) return `${days} din pehle`;
+    if (days < 7) return `${days} days ago`;
     return d.toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" });
   };
 
@@ -166,33 +166,37 @@ export default function DashboardPage() {
     <div className="space-y-6 animate-fade-in-up">
 
       {/* Welcome Banner */}
-      <div className="bg-gradient-to-r from-[#0a1835] to-[#0f2347] rounded-2xl p-6 sm:p-8 text-white relative overflow-hidden shadow-xl shadow-navy/10 border border-navy-light">
-        <div className="absolute -right-20 -top-20 w-64 h-64 bg-[#f1af3c] rounded-full blur-[80px] opacity-20 pointer-events-none" />
+      <div className="bg-white rounded-2xl p-6 sm:p-8 relative overflow-hidden shadow-sm border border-slate-200">
+        <div 
+          className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+          style={{ backgroundImage: 'url("/mesh-grid.svg")' }}
+        />
+        <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-[#f1af3c]" />
         <div className="relative z-10">
-          <h1 className="text-2xl sm:text-3xl font-black mb-2 tracking-tight">
-            Welcome, {user?.name || "CMS Admin"} 👋
+          <h1 className="text-2xl sm:text-3xl font-black text-navy mb-2 tracking-tight">
+            Welcome back, <span className="text-[#f1af3c]">{user?.name || "Admin"}</span> 👋
           </h1>
-          <p className="text-slate-300 text-sm max-w-xl leading-relaxed">
+          <p className="text-slate-500 text-sm max-w-xl leading-relaxed font-medium">
             {loading ? (
-              "Dashboard data load ho raha hai..."
+              "Loading dashboard data..."
             ) : error ? (
-              <span className="text-red-300">{error}</span>
+              <span className="text-red-400">{error}</span>
             ) : (
               <>
-                Sharda Academy CMS me aapka swagat hai.{" "}
+                Welcome to the Sharda Academy CMS.{" "}
                 {stats.pendingInquiries > 0 ? (
                   <>
-                    Aapke paas{" "}
+                    You have{" "}
                     <span
-                      className="text-[#f1af3c] font-bold cursor-pointer underline underline-offset-2"
+                      className="text-amber-600 font-black cursor-pointer underline underline-offset-4 decoration-amber-600/30 hover:decoration-amber-600 transition-all"
                       onClick={() => router.push("/s-cms/admissions")}
                     >
                       {stats.pendingInquiries} pending
                     </span>{" "}
-                    inquiries hain review ke liye.
+                    inquiries waiting for review.
                   </>
                 ) : (
-                  "Abhi koi pending inquiry nahi hai."
+                  "There are currently no pending inquiries."
                 )}
               </>
             )}
@@ -255,14 +259,14 @@ export default function DashboardPage() {
             onClick={() => router.push("/s-cms/admissions")}
             className="text-xs font-bold text-[#f1af3c] hover:text-amber-600 transition-colors"
           >
-            Sab Dekho →
+            View All →
           </button>
         </div>
 
         {loading ? (
           <div className="flex items-center justify-center py-10 gap-2 text-slate-400">
             <Loader2 className="w-5 h-5 animate-spin" />
-            <span className="text-sm font-semibold">Load ho raha hai...</span>
+            <span className="text-sm font-semibold">Loading data...</span>
           </div>
         ) : error ? (
           <div className="flex items-center gap-2 py-6 text-red-400">
@@ -272,8 +276,8 @@ export default function DashboardPage() {
         ) : recentInquiries.length === 0 ? (
           <div className="text-center py-10 text-slate-400">
             <MessageSquare className="w-8 h-8 mx-auto mb-2 opacity-50" />
-            <p className="text-sm font-semibold">Koi inquiry nahi mili abhi tak</p>
-            <p className="text-xs mt-1">Jab students apply karenge, yahan dikhega</p>
+            <p className="text-sm font-semibold">No inquiries found yet</p>
+            <p className="text-xs mt-1">New student applications will appear here</p>
           </div>
         ) : (
           <div className="overflow-x-auto">
@@ -284,7 +288,7 @@ export default function DashboardPage() {
                   <th className="text-left text-[10px] font-black text-slate-400 uppercase tracking-wider pb-3 pr-4">Student</th>
                   <th className="text-left text-[10px] font-black text-slate-400 uppercase tracking-wider pb-3 pr-4">Course</th>
                   <th className="text-left text-[10px] font-black text-slate-400 uppercase tracking-wider pb-3 pr-4">Status</th>
-                  <th className="text-left text-[10px] font-black text-slate-400 uppercase tracking-wider pb-3">Kab</th>
+                  <th className="text-left text-[10px] font-black text-slate-400 uppercase tracking-wider pb-3">Date</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-50">

@@ -40,12 +40,12 @@ export function AdmissionDetails({ data, docs }) {
                   For detailed information regarding course fees, payment schedules, and other related charges, please download our official fee structure document.
                 </p>
                 {data?.feeStructurePdfUrl ? (
-                  <a href={data.feeStructurePdfUrl} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-[#0F2E4E] text-sm font-bold rounded-xl hover:bg-primary-hover shadow-sm transition-colors">
+                  <a href={data.feeStructurePdfUrl} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-amber-500 text-white text-sm font-bold rounded-xl hover:bg-amber-600 shadow-lg shadow-amber-500/25 transition-all transform hover:-translate-y-0.5">
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                     Download Fee Structure PDF
                   </a>
                 ) : (
-                  <div className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-slate-100 text-slate-400 text-sm font-bold rounded-xl cursor-not-allowed">
+                  <div className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-slate-100/80 text-slate-400 text-sm font-bold rounded-xl cursor-not-allowed border border-slate-200 border-dashed">
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                     Fee Structure Unavailable
                   </div>
@@ -85,10 +85,16 @@ export function AdmissionDetails({ data, docs }) {
                  <p className="text-paragraph leading-relaxed mb-6">
                    Fees vary based on the chosen course, duration, and scholarship tier. For detailed breakdowns and installment plans, please download our comprehensive brochure.
                  </p>
-                 <button className="text-primary font-bold hover:underline inline-flex items-center">
-                   Download Fee Structure PDF
-                   <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-                 </button>
+                 {data?.feeStructurePdfUrl ? (
+                   <a href={data.feeStructurePdfUrl} target="_blank" rel="noreferrer" className="text-amber-500 font-bold hover:text-amber-600 hover:underline inline-flex items-center group transition-colors">
+                     Download Fee Structure PDF
+                     <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                   </a>
+                 ) : (
+                   <span className="text-slate-400 font-bold inline-flex items-center">
+                     Fee Structure Unavailable
+                   </span>
+                 )}
               </div>
             </Fade>
 

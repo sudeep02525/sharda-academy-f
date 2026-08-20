@@ -31,6 +31,8 @@ const formSchema = z.object({
 
 export function AdmissionForm({ data }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [selectedFiles, setSelectedFiles] = useState([]);
+  const [isUploadingFiles, setIsUploadingFiles] = useState(false);
   
   const courses = data?.courses || AVAILABLE_COURSES;
   const batches = data?.batches || BATCH_OPTIONS;
@@ -51,24 +53,104 @@ export function AdmissionForm({ data }) {
 
   const onSubmit = async (formData) => {
     try {
+      setIsUploadingFiles(true);
+      const uploadedDocs = [];
+      
+      // Upload files one by one if any selected
+      if (selectedFiles && selectedFiles.length > 0) {
+        for (const file of selectedFiles) {
+          const fileData = new FormData();
+          fileData.append('image', file);
+          
+          try {
+            const uploadRes = await fetch(`${API_BASE_URL}/api/upload`, {
+              method: 'POST',
+              body: fileData
+            });
+            const uploadJson = await uploadRes.json();
+            if (uploadJson.success) {
+              uploadedDocs.push({
+                name: file.name,
+                url: uploadJson.data.imageUrl,
+                publicId: uploadJson.data.publicId
+              });
+            }
+          } catch (uploadErr) {
+            console.error("File upload failed for", file.name, uploadErr);
+          }
+        }
+      }
+      
+      const payload = {
+        ...formData,
+        documents: uploadedDocs
+      };
+
       const res = await fetch(`${API_BASE_URL}/api/admissions`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
       });
       const json = await res.json();
       if (!res.ok) throw new Error(json.message || "Submission failed");
+      
       setIsSubmitted(true);
       reset();
+      setSelectedFiles([]);
     } catch (error) {
       console.error("Form submission error:", error);
       alert("Something went wrong. Please try again.");
+    } finally {
+      setIsUploadingFiles(false);
     }
   };
 
-  const courseOptions = courses.map(c => ({ value: c, label: c }));
+  const watchQualification = watch("qualification");
+
+  let filteredCourses = courses;
+  if (watchQualification) {
+    const isJunior = !!watchQualification.match(/Class [1-8]$/);
+    const isMid = watchQualification === "Class 9" || watchQualification === "Class 10";
+    const isSenior = watchQualification === "Class 11" || watchQualification === "Class 12" || watchQualification.includes("Dropper");
+
+    filteredCourses = courses.filter(c => {
+      const cStr = c.toLowerCase();
+      const isHsc = cStr.includes("hsc") || cStr.includes("11") || cStr.includes("12");
+      const isSsc = cStr.includes("ssc") || cStr.includes("9") || cStr.includes("10");
+      
+      if (isJunior) {
+         if (!isHsc && !isSsc) return true;
+         if (cStr.includes("school") || cStr.includes("state board")) return true;
+         return false;
+      }
+      if (isMid) {
+         if (isSsc || cStr.includes("state board") || (!isHsc && !isSsc)) return true;
+         return false;
+      }
+      if (isSenior) {
+         if (isHsc || (!isHsc && !isSsc)) return true;
+         return false;
+      }
+      return true;
+    });
+
+    // Fallback if filtering removes everything
+    if (filteredCourses.length === 0) {
+      if (isJunior) filteredCourses = ["School Section Regular Batch (1st-8th)"];
+      else filteredCourses = courses;
+    }
+  }
+
+  const courseOptions = filteredCourses.map(c => ({ value: c, label: c }));
   const batchOptions = batches.map(b => ({ value: b, label: b }));
   const qualificationOptions = [
+    { value: "Class 1", label: "Currently in Class 1" },
+    { value: "Class 2", label: "Currently in Class 2" },
+    { value: "Class 3", label: "Currently in Class 3" },
+    { value: "Class 4", label: "Currently in Class 4" },
+    { value: "Class 5", label: "Currently in Class 5" },
+    { value: "Class 6", label: "Currently in Class 6" },
+    { value: "Class 7", label: "Currently in Class 7" },
     { value: "Class 8", label: "Currently in Class 8" },
     { value: "Class 9", label: "Currently in Class 9" },
     { value: "Class 10", label: "Currently in Class 10" },
@@ -201,12 +283,34 @@ export function AdmissionForm({ data }) {
                       {...register("message")}
                     />
                     
-                    {/* File Upload Placeholder */}
-                    <div className="bg-muted border border-dashed border-border rounded-xl p-6 text-center">
+                    {/* File Upload Section */}
+                    <div className="bg-muted border border-dashed border-border rounded-xl p-6 text-center relative overflow-hidden transition-all hover:border-primary/50">
+                       <input 
+                         type="file" 
+                         multiple 
+                         accept="image/*,application/pdf"
+                         onChange={(e) => setSelectedFiles(Array.from(e.target.files))}
+                         className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                       />
                        <svg className="w-8 h-8 mx-auto text-muted-foreground mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" /></svg>
-                       <p className="text-sm font-semibold text-heading mb-1">Upload Documents (Optional for now)</p>
-                       <p className="text-xs text-muted-foreground">Supported formats: PDF, JPG, PNG (Max 5MB)</p>
-                       <Button type="button" variant="outline" size="sm" className="mt-4">Choose Files</Button>
+                       <p className="text-sm font-semibold text-heading mb-1">Upload Documents (Optional)</p>
+                       <p className="text-xs text-muted-foreground mb-4">Click or drag to select Passport Photo, Aadhar, etc.</p>
+                       
+                       {selectedFiles.length > 0 ? (
+                         <div className="mt-4 text-left bg-background p-3 rounded-lg border border-border">
+                           <p className="text-xs font-bold text-heading mb-2">{selectedFiles.length} File(s) Selected:</p>
+                           <ul className="text-xs text-muted-foreground space-y-1">
+                             {selectedFiles.map((f, i) => (
+                               <li key={i} className="truncate flex items-center gap-2">
+                                 <svg className="w-3 h-3 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path></svg>
+                                 {f.name}
+                               </li>
+                             ))}
+                           </ul>
+                         </div>
+                       ) : (
+                         <Button type="button" variant="outline" size="sm" className="pointer-events-none">Choose Files</Button>
+                       )}
                     </div>
 
                   </div>
@@ -231,12 +335,12 @@ export function AdmissionForm({ data }) {
                     type="submit" 
                     size="lg" 
                     className="w-full md:w-auto px-12"
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || isUploadingFiles}
                   >
-                    {isSubmitting ? (
+                    {isSubmitting || isUploadingFiles ? (
                       <span className="flex items-center">
                         <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-                        Processing Application...
+                        {isUploadingFiles ? "Uploading Files..." : "Processing Application..."}
                       </span>
                     ) : (
                       "Submit Application"

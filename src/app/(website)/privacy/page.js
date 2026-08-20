@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/navigation/Navbar";
-import { Shield, Lock, FileText, Mail, Eye, Server, RefreshCcw, ArrowLeft } from "lucide-react";
+import { Shield, ArrowLeft } from "lucide-react";
+import * as Icons from "lucide-react";
 import Link from "next/link";
 
 export const metadata = {
@@ -12,36 +13,61 @@ export const metadata = {
   }
 };
 
-export default function PrivacyPolicy() {
+async function getPrivacyContent() {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/cms/legal/privacy`, { next: { revalidate: 60 } });
+    const json = await res.json();
+    if (json.data && json.data.sections && json.data.sections.length > 0) {
+      return json.data.sections;
+    }
+  } catch (err) {
+    console.error("Failed to fetch privacy content:", err);
+  }
+  return [
+    {
+      id: "1",
+      title: "1. Introduction",
+      icon: "FileText",
+      content: "<p>Welcome to Sharda Academy. We respect your privacy and are committed to protecting your personal data. This Privacy Policy will inform you as to how we look after your personal data when you visit our website (regardless of where you visit it from) or use our educational services.</p><div class=\"bg-amber-50 border-l-4 border-amber-400 p-6 rounded-r-2xl mt-8\"><p class=\"m-0 text-base font-semibold text-amber-900\">Note: This policy is strictly compliant with applicable Indian laws, including the Digital Personal Data Protection (DPDP) Act.</p></div>"
+    },
+    {
+      id: "2",
+      title: "2. Information We Collect",
+      icon: "Server",
+      content: "<p>We may collect, use, store and transfer different kinds of personal data about you which we have grouped together as follows:</p><ul class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8 list-none p-0\"><li class=\"bg-white border border-slate-200 rounded-2xl p-6 m-0 shadow-sm\"><strong class=\"block text-[#0a1835] text-base mb-2\">Identity Data</strong><span class=\"text-base text-slate-500\">First name, last name, username, title, date of birth.</span></li><li class=\"bg-white border border-slate-200 rounded-2xl p-6 m-0 shadow-sm\"><strong class=\"block text-[#0a1835] text-base mb-2\">Contact Data</strong><span class=\"text-base text-slate-500\">Billing address, email address, and telephone numbers.</span></li><li class=\"bg-white border border-slate-200 rounded-2xl p-6 m-0 shadow-sm\"><strong class=\"block text-[#0a1835] text-base mb-2\">Academic Data</strong><span class=\"text-base text-slate-500\">Educational records, transcripts, examination scores.</span></li><li class=\"bg-white border border-slate-200 rounded-2xl p-6 m-0 shadow-sm\"><strong class=\"block text-[#0a1835] text-base mb-2\">Financial Data</strong><span class=\"text-base text-slate-500\">Payment details (processed securely via gateways).</span></li></ul>"
+    }
+  ];
+}
+
+export default async function PrivacyPolicy() {
+  const sections = await getPrivacyContent();
   
   return (
     <main className="min-h-screen flex flex-col bg-[#f8fafc] font-sans">
       <Navbar transparent={false} />
       
       {/* Light Premium Hero Section */}
-      <header className="relative pt-32 pb-20 bg-white border-b border-slate-100 overflow-hidden">
+      <header className="relative pt-24 md:pt-32 pb-16 md:pb-20 bg-white border-b border-slate-100 overflow-hidden">
         {/* Subtle Background Elements */}
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-50 via-white to-white opacity-60"></div>
-        {/* Back to Home Link */}
-        <div className="absolute inset-x-0 top-28 z-20">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <Link href="/" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-amber-500 transition-colors">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-50 via-white to-white opacity-60 pointer-events-none"></div>
+
+        <div className="w-full px-4 md:px-10 mx-auto relative z-10 flex flex-col items-center text-center">
+          <div className="w-full max-w-4xl mx-auto flex justify-start mb-8 md:mb-10">
+            <Link href="/" className="inline-flex items-center gap-2 text-xs md:text-sm font-semibold text-slate-500 hover:text-amber-500 transition-colors bg-white/60 px-3 py-1.5 rounded-full backdrop-blur-sm border border-slate-100">
               <ArrowLeft className="w-4 h-4" />
               Back to Home
             </Link>
           </div>
-        </div>
 
-        <div className="w-full px-4 md:px-10 mx-auto relative z-10 flex flex-col items-center text-center">
           <div className="flex flex-col items-center max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-amber-50 rounded-lg border border-amber-100 mb-6">
               <Shield className="w-4 h-4 text-amber-500" />
-              <span className="text-xs font-bold text-amber-700 tracking-widest uppercase">Legal Document</span>
+              <span className="text-[10px] md:text-xs font-bold text-amber-700 tracking-widest uppercase">Legal Document</span>
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#0a1835] mb-6 tracking-tight">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-[#0a1835] mb-4 md:mb-6 tracking-tight break-words">
               Privacy Policy
             </h1>
-            <p className="text-lg md:text-xl text-slate-600 leading-relaxed">
+            <p className="text-base md:text-xl text-slate-600 leading-relaxed px-2">
               Your privacy is critically important to us. This document outlines how we collect, use, and safeguard your personal information at Sharda Academy.
             </p>
           </div>
@@ -53,121 +79,50 @@ export default function PrivacyPolicy() {
         <div className="w-full px-4 md:px-10 mx-auto">
           <div className="max-w-4xl mx-auto">
             
-            <div className="w-full prose prose-slate max-w-none prose-headings:text-[#0a1835] prose-headings:font-black prose-p:text-slate-600 prose-p:leading-relaxed prose-p:text-lg prose-a:text-amber-500 hover:prose-a:text-amber-600">
+            <div className="w-full prose prose-slate max-w-none 
+              prose-headings:text-[#0a1835] prose-headings:font-black 
+              prose-p:text-slate-600 prose-p:leading-relaxed prose-p:text-base md:prose-p:text-lg 
+              prose-a:text-amber-500 hover:prose-a:text-amber-600 
+              prose-blockquote:bg-amber-50 prose-blockquote:border-l-4 prose-blockquote:border-amber-400 prose-blockquote:p-6 prose-blockquote:rounded-r-2xl prose-blockquote:my-8 prose-blockquote:not-italic prose-blockquote:font-medium prose-blockquote:text-amber-900 prose-blockquote:shadow-sm
+              prose-ul:grid prose-ul:grid-cols-1 md:prose-ul:grid-cols-2 prose-ul:gap-6 prose-ul:list-none prose-ul:p-0 
+              prose-li:bg-white prose-li:border prose-li:border-slate-200 prose-li:rounded-2xl prose-li:p-6 prose-li:shadow-sm prose-li:m-0 prose-li:text-sm prose-li:text-slate-500
+              prose-strong:text-[#0a1835] prose-strong:block prose-strong:mb-2 prose-strong:text-base
+              prose-ol:space-y-4 prose-ol:text-lg prose-ol:list-decimal prose-ol:pl-6 prose-ol:text-slate-700
+              overflow-hidden">
                 
-                <div id="section-1" className="scroll-mt-32 mb-20">
-                  <div className="flex items-center gap-3 mb-8">
-                    <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 border border-blue-100">
-                      <FileText className="w-6 h-6" />
+                {sections.map((section, index) => {
+                  const IconComponent = Icons[section.icon] || Icons.FileText;
+                  const colorClasses = [
+                    "bg-blue-50 text-blue-600 border-blue-100",
+                    "bg-purple-50 text-purple-600 border-purple-100",
+                    "bg-teal-50 text-teal-600 border-teal-100",
+                    "bg-pink-50 text-pink-600 border-pink-100",
+                    "bg-green-50 text-green-600 border-green-100",
+                    "bg-orange-50 text-orange-600 border-orange-100",
+                    "bg-indigo-50 text-indigo-600 border-indigo-100",
+                    "bg-red-50 text-red-600 border-red-100",
+                  ];
+                  const color = colorClasses[index % colorClasses.length];
+
+                  return (
+                    <div key={section.id || index} id={`section-${index + 1}`} className="scroll-mt-32 mb-20">
+                      <div className="flex items-center gap-3 mb-8">
+                        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 border ${color}`}>
+                          <IconComponent className="w-6 h-6" />
+                        </div>
+                        <h2 className="text-3xl md:text-4xl m-0 tracking-tight">{section.title}</h2>
+                      </div>
+                      <div dangerouslySetInnerHTML={{ __html: section.content }} />
                     </div>
-                    <h2 className="text-3xl md:text-4xl m-0 tracking-tight">1. Introduction</h2>
-                  </div>
-                  <p>
-                    Welcome to Sharda Academy. We respect your privacy and are committed to protecting your personal data. This Privacy Policy will inform you as to how we look after your personal data when you visit our website (regardless of where you visit it from) or use our educational services.
-                  </p>
-                  <div className="bg-amber-50 border-l-4 border-amber-400 p-6 rounded-r-2xl mt-8">
-                    <p className="m-0 text-base font-semibold text-amber-900">
-                      Note: This policy is strictly compliant with applicable Indian laws, including the Digital Personal Data Protection (DPDP) Act.
-                    </p>
-                  </div>
-                </div>
+                  );
+                })}
 
-                <div id="section-2" className="scroll-mt-32 mb-20">
-                  <div className="flex items-center gap-3 mb-8">
-                    <div className="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0 border border-purple-100">
-                      <Server className="w-6 h-6" />
-                    </div>
-                    <h2 className="text-3xl md:text-4xl m-0 tracking-tight">2. Information We Collect</h2>
-                  </div>
-                  <p>We may collect, use, store and transfer different kinds of personal data about you which we have grouped together as follows:</p>
-                  <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8 list-none p-0">
-                    {[
-                      { title: "Identity Data", desc: "First name, last name, username, title, date of birth." },
-                      { title: "Contact Data", desc: "Billing address, email address, and telephone numbers." },
-                      { title: "Academic Data", desc: "Educational records, transcripts, examination scores." },
-                      { title: "Financial Data", desc: "Payment details (processed securely via gateways)." }
-                    ].map((item, i) => (
-                      <li key={i} className="bg-white border border-slate-200 rounded-2xl p-6 m-0 shadow-sm">
-                        <strong className="block text-[#0a1835] text-base mb-2">{item.title}</strong>
-                        <span className="text-base text-slate-500">{item.desc}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div id="section-3" className="scroll-mt-32 mb-20">
-                  <h2 className="text-3xl md:text-4xl mb-8 tracking-tight border-b border-slate-100 pb-4">3. How We Use Information</h2>
-                  <p>Most commonly, we will use your personal data in the following circumstances:</p>
-                  <ul className="space-y-4 mt-6 text-lg">
-                    <li className="flex items-start gap-3">
-                      <span className="w-6 h-6 rounded-full bg-slate-100 text-[#0a1835] flex items-center justify-center shrink-0 text-sm font-bold mt-1">1</span>
-                      To perform the contract we are about to enter into or have entered into with you (e.g., enrolling you in a course).
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="w-6 h-6 rounded-full bg-slate-100 text-[#0a1835] flex items-center justify-center shrink-0 text-sm font-bold mt-1">2</span>
-                      To manage our relationship with you, including notifying you about changes to our terms or privacy policy.
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="w-6 h-6 rounded-full bg-slate-100 text-[#0a1835] flex items-center justify-center shrink-0 text-sm font-bold mt-1">3</span>
-                      To administer and protect our business and this website (troubleshooting, data analysis, system maintenance).
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="w-6 h-6 rounded-full bg-slate-100 text-[#0a1835] flex items-center justify-center shrink-0 text-sm font-bold mt-1">4</span>
-                      To deliver relevant educational content and updates to you securely.
-                    </li>
-                  </ul>
-                </div>
-
-                <div id="section-4" className="scroll-mt-32 mb-20">
-                  <h2 className="text-3xl md:text-4xl mb-8 tracking-tight border-b border-slate-100 pb-4">4. Data Sharing & Disclosure</h2>
-                  <p>We do not sell your personal data to third parties. We may share your data with the parties set out below for the purposes outlined in this policy:</p>
-                  <div className="space-y-6 mt-8">
-                    <div className="p-6 rounded-2xl border border-slate-200 bg-white shadow-sm">
-                      <strong className="text-[#0a1835] text-lg block mb-2">Service Providers</strong> 
-                      Acting as processors based in India who provide IT and system administration services, payment processing, and email communication services.
-                    </div>
-                    <div className="p-6 rounded-2xl border border-slate-200 bg-white shadow-sm">
-                      <strong className="text-[#0a1835] text-lg block mb-2">Regulatory Authorities</strong> 
-                      Relevant government bodies, regulators, and other authorities in India who require reporting of processing activities in certain circumstances.
-                    </div>
-                  </div>
-                </div>
-
-                <div id="section-5" className="scroll-mt-32 mb-20">
-                  <div className="flex items-center gap-3 mb-8">
-                    <div className="w-12 h-12 rounded-2xl bg-green-50 text-green-600 flex items-center justify-center shrink-0 border border-green-100">
-                      <Lock className="w-6 h-6" />
-                    </div>
-                    <h2 className="text-3xl md:text-4xl m-0 tracking-tight">5. Data Security</h2>
-                  </div>
-                  <p>
-                    We have put in place appropriate security measures to prevent your personal data from being accidentally lost, used, or accessed in an unauthorized way, altered, or disclosed. In addition, we limit access to your personal data to those employees, agents, contractors, and other third parties who have a business need to know.
-                  </p>
-                </div>
-
-                <div id="section-6" className="scroll-mt-32 mb-20">
-                  <h2 className="text-3xl md:text-4xl mb-8 tracking-tight border-b border-slate-100 pb-4">6. Your Privacy Rights</h2>
-                  <p>Under certain circumstances, you have rights under data protection laws in relation to your personal data. These include the right to request access, request correction, request erasure, object to processing, and withdraw consent.</p>
-                </div>
-
-                <div id="section-7" className="scroll-mt-32 mb-20">
-                  <div className="flex items-center gap-3 mb-8">
-                    <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0 border border-indigo-100">
-                      <Eye className="w-6 h-6" />
-                    </div>
-                    <h2 className="text-3xl md:text-4xl m-0 tracking-tight">7. Cookies & Tracking</h2>
-                  </div>
-                  <p>
-                    You can set your browser to refuse all or some browser cookies, or to alert you when websites set or access cookies. If you disable or refuse cookies, please note that some parts of this website may become inaccessible or not function properly.
-                  </p>
-                </div>
-
-                <div id="section-8" className="scroll-mt-32 pt-8">
+                <div id="section-contact" className="scroll-mt-32 pt-8">
                   <div className="flex items-center gap-3 mb-8">
                     <div className="w-12 h-12 rounded-2xl bg-red-50 text-red-600 flex items-center justify-center shrink-0 border border-red-100">
-                      <Mail className="w-6 h-6" />
+                      <Icons.Mail className="w-6 h-6" />
                     </div>
-                    <h2 className="text-3xl md:text-4xl m-0 tracking-tight">8. Contact Us</h2>
+                    <h2 className="text-3xl md:text-4xl m-0 tracking-tight">Contact Us</h2>
                   </div>
                   <p>
                     If you have any questions about this Privacy Policy or our privacy practices, please contact our Grievance Officer:
@@ -180,9 +135,13 @@ export default function PrivacyPolicy() {
                         <span className="w-10 h-10 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0">✉️</span> 
                         <a href="mailto:sharda.academyofficial@gmail.com" className="text-slate-700 hover:text-amber-500 transition-colors font-medium">sharda.academyofficial@gmail.com</a>
                       </p>
-                      <p className="flex items-center gap-4">
-                        <span className="w-10 h-10 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0">📍</span> 
-                        <span className="text-slate-700 font-medium">Sharda Academy Campus, India</span>
+                      <p className="flex items-start gap-4">
+                        <span className="w-10 h-10 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0 mt-1">📍</span> 
+                        <span className="text-slate-700 font-medium leading-relaxed">
+                          Sharda Academy, Jankalyan Society,<br />
+                          PMG Colony, Mankhurd,<br />
+                          Mumbai – 400043
+                        </span>
                       </p>
                     </div>
                   </div>

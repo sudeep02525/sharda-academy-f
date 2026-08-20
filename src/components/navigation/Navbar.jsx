@@ -142,7 +142,35 @@ export function Navbar({
               </Link>
             ))}
           </div>
-          <div className="pt-6 border-t border-border mt-auto flex flex-col gap-4">
+          <div className="pt-6 pb-6 border-t border-border mt-auto flex flex-col gap-4">
+            {mounted && (
+              <div className="bg-slate-100 dark:bg-slate-900/50 p-1.5 rounded-2xl flex items-center mb-2 border border-slate-200 dark:border-slate-800">
+                <button 
+                  onClick={() => setTheme('light')}
+                  className={cn(
+                    "flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-bold rounded-xl transition-all duration-300", 
+                    theme !== 'dark' 
+                      ? "bg-white text-slate-900 shadow-sm" 
+                      : "text-slate-500 hover:text-slate-300"
+                  )}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                  Light
+                </button>
+                <button 
+                  onClick={() => setTheme('dark')}
+                  className={cn(
+                    "flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-bold rounded-xl transition-all duration-300", 
+                    theme === 'dark' 
+                      ? "bg-slate-800 text-white shadow-md shadow-black/20 border border-slate-700/50" 
+                      : "text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
+                  )}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                  Dark
+                </button>
+              </div>
+            )}
             <Link href="/admission" onClick={() => setMobileMenuOpen(false)}>
               <Button className="w-full">Enroll Now</Button>
             </Link>
