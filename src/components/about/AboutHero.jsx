@@ -35,7 +35,7 @@ export function AboutHero() {
           }
         }
       } catch (error) {
-        console.error("Failed to fetch about hero data", error);
+        console.warn("Failed to fetch about hero data");
       }
     };
     fetchHeroData();

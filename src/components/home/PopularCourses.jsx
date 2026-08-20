@@ -30,7 +30,7 @@ export function PopularCourses() {
           }
         }
       } catch (error) {
-        console.error("Failed to fetch live popular courses data, falling back to static", error);
+        console.warn("Failed to fetch live popular courses data, falling back to static");
       }
     };
     fetchCoursesData();

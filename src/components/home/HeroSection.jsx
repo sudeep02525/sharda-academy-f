@@ -245,7 +245,7 @@ export function HeroSection() {
           }
         }
       } catch (error) {
-        console.error("Failed to fetch live hero data, falling back to static", error);
+        console.warn("Failed to fetch live hero data, falling back to static");
       }
     };
     fetchHeroData();

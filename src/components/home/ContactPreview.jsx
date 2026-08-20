@@ -34,7 +34,7 @@ export function ContactPreview() {
           }
         }
       } catch (error) {
-        console.error("Failed to fetch contact cta data", error);
+        console.warn("Failed to fetch contact cta data");
       }
     };
     fetchContactData();

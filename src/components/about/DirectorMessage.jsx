@@ -23,7 +23,7 @@ export function DirectorMessage() {
           }
         }
       } catch (error) {
-        console.error("Failed to fetch director message data", error);
+        console.warn("Failed to fetch director message data");
       }
     };
     fetchDirectorMessage();

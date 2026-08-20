@@ -9,6 +9,8 @@ const inter = Inter({
   variable: "--font-sans",
 });
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   metadataBase: new URL("https://shardaacademyofficial.in"),
   title: "Sharda Academy | Top Coaching for 1st to 12th (Science & Commerce)",

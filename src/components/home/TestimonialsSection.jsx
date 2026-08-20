@@ -43,7 +43,7 @@ export function TestimonialsSection() {
           }
         }
       } catch (error) {
-        console.error("Failed to fetch testimonials data, falling back to static", error);
+        console.warn("Failed to fetch testimonials data, falling back to static");
       }
     };
     fetchTestimonials();

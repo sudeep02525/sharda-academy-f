@@ -34,7 +34,7 @@ export function ExpertFaculty() {
           }
         }
       } catch (error) {
-        console.error("Failed to fetch live faculty data, falling back to static", error);
+        console.warn("Failed to fetch live faculty data, falling back to static");
       }
     };
     fetchFacultyData();

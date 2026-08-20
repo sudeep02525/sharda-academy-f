@@ -25,7 +25,7 @@ export function OurMission() {
           }
         }
       } catch (error) {
-        console.error("Failed to fetch mission and vision data", error);
+        console.warn("Failed to fetch mission and vision data");
       }
     };
     fetchMissionVision();

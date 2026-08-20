@@ -21,7 +21,7 @@ export function LearningMethodology() {
           }
         }
       } catch (error) {
-        console.error("Failed to fetch live learning process data, falling back to static", error);
+        console.warn("Failed to fetch live learning process data, falling back to static");
       }
     };
     fetchMethodologyData();

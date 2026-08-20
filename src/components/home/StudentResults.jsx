@@ -24,7 +24,7 @@ export function StudentResults() {
           }
         }
       } catch (error) {
-        console.error("Failed to fetch live achievers data, falling back to static", error);
+        console.warn("Failed to fetch live achievers data, falling back to static");
       }
     };
     fetchAchieversData();
