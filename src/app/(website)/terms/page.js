@@ -15,7 +15,8 @@ export const metadata = {
 
 async function getTermsContent() {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/cms/legal/terms`, { next: { revalidate: 60 } });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/cms/legal/terms`, {
+        credentials: "include", next: { revalidate: 60 } });
     const json = await res.json();
     if (json.data && json.data.sections && json.data.sections.length > 0) {
       return json.data.sections;

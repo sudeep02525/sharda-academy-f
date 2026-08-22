@@ -51,6 +51,7 @@ export function AboutHeroEditor() {
     setIsSaving(true);
     try {
       const res = await fetch(`${API_BASE_URL}/api/cms/about/hero`, {
+        credentials: "include",
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data: formData, isPublished: true }),
@@ -132,6 +133,7 @@ export function MissionVisionEditor() {
     setIsSaving(true);
     try {
       const res = await fetch(`${API_BASE_URL}/api/cms/about/mission-vision`, {
+        credentials: "include",
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data: formData, isPublished: true }),
@@ -211,6 +213,7 @@ export function DirectorMessageEditor() {
     setIsSaving(true);
     try {
       const res = await fetch(`${API_BASE_URL}/api/cms/about/director-message`, {
+        credentials: "include",
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data: formData, isPublished: true }),
@@ -292,6 +295,7 @@ export function CoreValuesEditor() {
     setIsSaving(true);
     try {
       await fetch(`${API_BASE_URL}/api/cms/about/core-values`, {
+        credentials: "include",
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data, isPublished: true })
@@ -389,6 +393,7 @@ export function TimelineEditor() {
     setIsSaving(true);
     try {
       await fetch(`${API_BASE_URL}/api/cms/about/timeline`, {
+        credentials: "include",
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data: timeline, isPublished: true })
@@ -479,6 +484,7 @@ export function WhyParentsChooseUsEditor() {
     setIsSaving(true);
     try {
       await fetch(`${API_BASE_URL}/api/cms/about/why-parents-choose-us`, {
+        credentials: "include",
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data, isPublished: true })

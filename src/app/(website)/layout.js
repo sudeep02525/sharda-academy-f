@@ -79,7 +79,8 @@ export default async function RootLayout({ children }) {
   let isMaintenance = false;
   try {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
-    const res = await fetch(`${apiUrl}/api/cms/system/settings`, { 
+    const res = await fetch(`${apiUrl}/api/cms/system/settings`, {
+        credentials: "include", 
       cache: "no-store" 
     });
     if (res.ok) {

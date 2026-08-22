@@ -18,7 +18,8 @@ export const metadata = {
 
 async function getFacultyData() {
   try {
-    const res = await fetch(`${API_BASE_URL}/api/cms/website/faculty`, { 
+    const res = await fetch(`${API_BASE_URL}/api/cms/website/faculty`, {
+        credentials: "include", 
       cache: 'no-store' 
     });
     if (!res.ok) throw new Error("Failed to fetch");

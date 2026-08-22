@@ -45,6 +45,7 @@ export default function PopupCMSPage() {
     setIsSaving(true);
     try {
       const res = await fetch(`${API_BASE_URL}/api/cms/website/popup`, {
+        credentials: "include",
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data: dataToSave, isPublished: true }),

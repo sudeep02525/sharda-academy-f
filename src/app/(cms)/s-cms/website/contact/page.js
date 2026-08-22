@@ -49,6 +49,7 @@ export default function ContactCMSPage() {
     setIsSaving(true);
     try {
       const res = await fetch(`${API_BASE_URL}/api/cms/website/contact`, {
+        credentials: "include",
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data, isPublished: true }),

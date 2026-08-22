@@ -66,6 +66,7 @@ export default function AnnouncementsEditor() {
     try {
       const data = { announcements };
       const res = await fetch(`${API_BASE_URL}/api/cms/home/announcements`, {
+        credentials: "include",
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data, isPublished: true }),

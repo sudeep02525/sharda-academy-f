@@ -104,6 +104,7 @@ export default function PopularCoursesEditor() {
     try {
       const data = { courses };
       const res = await fetch(`${API_BASE_URL}/api/cms/home/courses`, {
+        credentials: "include",
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data, isPublished: true }),

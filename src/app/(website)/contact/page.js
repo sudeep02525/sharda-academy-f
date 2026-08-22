@@ -21,7 +21,8 @@ export const metadata = {
 
 async function getContactData() {
   try {
-    const res = await fetch(`${API_BASE_URL}/api/cms/website/contact`, { cache: 'no-store' });
+    const res = await fetch(`${API_BASE_URL}/api/cms/website/contact`, {
+        credentials: "include", cache: 'no-store' });
     if (!res.ok) return null;
     const json = await res.json();
     return json.data;

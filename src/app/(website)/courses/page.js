@@ -22,7 +22,8 @@ export default async function CoursesPage() {
   let pageData = null;
   try {
     // using cache: no-store or revalidate so we can see updates quickly
-    const res = await fetch(`${API_BASE_URL}/api/cms/academics/courses`, { cache: "no-store" });
+    const res = await fetch(`${API_BASE_URL}/api/cms/academics/courses`, {
+        credentials: "include", cache: "no-store" });
     if (res.ok) {
        const json = await res.json();
        if (json && json.data) {

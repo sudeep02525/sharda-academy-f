@@ -34,6 +34,7 @@ export default function LoginPage() {
     try {
       // Need to import axios at the top if we use it here. Or we can just use fetch.
       const res = await fetch(`${API_BASE_URL}/auth/login`, {
+        credentials: "include",
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: data.email, password: data.password })

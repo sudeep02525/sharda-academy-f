@@ -69,6 +69,7 @@ export default function SettingsPage() {
     try {
       await new Promise(resolve => setTimeout(resolve, 800));
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/cms/system/settings`, {
+        credentials: "include",
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data: settings })
@@ -91,6 +92,7 @@ export default function SettingsPage() {
     setIsSubmittingAdmin(true);
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/auth/admins`, {
+        credentials: "include",
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newAdmin)
@@ -130,6 +132,7 @@ export default function SettingsPage() {
 
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/auth/admins/${id}`, {
+        credentials: "include",
         method: "DELETE"
       });
       if (response.ok) {

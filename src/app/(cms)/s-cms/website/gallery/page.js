@@ -48,6 +48,7 @@ export default function GalleryCMSPage() {
     setIsSaving(true);
     try {
       const res = await fetch(`${API_BASE_URL}/api/cms/website/gallery`, {
+        credentials: "include",
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data, isPublished: true }),

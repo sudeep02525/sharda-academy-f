@@ -31,7 +31,8 @@ export async function generateStaticParams() {
 
 async function getCourseBySlug(slug) {
   try {
-    const res = await fetch(`${API_BASE_URL}/api/cms/academics/courses`, { cache: "no-store" });
+    const res = await fetch(`${API_BASE_URL}/api/cms/academics/courses`, {
+        credentials: "include", cache: "no-store" });
     if (res.ok) {
       const json = await res.json();
       const courses = json.data?.courses || [];

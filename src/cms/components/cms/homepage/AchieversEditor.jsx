@@ -52,6 +52,7 @@ export default function AchieversEditor() {
     try {
       const data = { title, description, rankers: achievers };
       const res = await fetch(`${API_BASE_URL}/api/cms/home/achievers`, {
+        credentials: "include",
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data, isPublished: true }),

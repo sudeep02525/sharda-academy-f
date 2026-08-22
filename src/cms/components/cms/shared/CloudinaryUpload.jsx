@@ -22,6 +22,7 @@ export default function CloudinaryUpload({ imageUrl, publicId, onChange, label =
 
     try {
       const res = await fetch(`${API_BASE_URL}/api/upload`, {
+        credentials: "include",
         method: 'POST',
         body: formData
       });
@@ -31,6 +32,7 @@ export default function CloudinaryUpload({ imageUrl, publicId, onChange, label =
         // Safely delete the old image only after the new one is successfully uploaded
         if (publicId) {
           await fetch(`${API_BASE_URL}/api/upload/delete`, {
+        credentials: "include",
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ publicId })
@@ -67,6 +69,7 @@ export default function CloudinaryUpload({ imageUrl, publicId, onChange, label =
 
     try {
       const res = await fetch(`${API_BASE_URL}/api/upload/delete`, {
+        credentials: "include",
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ publicId })

@@ -23,7 +23,8 @@ export const metadata = {
 
 async function getResultsData() {
   try {
-    const res = await fetch(`${API_BASE_URL}/api/cms/website/results`, { cache: 'no-store' });
+    const res = await fetch(`${API_BASE_URL}/api/cms/website/results`, {
+        credentials: "include", cache: 'no-store' });
     if (!res.ok) return null;
     const json = await res.json();
     return json.data;

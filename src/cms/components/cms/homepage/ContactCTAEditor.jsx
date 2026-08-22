@@ -49,6 +49,7 @@ export default function ContactCTAEditor() {
     try {
       const data = { heading, description, phone, address };
       const res = await fetch(`${API_BASE_URL}/api/cms/home/contact-cta`, {
+        credentials: "include",
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data, isPublished: true }),

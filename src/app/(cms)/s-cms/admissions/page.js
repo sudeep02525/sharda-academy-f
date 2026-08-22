@@ -78,7 +78,8 @@ export default function AdmissionInquiriesPage() {
       const id = payload;
       setDeletingId(id);
       try {
-        const res = await fetch(`${API_BASE_URL}/api/admissions/${id}`, { method: "DELETE" });
+        const res = await fetch(`${API_BASE_URL}/api/admissions/${id}`, {
+        credentials: "include", method: "DELETE" });
         if (res.ok) {
           setInquiries(prev => prev.filter(i => i._id !== id));
           if (expandedId === id) setExpandedId(null);
@@ -92,7 +93,8 @@ export default function AdmissionInquiriesPage() {
       const { inquiryId, publicId } = payload;
       try {
         const encodedId = encodeURIComponent(publicId);
-        const res = await fetch(`${API_BASE_URL}/api/admissions/${inquiryId}/documents/${encodedId}`, { method: "DELETE" });
+        const res = await fetch(`${API_BASE_URL}/api/admissions/${inquiryId}/documents/${encodedId}`, {
+        credentials: "include", method: "DELETE" });
         if (res.ok) {
           setInquiries(prev => prev.map(i => {
             if (i._id === inquiryId) {
@@ -110,6 +112,7 @@ export default function AdmissionInquiriesPage() {
   const handleStatusChange = async (id, status) => {
     try {
       const res = await fetch(`${API_BASE_URL}/api/admissions/${id}/status`, {
+        credentials: "include",
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status }),

@@ -98,6 +98,7 @@ export default function TestimonialsEditor() {
     try {
       const data = { sectionBadge, sectionTitle, sectionDescription, testimonials };
       const res = await fetch(`${API_BASE_URL}/api/cms/home/testimonials`, {
+        credentials: "include",
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data, isPublished: true }),

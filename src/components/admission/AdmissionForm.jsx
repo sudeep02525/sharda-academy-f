@@ -64,6 +64,7 @@ export function AdmissionForm({ data }) {
           
           try {
             const uploadRes = await fetch(`${API_BASE_URL}/api/upload`, {
+        credentials: "include",
               method: 'POST',
               body: fileData
             });
@@ -87,6 +88,7 @@ export function AdmissionForm({ data }) {
       };
 
       const res = await fetch(`${API_BASE_URL}/api/admissions`, {
+        credentials: "include",
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

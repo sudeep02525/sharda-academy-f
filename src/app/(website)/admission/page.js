@@ -21,7 +21,8 @@ export const metadata = {
 
 async function getAdmissionData() {
   try {
-    const res = await fetch(`${API_BASE_URL}/api/cms/website/admission`, { cache: 'no-store' });
+    const res = await fetch(`${API_BASE_URL}/api/cms/website/admission`, {
+        credentials: "include", cache: 'no-store' });
     if (!res.ok) return null;
     const json = await res.json();
     return json.data;

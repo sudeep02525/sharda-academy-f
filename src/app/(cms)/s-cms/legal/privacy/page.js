@@ -52,6 +52,7 @@ export default function PrivacyCMSPage() {
     setIsSaving(true);
     try {
       const res = await fetch(`${API_BASE_URL}/api/cms/legal/privacy`, {
+        credentials: "include",
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data, isPublished: true }),
