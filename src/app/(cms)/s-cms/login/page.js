@@ -20,6 +20,33 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [authView, setAuthView] = useState("login"); // 'login' | 'forgot'
   const [isLoading, setIsLoading] = useState(false);
+  const [loginError, setLoginError] = useState("");
+  
+  // Forgot Password State
+  const [forgotStep, setForgotStep] = useState(1);
+  const [forgotEmail, setForgotEmail] = useState("");
+  const [forgotOtp, setForgotOtp] = useState("");
+  const [forgotNewPassword, setForgotNewPassword] = useState("");
+  const [forgotMessage, setForgotMessage] = useState("");
+  const [resendTimer, setResendTimer] = useState(0);
+  const resendIntervalRef = React.useRef(null);
+
+  const startResendTimer = () => {
+    setResendTimer(40);
+    if (resendIntervalRef.current) clearInterval(resendIntervalRef.current);
+    resendIntervalRef.current = setInterval(() => {
+      setResendTimer(prev => {
+        if (prev <= 1) { clearInterval(resendIntervalRef.current); return 0; }
+        return prev - 1;
+      });
+    }, 1000);
+  };
+
+  React.useEffect(() => {
+    return () => {
+      if (resendIntervalRef.current) clearInterval(resendIntervalRef.current);
+    };
+  }, []);
 
   const {
     register,
@@ -31,6 +58,7 @@ export default function LoginPage() {
 
   const onSubmit = async (data) => {
     setIsLoading(true);
+    setLoginError("");
     try {
       // Need to import axios at the top if we use it here. Or we can just use fetch.
       const res = await fetch(`${API_BASE_URL}/auth/login`, {
@@ -42,15 +70,87 @@ export default function LoginPage() {
 
       const responseData = await res.json();
       
-      if (responseData.success && responseData.token) {
-        login(responseData.user, responseData.token);
+      const remainingAttempts = res.headers.get('RateLimit-Remaining') || res.headers.get('X-RateLimit-Remaining');
+      let limitMsg = "";
+      if (remainingAttempts !== null && remainingAttempts !== undefined) {
+        limitMsg = ` (${remainingAttempts} attempts remaining)`;
+      }
+
+      if (responseData.success) {
+        login(responseData.user, null);
         router.push("/s-cms/dashboard");
       } else {
-        alert(responseData.message || "Invalid email or password");
+        setLoginError((responseData.message || "Invalid email or password") + limitMsg);
       }
     } catch (error) {
       console.error("Login failed:", error);
-      alert("Something went wrong during login. Is the backend running?");
+      setLoginError("Something went wrong during login. Is the backend running?");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleForgotRequest = async (e) => {
+    e.preventDefault();
+    if (!forgotEmail) return;
+
+    setIsLoading(true);
+    setLoginError("");
+    setForgotMessage("");
+
+    try {
+      const res = await fetch(`${API_BASE_URL}/auth/forgot-password`, {
+        credentials: "include",
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: forgotEmail }),
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        setForgotStep(2);
+        setForgotMessage(`A 6-digit recovery code has been sent to ${forgotEmail}. Check your inbox.`);
+        startResendTimer();
+      } else {
+        setLoginError(data.message || "Failed to request recovery code.");
+      }
+    } catch (err) {
+      setLoginError("Connection failed.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleResetPassword = async (e) => {
+    e.preventDefault();
+    if (!forgotOtp || !forgotNewPassword) return;
+
+    setIsLoading(true);
+    setLoginError("");
+
+    try {
+      const res = await fetch(`${API_BASE_URL}/auth/reset-password`, {
+        credentials: "include",
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: forgotEmail, otp: forgotOtp, newPassword: forgotNewPassword }),
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        setAuthView("login");
+        setForgotStep(1);
+        setForgotNewPassword("");
+        setForgotOtp("");
+        setForgotEmail("");
+        setForgotMessage("");
+        setLoginError("");
+        alert("Your password has been successfully reset! You can now log in.");
+      } else {
+        setLoginError(data.message || "Failed to reset password.");
+      }
+    } catch (err) {
+      setLoginError("Reset failed.");
     } finally {
       setIsLoading(false);
     }
@@ -161,6 +261,15 @@ export default function LoginPage() {
                 <p className="text-[10px] font-bold text-slate-400 mt-1 uppercase tracking-widest">Authorized Access Only</p>
               </div>
 
+              {loginError && (
+                <div className="flex items-start gap-2.5 p-3 rounded-xl bg-red-50 border border-red-200 text-xs font-semibold text-red-700 animate-pulse w-full">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.2} stroke="currentColor" className="w-4 h-4 text-red-600 shrink-0 mt-0.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+                  </svg>
+                  <span>{loginError}</span>
+                </div>
+              )}
+
               <div className="space-y-4">
                 {/* Fake inputs to trick browser autocomplete */}
                 <input type="email" style={{ display: 'none' }} />
@@ -224,25 +333,103 @@ export default function LoginPage() {
             <div className="space-y-4 text-xs animate-fade-in-up">
                <div className="text-center pb-2 border-b border-slate-100">
                 <h3 className="text-sm font-black uppercase tracking-wider text-navy">Reset Password</h3>
-                <p className="text-[10px] font-bold text-slate-400 mt-1 uppercase tracking-widest">Enter email to receive reset link</p>
+                <p className="text-[10px] font-bold text-slate-400 mt-1 uppercase tracking-widest">
+                  {forgotStep === 1 ? "Enter email to receive reset code" : "Enter OTP and New Password"}
+                </p>
               </div>
-              <div className="text-left">
-                <label className="block text-[10px] font-bold text-slate-800 uppercase tracking-wider mb-1.5">Admin Email</label>
-                <input
-                  type="email"
-                  placeholder="cms@gmail.com"
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#f1af3c] focus:ring-1 focus:ring-[#f1af3c]/50 transition-all"
-                />
-              </div>
+
+              {loginError && (
+                <div className="flex items-start gap-2.5 p-3 rounded-xl bg-red-50 border border-red-200 text-xs font-semibold text-red-700 animate-pulse w-full">
+                  <span>{loginError}</span>
+                </div>
+              )}
+              {forgotMessage && (
+                <div className="flex items-start gap-2.5 p-3 rounded-xl bg-green-50 border border-green-200 text-xs font-semibold text-green-700 animate-pulse w-full">
+                  <span>{forgotMessage}</span>
+                </div>
+              )}
+
+              {forgotStep === 1 ? (
+                <form onSubmit={handleForgotRequest} className="space-y-4">
+                  <div className="text-left">
+                    <label className="block text-[10px] font-bold text-slate-800 uppercase tracking-wider mb-1.5">Admin Email</label>
+                    <input
+                      type="email"
+                      value={forgotEmail}
+                      onChange={(e) => setForgotEmail(e.target.value)}
+                      placeholder="cms@gmail.com"
+                      required
+                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#f1af3c] focus:ring-1 focus:ring-[#f1af3c]/50 transition-all"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    disabled={isLoading}
+                    className="w-full py-3 rounded-xl text-xs font-extrabold text-[#0a1835] bg-[#f1af3c] hover:bg-amber-400 shadow-md shadow-[#f1af3c]/20 uppercase tracking-widest transition-all hover:-translate-y-0.5 active:scale-95 duration-200 cursor-pointer disabled:opacity-50"
+                  >
+                    {isLoading ? "SENDING..." : "SEND RESET CODE"}
+                  </button>
+                </form>
+              ) : (
+                <form onSubmit={handleResetPassword} className="space-y-4">
+                  <div className="text-left">
+                    <label className="block text-[10px] font-bold text-slate-800 uppercase tracking-wider mb-1.5">6-Digit Code</label>
+                    <input
+                      type="text"
+                      value={forgotOtp}
+                      onChange={(e) => setForgotOtp(e.target.value)}
+                      placeholder="Enter OTP"
+                      required
+                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#f1af3c] focus:ring-1 focus:ring-[#f1af3c]/50 transition-all"
+                    />
+                  </div>
+                  <div className="text-left">
+                    <label className="block text-[10px] font-bold text-slate-800 uppercase tracking-wider mb-1.5">New Password</label>
+                    <input
+                      type="password"
+                      value={forgotNewPassword}
+                      onChange={(e) => setForgotNewPassword(e.target.value)}
+                      placeholder="••••••••"
+                      required
+                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#f1af3c] focus:ring-1 focus:ring-[#f1af3c]/50 transition-all"
+                    />
+                  </div>
+                  
+                  <button
+                    type="submit"
+                    disabled={isLoading}
+                    className="w-full py-3 rounded-xl text-xs font-extrabold text-[#0a1835] bg-[#f1af3c] hover:bg-amber-400 shadow-md shadow-[#f1af3c]/20 uppercase tracking-widest transition-all hover:-translate-y-0.5 active:scale-95 duration-200 cursor-pointer disabled:opacity-50"
+                  >
+                    {isLoading ? "UPDATING..." : "RESET PASSWORD"}
+                  </button>
+
+                  <div className="text-center pt-2">
+                    {resendTimer > 0 ? (
+                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                        Resend code in {resendTimer}s
+                      </span>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={handleForgotRequest}
+                        disabled={isLoading}
+                        className="text-[10px] font-bold text-gold hover:text-amber-500 uppercase tracking-wider cursor-pointer"
+                      >
+                        Resend Code
+                      </button>
+                    )}
+                  </div>
+                </form>
+              )}
+
               <button
                 type="button"
-                className="w-full py-3 rounded-xl text-xs font-extrabold text-[#0a1835] bg-[#f1af3c] hover:bg-amber-400 shadow-md shadow-[#f1af3c]/20 uppercase tracking-widest transition-all hover:-translate-y-0.5 active:scale-95 duration-200 cursor-pointer"
-              >
-                SEND RESET LINK
-              </button>
-              <button
-                type="button"
-                onClick={() => setAuthView("login")}
+                onClick={() => {
+                  setAuthView("login");
+                  setForgotStep(1);
+                  setLoginError("");
+                  setForgotMessage("");
+                }}
                 className="block w-full text-center text-[10px] font-bold text-slate-500 hover:text-[#0a1835] uppercase tracking-wider transition-colors duration-200 cursor-pointer pt-2"
               >
                 Back to Sign In
