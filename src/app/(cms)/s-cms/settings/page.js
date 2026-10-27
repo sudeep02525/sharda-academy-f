@@ -44,7 +44,7 @@ export default function SettingsPage() {
   };
 
   const fetchAdmins = () => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/auth/admins`)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/auth/admins`, { credentials: 'include' })
       .then(res => res.json())
       .then(data => {
         if (data.success && data.data) {

@@ -34,7 +34,7 @@ export default function AdmissionInquiriesPage() {
   const fetchInquiries = useCallback(async () => {
     setIsLoading(true);
     try {
-      const res = await fetch(`${API_BASE_URL}/api/admissions`);
+      const res = await fetch(`${API_BASE_URL}/api/admissions`, { credentials: 'include' });
       if (res.ok) {
         const json = await res.json();
         setInquiries(json.data || []);
