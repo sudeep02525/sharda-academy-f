@@ -10,7 +10,7 @@ import { io } from "socket.io-client";
 import { Toaster, toast } from "sonner";
 import { BellRing } from "lucide-react";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+import { API_BASE_URL } from "@/cms/utils/config";
 
 const playNotificationSound = () => {
   try {

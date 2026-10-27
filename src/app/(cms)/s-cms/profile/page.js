@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import PageContainer from "@/cms/components/layout/PageContainer";
 import { CheckCircle, User, Mail, Shield, KeyRound, AlertCircle, ArrowRight } from "lucide-react";
 import { useAuthStore } from "@/cms/store/authStore";
+import { API_BASE_URL } from "@/cms/utils/config";
 
 export default function ProfilePage() {
   const { user } = useAuthStore();
@@ -36,7 +37,7 @@ export default function ProfilePage() {
 
     setIsSubmitting(true);
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/auth/request-password-change`, {
+      const res = await fetch(`${API_BASE_URL}/auth/request-password-change`, {
         credentials: "include",
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -62,7 +63,7 @@ export default function ProfilePage() {
     setIsSubmitting(true);
     
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/auth/verify-password-change`, {
+      const res = await fetch(`${API_BASE_URL}/auth/verify-password-change`, {
         credentials: "include",
         method: "POST",
         headers: { "Content-Type": "application/json" },

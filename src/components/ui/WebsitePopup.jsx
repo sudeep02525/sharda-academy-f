@@ -13,7 +13,7 @@ export function WebsitePopup() {
     
     const fetchConfig = async () => {
       try {
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://api.shardaacademyofficial.in";
         const res = await fetch(`${apiUrl}/api/cms/website/popup`);
         if (!res.ok) return;
         const json = await res.json();

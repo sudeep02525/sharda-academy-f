@@ -6,6 +6,7 @@ import {
   Settings, Users, Shield, Save, CheckCircle, AlertCircle, X, Plus, Trash2
 } from "lucide-react";
 import { useAuthStore } from "@/cms/store/authStore";
+import { API_BASE_URL } from "@/cms/utils/config";
 
 export default function SettingsPage() {
   const { user } = useAuthStore();
@@ -35,7 +36,7 @@ export default function SettingsPage() {
   }, []);
 
   const fetchSettings = () => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/cms/system/settings`)
+    fetch(`${API_BASE_URL}/api/cms/system/settings`)
       .then(res => res.json())
       .then(data => {
         if (data && data.data) setSettings(data.data);
@@ -44,7 +45,7 @@ export default function SettingsPage() {
   };
 
   const fetchAdmins = () => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/auth/admins`, { credentials: 'include' })
+    fetch(`${API_BASE_URL}/auth/admins`, { credentials: 'include' })
       .then(res => res.json())
       .then(data => {
         if (data.success && data.data) {
@@ -68,7 +69,7 @@ export default function SettingsPage() {
     setIsSaving(true);
     try {
       await new Promise(resolve => setTimeout(resolve, 800));
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/cms/system/settings`, {
+      const response = await fetch(`${API_BASE_URL}/api/cms/system/settings`, {
         credentials: "include",
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -91,7 +92,7 @@ export default function SettingsPage() {
     e.preventDefault();
     setIsSubmittingAdmin(true);
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/auth/admins`, {
+      const response = await fetch(`${API_BASE_URL}/auth/admins`, {
         credentials: "include",
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -131,7 +132,7 @@ export default function SettingsPage() {
     setDeleteConfirm({ isOpen: false, id: null, email: null });
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/auth/admins/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/auth/admins/${id}`, {
         credentials: "include",
         method: "DELETE"
       });

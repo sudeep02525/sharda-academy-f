@@ -78,7 +78,7 @@ const jsonLd = {
 export default async function RootLayout({ children }) {
   let isMaintenance = false;
   try {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://api.shardaacademyofficial.in";
     const res = await fetch(`${apiUrl}/api/cms/system/settings`, {
         credentials: "include", 
       cache: "no-store" 
