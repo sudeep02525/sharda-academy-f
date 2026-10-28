@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuthStore } from "@/cms/store/authStore";
-import Sidebar from "./Sidebar";
+import CMSSidebar from "./CMSSidebar";
 import Header from "./Header";
 import PageContainer from "./PageContainer";
 import { io } from "socket.io-client";
@@ -122,7 +122,7 @@ export default function ClientLayout({ children }) {
   return (
     <div className="flex min-h-screen bg-slate-50 text-slate-900 font-sans">
       <Toaster position="top-right" expand={false} />
-      <Sidebar />
+      <CMSSidebar />
       <div className="flex-1 flex flex-col min-w-0">
         <Header />
         <PageContainer>

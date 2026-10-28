@@ -43,7 +43,7 @@ const MENU_ITEMS = [
   { id: "profile", label: "Profile", href: "/s-cms/profile", icon: User }
 ];
 
-export default function Sidebar() {
+export default function CMSSidebar() {
   const { sidebarOpen, setSidebarOpen } = useSidebarStore();
   const { user, logout } = useAuthStore();
   const pathname = usePathname();

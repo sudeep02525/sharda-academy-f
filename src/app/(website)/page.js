@@ -8,7 +8,7 @@ import { Facilities } from "@/components/home/Facilities";
 import { ExpertFaculty } from "@/components/home/ExpertFaculty";
 import { StudentResults } from "@/components/home/StudentResults";
 import { TestimonialsSection } from "@/components/home/TestimonialsSection";
-import { AdmissionProcess } from "@/components/home/AdmissionProcess";
+import { HomeAdmissionProcess } from "@/components/home/HomeAdmissionProcess";
 import { GalleryPreview } from "@/components/home/GalleryPreview";
 import { Announcements } from "@/components/home/Announcements";
 import { FAQSection } from "@/components/home/FAQSection";
@@ -49,7 +49,7 @@ export default function Home() {
 
 
       {/* 12b. Admission Process */}
-      <AdmissionProcess />
+      <HomeAdmissionProcess />
       
       {/* 13. Events & Workshops (Deleted) */}
 

@@ -106,7 +106,7 @@ export default async function RootLayout({ children }) {
           id="theme-script"
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
-            __html: `try{const storedTheme = localStorage.getItem('theme');if(storedTheme==='dark'||(!storedTheme&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark');}}catch(e){}`,
+            __html: `try{const storedTheme = localStorage.getItem('theme');if(storedTheme==='dark'||(!storedTheme&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark');}}catch(e){console.warn('Theme init warning:', e);}`,
           }}
         />
         <ThemeProvider defaultTheme="light">

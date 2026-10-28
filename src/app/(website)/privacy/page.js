@@ -2,6 +2,7 @@ import { Navbar } from "@/components/navigation/Navbar";
 import { Shield, ArrowLeft } from "lucide-react";
 import * as Icons from "lucide-react";
 import Link from "next/link";
+import DOMPurify from "isomorphic-dompurify";
 
 export const metadata = {
   title: "Privacy Policy | Sharda Academy",
@@ -113,7 +114,7 @@ export default async function PrivacyPolicy() {
                         </div>
                         <h2 className="text-3xl md:text-4xl m-0 tracking-tight">{section.title}</h2>
                       </div>
-                      <div dangerouslySetInnerHTML={{ __html: section.content }} />
+                      <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(section.content || "") }} />
                     </div>
                   );
                 })}

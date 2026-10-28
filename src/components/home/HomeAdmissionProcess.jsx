@@ -39,7 +39,7 @@ const PROCESS_STEPS = [
   }
 ];
 
-export function AdmissionProcess() {
+export function HomeAdmissionProcess() {
   return (
     <section className="py-16 md:py-24 bg-white dark:bg-surface relative overflow-hidden border-t border-border/50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
